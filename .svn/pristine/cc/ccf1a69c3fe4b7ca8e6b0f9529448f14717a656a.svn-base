@@ -1,0 +1,151 @@
+//Groovy Scripts for model.vo.XxhrHmoTrxHdr_EOView
+
+package model.vo
+
+import oracle.jbo.script.annotation.AccessorParameterExpression;
+
+@AccessorParameterExpression(accessorName="Hospital_ROVO", name="bv_state")
+def bv_state_Hospital_ROVO_BindVariable_BoundParameter()
+{
+StateOfResidence
+}
+
+@AccessorParameterExpression(accessorName="Hospital_ROVO", name="bv_type")
+def bv_type_Hospital_ROVO_BindVariable_BoundParameter()
+{
+HmoType
+}
+
+
+@AccessorParameterExpression(accessorName="XXHR_HMO_CATEGORY_MASTER", name="BV_ID")
+def BV_ID_XXHR_HMO_CATEGORY_MASTER_BindVariable_BoundParameter()
+{
+HmoType
+}
+
+
+@AccessorParameterExpression(accessorName="FetchDepOption_ROVO", name="b_hmoCategory")
+def b_hmoCategory_FetchDepOption_ROVO_BindVariable_BoundParameter()
+{
+HmoCategory
+}
+
+
+@AccessorParameterExpression(accessorName="FetchDepOption_ROVO", name="b_hmoOptions")
+def b_hmoOptions_FetchDepOption_ROVO_BindVariable_BoundParameter()
+{
+HmoType
+}
+
+
+@AccessorParameterExpression(accessorName="FetchHospital_ROVO", name="bv_hmoOptions")
+def bv_hmoOptions_FetchHospital_ROVO_BindVariable_BoundParameter()
+{
+HmoType
+}
+
+
+@AccessorParameterExpression(accessorName="FetchHospital_ROVO", name="bv_state")
+def bv_state_FetchHospital_ROVO_BindVariable_BoundParameter()
+{
+StateOfResidence
+}
+
+
+@AccessorParameterExpression(accessorName="AdditionalCategory_ROVO1", name="b_deptOpt")
+def b_deptOpt_AdditionalCategory_ROVO1_BindVariable_BoundParameter()
+{
+HmoOption
+}
+
+
+@AccessorParameterExpression(accessorName="AdditionalCategory_ROVO1", name="bv_hmoCategory")
+def bv_hmoCategory_AdditionalCategory_ROVO1_BindVariable_BoundParameter()
+{
+HmoCategory
+}
+
+
+@AccessorParameterExpression(accessorName="AdditionalCategory_ROVO1", name="bv_hmoOptions")
+def bv_hmoOptions_AdditionalCategory_ROVO1_BindVariable_BoundParameter()
+{
+HmoType
+}
+
+
+@AccessorParameterExpression(accessorName="StateOfResidence_ROVO", name="bv_hmoOpt")
+def bv_hmoOpt_StateOfResidence_ROVO_BindVariable_BoundParameter()
+{
+HmoType
+}
+
+
+@AccessorParameterExpression(accessorName="XXHR_HMO_CATEGORY_MASTER", name="BV_HMO_OPTION")
+def BV_HMO_OPTION_XXHR_HMO_CATEGORY_MASTER_BindVariable_BoundParameter()
+{
+HmoType
+}
+
+
+@AccessorParameterExpression(accessorName="AdditionalCategory_Africa_WWE", name="b_deptOpt")
+def b_deptOpt_AdditionalCategory_Africa_WWE_BindVariable_BoundParameter()
+{
+HmoOption
+}
+
+
+@AccessorParameterExpression(accessorName="AdditionalCategory_Africa_WWE", name="bv_hmoOptions")
+def bv_hmoOptions_AdditionalCategory_Africa_WWE_BindVariable_BoundParameter()
+{
+HmoType
+}
+
+
+@AccessorParameterExpression(accessorName="XXHR_HMO_TypeInter", name="BV_id")
+def BV_id_XXHR_HMO_TypeInter_BindVariable_BoundParameter()
+{
+HmoMasterHdrId
+}
+
+
+@AccessorParameterExpression(accessorName="XXHR_HMO_OPTIONS_MASTER_HMOTYPe", name="BV_id")
+def BV_id_XXHR_HMO_OPTIONS_MASTER_HMOTYPe_BindVariable_BoundParameter()
+{
+HmoMasterHdrId
+}
+
+
+@AccessorParameterExpression(accessorName="XXHR_HMO_CATEGORY_MASTER", name="BV_Plan")
+def BV_Plan_XXHR_HMO_CATEGORY_MASTER_BindVariable_BoundParameter()
+{
+HmoMasterHdrId
+}
+
+
+@AccessorParameterExpression(accessorName="XXHR_HMO_OPTIONS_MASTER_HMOTYPe", name="BV_ID")
+def BV_ID_XXHR_HMO_OPTIONS_MASTER_HMOTYPe_BindVariable_BoundParameter()
+{
+HmoMasterHdrId
+}
+
+
+@AccessorParameterExpression(accessorName="XXHR_HMO_TypeInter", name="BV_ID")
+def BV_ID_XXHR_HMO_TypeInter_BindVariable_BoundParameter()
+{
+HmoMasterHdrId
+}
+
+
+@AccessorParameterExpression(accessorName="FetchDepOption_ROVO", name="BV_ID")
+def BV_ID_FetchDepOption_ROVO_BindVariable_BoundParameter()
+{
+HmoMasterHdrId
+}
+
+
+@AccessorParameterExpression(accessorName="HmoPlanName_ROVO", name="bv_active")
+def bv_active_HmoPlanName_ROVO_BindVariable_BoundParameter()
+{
+'Y'
+}
+

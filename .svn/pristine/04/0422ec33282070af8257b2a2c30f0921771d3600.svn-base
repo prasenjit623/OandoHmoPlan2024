@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding='windows-1252'?>
+<!DOCTYPE OperationDefinitions SYSTEM "jbo_03_01.dtd">
+<OperationDefinitions xmlns="http://xmlns.oracle.com/bc4j" Name="XxhrHmoDtl_VOOperations">
+  <ExpressionCodeSource
+    Name="XxhrHmoDtl_VORow"
+    Type="Static"
+    URI="model/vo/XxhrHmoDtl_VORow.bcs"/>
+  <ExpressionCodeSource
+    Name="XxhrHmoDtl_VO"
+    Type="Static"
+    URI="model/vo/XxhrHmoDtl_VO.bcs"/>
+</OperationDefinitions>

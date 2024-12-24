@@ -1,0 +1,310 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx" id="pt1">
+         <f:facet name="pageContents">
+            <af:panelGroupLayout id="pgl1">
+                <af:panelBox text="Reimbursement Claim Form" id="pb1" showDisclosure="false" background="dark">
+                    <f:facet name="toolbar">
+                        <af:toolbar id="t1">
+                            <af:button text="Save And Close" id="b1" styleClass="blue-proceed" visible="#{bindings.ApprovalStatus.inputValue eq 'DRAFT'}"
+                                       action="#{backingBeanScope.ReimbursementClaimBB.onSaveAction}" immediate="true"/>
+                            <af:button text="Submit" id="b2" rendered="#{bindings.Reimbursement_Attachment_VO.estimatedRowCount ne 0}"
+                               action="#{backingBeanScope.ReimbursementClaimBB.onSubmitAction}"
+                            styleClass="blue-proceed" visible="#{bindings.ApprovalStatus.inputValue eq 'DRAFT'}"/>
+                            <af:button text="Close" id="b3" styleClass="red-cancel" immediate="true"
+                                       action="#{backingBeanScope.ReimbursementClaimBB.onCancelAction}"/>
+                        </af:toolbar>
+                    </f:facet>
+                    <af:panelFormLayout id="pfl1" labelWidth="250" maxColumns="2" rows="2">
+                        <af:inputText readOnly="true" label="Reimbursement Claim Request No" 
+                                columns="#{bindings.ReimbursementReqNo.hints.displayWidth}"
+                                maximumLength="#{bindings.ReimbursementReqNo.hints.precision}"
+                                id="it11" value="#{bindings.ReimbursementReqNo.inputValue}"/>
+                        <af:inputText readOnly="true" label="HMO Trans Reference" id="it12" 
+                                columns="#{bindings.HmoTransReference.hints.displayWidth}"
+                                maximumLength="#{bindings.HmoTransReference.hints.precision}"
+                                value="#{bindings.HmoTransReference.inputValue}"/>
+                        <af:inputText readOnly="true" label="Status" id="it13" 
+                                columns="#{bindings.ApprovalStatus.hints.displayWidth}"
+                                maximumLength="#{bindings.ApprovalStatus.hints.precision}"
+                                value="#{bindings.ApprovalStatus.inputValue}"/>
+                         <af:inputText value="#{bindings.CreationDate.inputValue}" label="Request Date"
+                                  readOnly="true"
+                                  shortDesc="#{bindings.CreationDate.hints.tooltip}" id="it7">
+                        <af:convertDateTime pattern="dd-MMM-YYYY"/>
+                        </af:inputText>
+                    </af:panelFormLayout>
+                    <af:spacer width="10" height="20" id="s1"/>
+                    <af:panelBox text="" id="pb3" showDisclosure="false" styleClass="shadowBorder">
+                        <f:facet name="toolbar"/>
+                        <af:panelFormLayout id="pfl2" maxColumns="2" rows="7" labelWidth="250">
+                        
+                        <af:inputText readOnly="true" label="Emplyee No" id="it14"
+                                columns="#{bindings.PersonNumber.hints.displayWidth}"
+                                maximumLength="#{bindings.PersonNumber.hints.precision}"
+                                value="#{bindings.PersonNumber.inputValue}"/>
+                            <af:panelLabelAndMessage label="Employee Name" id="plam5">
+                                <af:outputText value="#{bindings.Title.inputValue} #{bindings.FirstName.inputValue} #{bindings.LastName.inputValue}" id="ot5"
+                                               shortDesc="Employee Name"/>
+                            </af:panelLabelAndMessage>
+                            <af:inputText value="#{bindings.MobileNo.inputValue}"
+                                          label="Mobile No" disabled="true"
+                                          required="#{bindings.MobileNo.hints.mandatory}"
+                                          columns="#{bindings.MobileNo.hints.displayWidth}"
+                                          maximumLength="#{bindings.MobileNo.hints.precision}"
+                                          shortDesc="#{bindings.MobileNo.hints.tooltip}" id="it2"
+                                          contentStyle="width:300px">
+                                <f:validator binding="#{bindings.MobileNo.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.HmoOption.inputValue}"
+                                          label="HMO Option"
+                                          required="#{bindings.HmoOption.hints.mandatory}"
+                                          columns="#{bindings.HmoOption.hints.displayWidth}"
+                                          maximumLength="#{bindings.HmoOption.hints.precision}"
+                                          shortDesc="#{bindings.HmoOption.hints.tooltip}" id="it3"
+                                          contentStyle="width:300px" disabled="true">
+                                <f:validator binding="#{bindings.HmoOption.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.StateOfResidence.inputValue}"
+                                          label="State of Residence" rendered="false"
+                                          required="#{bindings.StateOfResidence.hints.mandatory}"
+                                          columns="#{bindings.StateOfResidence.hints.displayWidth}"
+                                          maximumLength="#{bindings.StateOfResidence.hints.precision}"
+                                          shortDesc="#{bindings.StateOfResidence.hints.tooltip}" id="it4"
+                                          contentStyle="width:300px" disabled="true">
+                                <f:validator binding="#{bindings.StateOfResidence.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.Hospital.inputValue}"
+                                          label="Hospital" rendered="false"
+                                          required="#{bindings.Hospital.hints.mandatory}"
+                                          columns="#{bindings.Hospital.hints.displayWidth}"
+                                          maximumLength="#{bindings.Hospital.hints.precision}"
+                                          shortDesc="#{bindings.Hospital.hints.tooltip}" id="it5"
+                                          contentStyle="width:300px" disabled="true">
+                                <f:validator binding="#{bindings.Hospital.validator}"/>
+                            </af:inputText>
+                            
+                            <af:inputDate value="#{bindings.DateOfVisit.inputValue}"
+                                          label="Date Of Visit" autoSubmit="true"
+                                          required="true" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                          columns="#{bindings.DateOfVisit.hints.displayWidth}"
+                                          shortDesc="#{bindings.DateOfVisit.hints.tooltip}" id="id1"
+                                          maxValue="#{backingBeanScope.ReimbursementClaimBB.systemDate}"
+                                          contentStyle="width:300px">
+                                <f:validator binding="#{bindings.DateOfVisit.validator}"/>
+                                <af:convertDateTime pattern="dd-MMM-yyyy"/>
+                            </af:inputDate>
+                            <af:inputText value="#{bindings.HospitalNameUsed.inputValue}"
+                                          label="Name of Hospital Used" autoSubmit="true"
+                                          required="true" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                          columns="#{bindings.HospitalNameUsed.hints.displayWidth}"
+                                          maximumLength="#{bindings.HospitalNameUsed.hints.precision}"
+                                          shortDesc="#{bindings.HospitalNameUsed.hints.tooltip}" id="it6"
+                                          contentStyle="width:300px">
+                                <f:validator binding="#{bindings.HospitalNameUsed.validator}"/>
+                            </af:inputText>
+                            <af:selectOneChoice value="#{bindings.PolicyHolderName1.inputValue}"
+                                                label="Policy Holder Name" autoSubmit="true"
+                                                contentStyle="width:300px"
+                                                required="true" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                                shortDesc="#{bindings.PolicyHolderName1.hints.tooltip}" id="soc1">
+                                <f:selectItems value="#{bindings.PolicyHolderName1.items}" id="si1"/>
+                                <f:validator binding="#{bindings.PolicyHolderName1.validator}"/>
+                            </af:selectOneChoice>
+                            <af:inputText value="#{bindings.PolicyHolderName.inputValue}"
+                                          label="Policy Holder Name" autoSubmit="true" rendered="false"
+                                          required="true" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                          columns="#{bindings.PolicyHolderName.hints.displayWidth}"
+                                          maximumLength="#{bindings.PolicyHolderName.hints.precision}"
+                                          shortDesc="#{bindings.PolicyHolderName.hints.tooltip}" id="it15"
+                                          contentStyle="width:300px">
+                                <f:validator binding="#{bindings.PolicyHolderName.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.EnrolleeBank.inputValue}"
+                                          label="Enrollee Bank" autoSubmit="true"
+                                          required="true" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                          columns="#{bindings.EnrolleeBank.hints.displayWidth}"
+                                          maximumLength="#{bindings.EnrolleeBank.hints.precision}"
+                                          shortDesc="#{bindings.EnrolleeBank.hints.tooltip}" id="it8"
+                                          contentStyle="width:300px">
+                                <f:validator binding="#{bindings.EnrolleeBank.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.EnrolleeBankAccount.inputValue}"
+                                          label="Enrollee Bank Account" autoSubmit="true"
+                                          required="true" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                          contentStyle="width:300px"
+                                          columns="#{bindings.EnrolleeBankAccount.hints.displayWidth}"
+                                          maximumLength="#{bindings.EnrolleeBankAccount.hints.precision}"
+                                          shortDesc="#{bindings.EnrolleeBankAccount.hints.tooltip}" id="it9">
+                                <f:validator binding="#{bindings.EnrolleeBankAccount.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.BankAccountName.inputValue}"
+                                          label="Bank Account Name" autoSubmit="true"
+                                          required="true" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                          columns="#{bindings.BankAccountName.hints.displayWidth}"
+                                          maximumLength="#{bindings.BankAccountName.hints.precision}"
+                                          shortDesc="#{bindings.BankAccountName.hints.tooltip}" id="it10"
+                                          contentStyle="width:300px">
+                                <f:validator binding="#{bindings.BankAccountName.validator}"/>
+                            </af:inputText>
+                            <af:panelLabelAndMessage label="Was Provider Informed ?" id="plam1">
+                                <af:spacer width="10" height="10" id="s6"/>
+                                <af:selectBooleanCheckbox value="#{bindings.HmoProvider.inputValue}"
+                                                      simple="true" autoSubmit="true" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                                      shortDesc="" id="sbc1">
+                                    <af:showPopupBehavior popupId="providerPop" triggerType="mouseHover"/>
+                                </af:selectBooleanCheckbox>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="Emergency ?" id="plam3">
+                                <af:spacer width="10" height="10" id="s4"/>
+                                <af:selectBooleanCheckbox value="#{bindings.Emergency.inputValue}"
+                                                      simple="true" autoSubmit="true" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                                      shortDesc="" id="sbc2">
+                                    <af:showPopupBehavior popupId="emergPop" triggerType="mouseHover"/>
+                                </af:selectBooleanCheckbox>
+                             </af:panelLabelAndMessage>
+                             <af:panelLabelAndMessage label="Proof of Payment" id="plam2" showRequired="true">
+                                <af:spacer width="10" height="10" id="s7"/>
+                                <af:link text="" id="b4" icon="/images/attach_qualifier.png"
+                                         actionListener="#{backingBeanScope.ReimbursementClaimBB.onProofOfPayment}"/>
+                                <af:spacer width="10" height="10" id="s5"/>
+                                <af:outputText value="Proof of Payment Added (#{bindings.Reimbursement_Attachment_VO.estimatedRowCount})"
+                                            visible="#{bindings.Reimbursement_Attachment_VO.estimatedRowCount ne 0}"
+                                            id="ot3" inlineStyle="font-size: small;color: Red;"/>
+                             <af:outputText value="To submit request, Proof of Payment is Required"
+                                            visible="#{bindings.Reimbursement_Attachment_VO.estimatedRowCount eq 0}"
+                                            id="ot4" inlineStyle="font-size: small;color: Red;"/>
+                            </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                        <af:spacer width="10" height="20" id="s2"/>
+                        <af:panelFormLayout id="pfl3" labelWidth="250">
+                            <f:facet name="footer"/>
+                            <af:inputListOfValues id="stateOfResidence1Id" rendered="false"
+                                                  popupTitle="Search and Select: State of Residence"
+                                                  value="#{bindings.StateOfResidence1.inputValue}"
+                                                  label="State of Residence" contentStyle="width:880px"
+                                                  model="#{bindings.StateOfResidence1.listOfValuesModel}"
+                                                  required="#{bindings.StateOfResidence1.hints.mandatory}"
+                                                  columns="#{bindings.StateOfResidence1.hints.displayWidth}"
+                                                  shortDesc="#{bindings.StateOfResidence1.hints.tooltip}" autoSubmit="true">
+                                <f:validator binding="#{bindings.StateOfResidence1.validator}"/>
+                                <af:autoSuggestBehavior suggestItems="#{bindings.StateOfResidence1.suggestItems}"
+                                                            maxSuggestedItems="5"/>
+                            </af:inputListOfValues>
+                            <af:inputListOfValues id="hospital1Id" rendered="false"
+                                                  popupTitle="Search and Select: #{bindings.Hospital1.hints.label}"
+                                                  value="#{bindings.Hospital1.inputValue}"
+                                                  label="Hospital" contentStyle="width:880px"
+                                                  model="#{bindings.Hospital1.listOfValuesModel}"
+                                                  required="#{bindings.Hospital1.hints.mandatory}"
+                                                  columns="#{bindings.Hospital1.hints.displayWidth}"
+                                                  shortDesc="#{bindings.Hospital1.hints.tooltip}" autoSubmit="true">
+                                <f:validator binding="#{bindings.Hospital1.validator}"/>
+                                <af:autoSuggestBehavior suggestItems="#{bindings.Hospital1.suggestItems}"
+                                                            maxSuggestedItems="5"/>
+                            </af:inputListOfValues>
+                            <af:inputText value="#{bindings.ReasonForReimbursement.inputValue}"
+                                          label="Reason for Reimbursement" autoSubmit="true"
+                                          required="true"
+                                          columns="#{bindings.ReasonForReimbursement.hints.displayWidth}"
+                                          maximumLength="#{bindings.ReasonForReimbursement.hints.precision}"
+                                          shortDesc="#{bindings.ReasonForReimbursement.hints.tooltip}" id="it1" contentStyle="width:900px"
+                                          rows="4" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}">
+                                <f:validator binding="#{bindings.ReasonForReimbursement.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.ApproverComments.inputValue}" rendered="#{bindings.ApproverComments.inputValue ne null}"
+                                          label="Approver Comments" disabled="true" rows="4" contentStyle="width:900px"
+                                          required="#{bindings.ApproverComments.hints.mandatory}"
+                                          columns="#{bindings.ApproverComments.hints.displayWidth}"
+                                          maximumLength="#{bindings.ApproverComments.hints.precision}"
+                                          shortDesc="#{bindings.ApproverComments.hints.tooltip}" id="it16">
+                                <f:validator binding="#{bindings.ApproverComments.validator}"/>
+                            </af:inputText>
+                        </af:panelFormLayout>
+                        <af:spacer width="10" height="50" id="s3"/>
+                    </af:panelBox>
+                </af:panelBox>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                          binding="#{backingBeanScope.ReimbursementClaimBB.attachPop}">
+                    <af:dialog id="d1" contentWidth="420" titleIconSource="/images/attach_qualifier.png" 
+                               title="Proof of Payment" type="none" closeIconVisible="false">
+                        <f:facet name="buttonBar">
+                            <af:button text="Add" id="b5" styleClass="blue-proceed"
+                                       actionListener="#{backingBeanScope.ReimbursementClaimBB.onAddInAttachPop}"/>
+                        </f:facet>
+                        <af:panelBox text="" id="pb2" showDisclosure="false">
+                            <f:facet name="toolbar">
+                                <af:link  text="Add" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                         icon="/images/qual_added_16.png" hoverIcon="/images/func_add_16_hov.png"
+                                         depressedIcon="/images/func_add_16_act.png"
+                                         disabledIcon="/images/func_add_16_dis.png" id="l6"
+                                         actionListener="#{bindings.CreateAttachment.execute}"/>
+                            </f:facet>
+                            <af:table value="#{bindings.Reimbursement_Attachment_VO.collectionModel}" var="row"
+                                      rows="#{bindings.Reimbursement_Attachment_VO.rangeSize}"
+                                      emptyText="#{bindings.Reimbursement_Attachment_VO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                      rowBandingInterval="0"
+                                      selectedRowKeys="#{bindings.Reimbursement_Attachment_VO.collectionModel.selectedRow}"
+                                      selectionListener="#{bindings.Reimbursement_Attachment_VO.collectionModel.makeCurrent}"
+                                      rowSelection="single"
+                                      fetchSize="#{bindings.Reimbursement_Attachment_VO.rangeSize}" id="t2">
+                                <af:column headerText="File Name"
+                                           id="c1" width="150">
+                                    <af:outputText value="#{row.AttachmentName}" partialTriggers="if2"
+                                                   shortDesc="#{bindings.Reimbursement_Attachment_VO.hints.AttachmentName.tooltip}"
+                                                   id="ot1"/>
+                                </af:column>
+                                <af:column headerText="File Type"
+                                           id="c2" width="150">
+                                    <af:outputText value="#{row.AttachmentType}" partialTriggers="if2"
+                                                   shortDesc="#{bindings.Reimbursement_Attachment_VO.hints.AttachmentType.tooltip}"
+                                                   id="ot2"/>
+                                </af:column>
+                                <af:column id="c24" headerText="Upload" width="200">
+                                    <af:inputFile id="if2" required="#{row.AttachmentName eq null ? true : false}"
+                                     disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                                  valueChangeListener="#{backingBeanScope.ReimbursementClaimBB.onUploadFileVCL}"
+                                                  autoSubmit="true"/>
+                                </af:column>
+                                <af:column id="c3" width="100" headerText="Download">
+                                    <af:link icon="/images/func_download_16_act.png"
+                                             hoverIcon="/images/qual_download_16.png"
+                                             disabledIcon="/images/func_download_16_ena.png" id="l7">
+                                        <af:fileDownloadActionListener filename="#{row.AttachmentName}"
+                                                                       method="#{backingBeanScope.ReimbursementClaimBB.onDownloadProof}"/>
+                                    </af:link>
+                                </af:column>
+                                <af:column id="c29" headerText="Delete" align="center" width="50">
+                                    <af:link icon="/images/func_remove_16_ena.png" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                             hoverIcon="/images/func_remove_16_hov.png"
+                                             depressedIcon="/images/func_report_16_act.png"
+                                             disabledIcon="/images/func_remove_16_dis.png" immediate="true"
+                                             actionListener="#{bindings.DeleteAttach.execute}" id="l8"/>
+                                </af:column>
+                            </af:table>
+                        </af:panelBox>
+                    </af:dialog>
+                </af:popup>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="providerPop">
+                     <af:noteWindow id="nw1" inlineStyle="width:200px;">
+                        <af:outputText value="Check the box if Provider was informed" id="ot6"/>
+                    </af:noteWindow>
+                </af:popup>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="emergPop">
+                     <af:noteWindow id="nw2" inlineStyle="width:200px;">
+                        <af:outputText value="Check the box if it was an Emergency" id="ot7"/>
+                    </af:noteWindow>
+                </af:popup>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="footerStart"/>
+        <f:facet name="footer"/>
+        <f:facet name="footerEnd"/>
+        <f:facet name="startPanel"/>
+        <f:facet name="endPanel"/>
+        <f:facet name="headerStart"/>
+        <f:facet name="header"/>
+        <f:facet name="headerEnd"/>
+    </af:pageTemplate>
+</ui:composition>

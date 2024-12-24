@@ -1,0 +1,12 @@
+//Groovy Scripts for model.vo.XxhrHmoCard_VO
+
+package model.vo
+
+import oracle.jbo.script.annotation.AccessorParameterExpression;
+
+@AccessorParameterExpression(accessorName="HMOPersonDependentROVO", name="BV_HMO_REF")
+def BV_HMO_REF_HMOPersonDependentROVO_BindVariable_BoundParameter()
+{
+HmoTransReference
+}
+

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="SearchUsersHMOPageDef"
+                Package="fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="SearchHmoTrxHdr_ROVO" RangeSize="25" DataControl="Oando_AMDataControl"
+              id="SearchHmoTrxHdr_ROVOIterator"/>
+    <searchRegion Criteria="HMO_Search" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="SearchHmoTrxHdr_ROVOIterator" id="HMOSearchQuery"/>
+    <iterator id="XxhrHmoTrxHdr_EOViewIterator" Binds="XxhrHmoTrxHdr_EOView" DataControl="Oando_AMDataControl"
+              RangeSize="25"/>
+    <iterator Binds="HMOOtherRequestDetails_ROVO" RangeSize="25" DataControl="Oando_AMDataControl"
+              id="HMOOtherRequestDetails_ROVOIterator"/>
+    <searchRegion Criteria="SearchRequest" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="HMOOtherRequestDetails_ROVOIterator" id="SearchRequestQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="SearchHmoTrxHdr_ROVOIterator" id="SearchHmoTrxHdr_ROVO">
+      <nodeDefinition DefName="model.ro.XxhrHmoTrxHdr_ROVO" Name="SearchHmoTrxHdr_ROVO0">
+        <AttrNames>
+          <Item Value="HmoRequestNo"/>
+          <Item Value="HmoRequestDate"/>
+          <Item Value="DisplayName"/>
+          <Item Value="ApprovalStatus"/>
+          <Item Value="HmoType"/>
+          <Item Value="HmoCategory"/>
+          <Item Value="HmoOption"/>
+          <Item Value="HmoPlanTotal"/>
+          <Item Value="HmoPlanDeduction"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreationDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="HmoTrxHdrId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" DataControl="Oando_AMDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
+    <attributeValues IterBinding="SearchHmoTrxHdr_ROVOIterator" id="ApprovalStatus">
+      <AttrNames>
+        <Item Value="ApprovalStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="HMOOtherRequestDetails_ROVOIterator" id="HMOOtherRequestDetails_ROVO">
+      <nodeDefinition DefName="model.ro.HMOOtherRequestDetails_ROVO" Name="HMOOtherRequestDetails_ROVO0">
+        <AttrNames>
+          <Item Value="RequestDetails"/>
+          <Item Value="Reason"/>
+          <Item Value="ApprovalStatus"/>
+          <Item Value="RequestType"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreationDate"/>
+          <Item Value="ActiveFlag"/>
+          <Item Value="FirstName"/>
+          <Item Value="HmoTransReference"/>
+          <Item Value="LastName"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="LastUpdateLogin"/>
+          <Item Value="PersonId"/>
+          <Item Value="PersonNumber"/>
+          <Item Value="RequestNo"/>
+          <Item Value="RequestNumber"/>
+          <Item Value="Title"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="SearchHmoTrxHdr_ROVOIterator" id="HmoTrxHdrId">
+      <AttrNames>
+        <Item Value="HmoTrxHdrId"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="createNewDependentRequest" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createNewDependentRequest" IsViewObjectMethod="false" DataControl="Oando_AMDataControl"
+                  InstanceName="bindings.createNewDependentRequest.dataControl.dataProvider"
+                  ReturnName="data.Oando_AMDataControl.methodResults.createNewDependentRequest_createNewDependentRequest_dataControl_dataProvider_createNewDependentRequest_result">
+      <NamedData NDName="hmo_ref_no" NDValue="#{bindings.HmoTrxHdrId.inputValue}" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="updateDeleteFlag" RequiresUpdateModel="true" Action="invokeMethod" MethodName="updateDeleteFlag"
+                  IsViewObjectMethod="false" DataControl="Oando_AMDataControl"
+                  InstanceName="bindings.updateDeleteFlag.dataControl.dataProvider"
+                  ReturnName="data.Oando_AMDataControl.methodResults.updateDeleteFlag_updateDeleteFlag_dataControl_dataProvider_updateDeleteFlag_result">
+      <NamedData NDName="hmo_ref_no" NDValue="#{bindings.RequestNo.inputValue}" NDType="java.lang.String"/>
+      <NamedData NDName="req_type" NDValue="#{bindings.RequestType.inputValue}" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="HMOOtherRequestDetails_ROVOIterator" id="RequestNo">
+      <AttrNames>
+        <Item Value="RequestNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HMOOtherRequestDetails_ROVOIterator" id="RequestType">
+      <AttrNames>
+        <Item Value="RequestType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="SearchHmoTrxHdr_ROVOIterator" id="HmoCategory">
+      <AttrNames>
+        <Item Value="HmoCategory"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="SearchHmoTrxHdr_ROVOIterator" id="HmoOption">
+      <AttrNames>
+        <Item Value="HmoOption"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="SearchHmoTrxHdr_ROVOIterator" id="HmoType">
+      <AttrNames>
+        <Item Value="HmoType"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

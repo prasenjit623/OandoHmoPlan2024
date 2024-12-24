@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="XxhrHmoPersonDependentROVO"
+  Version="12.2.1.9.14"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  OrderBy='"TYPE" DESC'>
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Variable
+    Name="BV_HMO_REF"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <SQLQuery><![CDATA[SELECT   
+HMO_HDR.HMO_REQUEST_NO,   
+PERSON.DISPLAY_NAME,   
+'EMPLOYEE' TYPE   
+FROM    
+XXHR_HMO_TRX_HDR HMO_HDR,   
+xxper_person_names_f PERSON   
+where   
+HMO_HDR.PERSON_ID = PERSON.PERSON_ID   
+and PERSON.NAME_TYPE = 'GLOBAL'   
+UNION ALL   
+SELECT   
+HMO_HDR.HMO_REQUEST_NO,   
+HMO_DTL.DEP_FIRST_NAME ||' '||   
+HMO_DTL.DEP_LAST_NAME as DISPLAY_NAME,   
+'DEPENDENT' TYPE   
+FROM    
+XXHR_HMO_TRX_HDR HMO_HDR , XXHR_HMO_TRX_DTL HMO_DTL   
+where   
+HMO_HDR.HMO_TRX_HDR_ID = HMO_DTL.HMO_TRX_HDR_ID]]></SQLQuery>
+  <ViewAttribute
+    Name="HmoRequestNo"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="HMO_REQUEST_NO"
+    Expression="HMO_REQUEST_NO"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DisplayName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="481"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DISPLAY_NAME"
+    Expression="DISPLAY_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="481"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Type"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="9"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TYPE"
+    Expression="TYPE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="9"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="FindHMORef"
+    ViewObjectName="model.ro.XxhrHmoPersonDependentROVO"
+    Conjunction="AND">
+    <Properties Name="_Props">
+      <CustomProperties>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="XxhrHmoPersonDependentROVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="HmoRequestNo"
+        ViewAttribute="HmoRequestNo"
+        Operator="="
+        Conjunction="AND"
+        Value=":BV_HMO_REF"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+</ViewObject>

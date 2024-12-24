@@ -1,0 +1,12 @@
+//Groovy Scripts for model.eo.XxhrHmoTrxDtl_EO
+
+package model.eo
+
+import oracle.jbo.script.annotation.TransientValueExpression;
+
+@TransientValueExpression(attributeName="CreatedBy")
+def CreatedBy_ExpressionScript_Expression()
+{
+adf.context.sessionScope.userName
+}
+

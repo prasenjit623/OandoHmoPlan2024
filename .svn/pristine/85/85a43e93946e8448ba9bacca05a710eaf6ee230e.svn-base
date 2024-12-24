@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="NewDependentReqPageDef"
+                Package="fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="NewDepHmoHdr_VO" RangeSize="25" DataControl="Oando_AMDataControl" id="NewDepHmoHdr_VOIterator" ChangeEventPolicy="none"/>
+    <iterator Binds="NewDepHmoDtl_VO" RangeSize="25" DataControl="Oando_AMDataControl" id="NewDepHmoDtl_VOIterator" ChangeEventPolicy="none"/>
+    <iterator Binds="NewDepAttachment_VO" RangeSize="25" DataControl="Oando_AMDataControl" ChangeEventPolicy="none"
+              id="NewDepAttachment_VOIterator"/>
+    <iterator id="XxfndLookupValues_V_ROVOIterator" Binds="XxfndLookupValues_V_ROVO" DataControl="Oando_AMDataControl"
+              RangeSize="25" ChangeEventPolicy="none"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="HmoRequestNo">
+      <AttrNames>
+        <Item Value="HmoRequestNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="HmoTransReference">
+      <AttrNames>
+        <Item Value="HmoTransReference"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="ApprovalStatus">
+      <AttrNames>
+        <Item Value="ApprovalStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="HmoRequestDate">
+      <AttrNames>
+        <Item Value="HmoRequestDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="HmoCategory">
+      <AttrNames>
+        <Item Value="HmoCategory"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="HmoType">
+      <AttrNames>
+        <Item Value="HmoType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="HmoPlanName">
+      <AttrNames>
+        <Item Value="HmoPlanName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="NewDepHmoHdr_VOIterator" StaticList="false" Uses="LOV_HmoOption" id="HmoOption"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <action id="Commit" DataControl="Oando_AMDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
+    <action id="Rollback" DataControl="Oando_AMDataControl" RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <tree IterBinding="NewDepHmoDtl_VOIterator" id="NewDepHmoDtl_VO">
+      <nodeDefinition DefName="model.vo.XxhrHmoDtl_VO" Name="NewDepHmoDtl_VO0">
+        <AttrNames>
+          <Item Value="DepAgeCategory"/>
+          <Item Value="DepDob"/>
+          <Item Value="DepFirstName"/>
+          <Item Value="DepGender"/>
+          <Item Value="DepLastName"/>
+          <Item Value="DepTitle"/>
+          <Item Value="DependentClass"/>
+          <Item Value="DependentCost"/>
+          <Item Value="DependentType"/>
+          <Item Value="Hospital"/>
+          <Item Value="MobileNo"/>
+          <Item Value="StateOfResidence"/>
+          <Item Value="ExistingData"/>
+          <Item Value="HmoDtlOldId"/>
+          <Item Value="HmoDtlId"/>
+          <Item Value="DepPhoto"/>
+          <Item Value="EvidenceCount"/>
+          <Item Value="HMOType"/>
+          <Item Value="ResidentialAddress"/>
+          <Item Value="ReasonForChange"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="NewDepHmoDtl_VOIterator" StaticList="false" Uses="LOV_DependentType" id="DependentType"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="NewDepHmoDtl_VOIterator" StaticList="false" Uses="LOV_DepTitle" id="DepTitle"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="NewDepHmoDtl_VOIterator" id="DepFirstName">
+      <AttrNames>
+        <Item Value="DepFirstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoDtl_VOIterator" id="DepLastName">
+      <AttrNames>
+        <Item Value="DepLastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoDtl_VOIterator" id="DepDob">
+      <AttrNames>
+        <Item Value="DepDob"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoDtl_VOIterator" id="DepAgeCategory">
+      <AttrNames>
+        <Item Value="DepAgeCategory"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoDtl_VOIterator" id="MobileNo">
+      <AttrNames>
+        <Item Value="MobileNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoDtl_VOIterator" id="DependentCost">
+      <AttrNames>
+        <Item Value="DependentCost"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoDtl_VOIterator" id="ResiAddress">
+      <AttrNames>
+        <Item Value="ResiAddress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoDtl_VOIterator" id="ResidentialAddress">
+      <AttrNames>
+        <Item Value="ResidentialAddress"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoDtl_VOIterator" id="ExistingData">
+      <AttrNames>
+        <Item Value="ExistingData"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="NewDepHmoDtl_VOIterator" StaticList="false" Uses="LOV_StateOfResidence"
+                  id="StateOfResidence"/>
+    <listOfValues IterBinding="NewDepHmoDtl_VOIterator" StaticList="false" Uses="LOV_Hospital" id="Hospital"/>
+    <attributeValues IterBinding="NewDepHmoDtl_VOIterator" id="ReasonForChange">
+      <AttrNames>
+        <Item Value="ReasonForChange"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="NewDepHmoDtl_VOIterator" id="CreateDependent" InstanceName="Oando_AMDataControl.NewDepHmoDtl_VO"
+            DataControl="Oando_AMDataControl" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <list IterBinding="NewDepHmoDtl_VOIterator" StaticList="false" Uses="LOV_DepGender" id="DepGender"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <action IterBinding="NewDepHmoDtl_VOIterator" id="Delete" InstanceName="Oando_AMDataControl.NewDepHmoDtl_VO"
+            DataControl="Oando_AMDataControl" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="NewDepAttachment_VOIterator" id="NewDepAttachment_VO">
+      <nodeDefinition DefName="model.vo.XxfndAttachment_EOView" Name="NewDepAttachment_VO0">
+        <AttrNames>
+          <Item Value="AttachmentName"/>
+          <Item Value="AttachmentType"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="NewDepAttachment_VOIterator" id="CreateInsertEvidence"
+            InstanceName="Oando_AMDataControl.NewDepAttachment_VO" DataControl="Oando_AMDataControl"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="NewDepAttachment_VOIterator" id="DeleteAttach"
+            InstanceName="Oando_AMDataControl.NewDepAttachment_VO" DataControl="Oando_AMDataControl"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <methodAction id="getHMOCost" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getHMOCost"
+                  IsViewObjectMethod="false" DataControl="Oando_AMDataControl"
+                  InstanceName="bindings.getHMOCost.dataControl.dataProvider"
+                  ReturnName="data.Oando_AMDataControl.methodResults.getHMOCost_getHMOCost_dataControl_dataProvider_getHMOCost_result">
+      <NamedData NDName="p_hmo_trx_hdr_id" NDType="double" NDValue="0"/>
+      <NamedData NDName="p_hmo_request_date" NDType="java.lang.String" NDValue="#{bindings.HmoRequestDate.inputValue}"/>
+      <NamedData NDName="p_hmo_master_hdr_id" NDType="double" NDValue="#{bindings.HmoMasterHdrId.inputValue}"/>
+      <NamedData NDName="p_hmo_type" NDType="java.lang.String" NDValue="#{bindings.HmoType.inputValue}"/>
+      <NamedData NDName="p_person_id" NDType="long" NDValue="#{bindings.PersonId.inputValue}"/>
+      <NamedData NDName="p_hmo_category" NDType="java.lang.String" NDValue="#{bindings.HmoCategory.inputValue}"/>
+      <NamedData NDName="p_hmo_option" NDType="java.lang.String" NDValue="#{bindings.HmoOption.inputValue}"/>
+      <NamedData NDName="p_hmo_plan_total" NDType="double" NDValue="#{bindings.HmoPlanTotal.inputValue}"/>
+      <NamedData NDName="p_dependent_type" NDType="java.lang.String" NDValue="#{bindings.DependentType.inputValue}"/>
+      <NamedData NDName="p_dep_dob" NDType="java.lang.String" NDValue="#{bindings.DepDob.inputValue}"/>
+      <NamedData NDName="p_addi_category" NDType="java.lang.String" NDValue="#{bindings.AddiCategory.inputValue}"/>
+    </methodAction>
+    <methodAction id="getAgeCategory" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getAgeCategory"
+                  IsViewObjectMethod="false" DataControl="Oando_AMDataControl"
+                  InstanceName="bindings.getAgeCategory.dataControl.dataProvider"
+                  ReturnName="data.Oando_AMDataControl.methodResults.getAgeCategory_getAgeCategory_dataControl_dataProvider_getAgeCategory_result">
+      <NamedData NDName="p_hmo_trx_hdr_id" NDType="double" NDValue="0"/>
+      <NamedData NDName="p_hmo_request_date" NDType="java.lang.String" NDValue="#{bindings.HmoRequestDate.inputValue}"/>
+      <NamedData NDName="p_hmo_master_hdr_id" NDType="double" NDValue="#{bindings.HmoMasterHdrId.inputValue}"/>
+      <NamedData NDName="p_hmo_type" NDType="java.lang.String" NDValue="#{bindings.HmoType.inputValue}"/>
+      <NamedData NDName="p_person_id" NDType="long" NDValue="#{bindings.PersonId.inputValue}"/>
+      <NamedData NDName="p_hmo_category" NDType="java.lang.String" NDValue="#{bindings.HmoCategory.inputValue}"/>
+      <NamedData NDName="p_hmo_option" NDType="java.lang.String" NDValue="#{bindings.HmoOption.inputValue}"/>
+      <NamedData NDName="p_hmo_plan_total" NDType="double" NDValue="#{bindings.HmoPlanTotal.inputValue}"/>
+      <NamedData NDName="p_dependent_type" NDType="java.lang.String" NDValue="#{bindings.DependentType.inputValue}"/>
+      <NamedData NDName="p_dep_dob" NDType="java.lang.String" NDValue="#{bindings.DepDob.inputValue}"/>
+    </methodAction>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="HmoMasterHdrId">
+      <AttrNames>
+        <Item Value="HmoMasterHdrId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="PersonId">
+      <AttrNames>
+        <Item Value="PersonId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="HmoPlanTotal">
+      <AttrNames>
+        <Item Value="HmoPlanTotal"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="AddiCategory">
+      <AttrNames>
+        <Item Value="AddiCategory"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="HmoPlanDeduction">
+      <AttrNames>
+        <Item Value="HmoPlanDeduction"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="Trans_EligibleCost">
+      <AttrNames>
+        <Item Value="Trans_EligibleCost"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="Trans_EmpCost">
+      <AttrNames>
+        <Item Value="Trans_EmpCost"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="getEmployeeHMOCost" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getEmpHmoCost"
+                  IsViewObjectMethod="false" DataControl="Oando_AMDataControl"
+                  InstanceName="bindings.getEmpHmoCost.dataControl.dataProvider"
+                  ReturnName="data.Oando_AMDataControl.methodResults.getEmpHmoCost_getEmpHmoCost_dataControl_dataProvider_getEmpHmoCost_result">
+      <NamedData NDName="p_hmo_master_hdr_id" NDType="double" NDValue="#{bindings.HmoMasterHdrId.inputValue}"/>
+      <NamedData NDName="p_hmo_type" NDType="java.lang.String" NDValue="#{bindings.HmoType.inputValue}"/>
+      <NamedData NDName="p_person_id" NDType="long" NDValue="#{bindings.PersonId.inputValue}"/>
+      <NamedData NDName="p_hmo_category" NDType="java.lang.String" NDValue="#{bindings.HmoCategory.inputValue}"/>
+      <NamedData NDName="p_hmo_option" NDType="java.lang.String" NDValue="#{bindings.HmoOption.inputValue}"/>
+      <NamedData NDName="p_emp_dob" NDType="java.lang.String" NDValue="#{bindings.Trans_DateofBirth.inputValue}"/>
+      <NamedData NDName="p_addi_category" NDType="java.lang.String" NDValue="#{bindings.AddiCategory.inputValue}"/>
+    </methodAction>
+    <attributeValues IterBinding="NewDepHmoHdr_VOIterator" id="Trans_DateofBirth">
+      <AttrNames>
+        <Item Value="Trans_DateofBirth"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="getEmpHmoCost" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getEmpHmoCost"
+                  IsViewObjectMethod="false" DataControl="Oando_AMDataControl"
+                  InstanceName="bindings.getEmpHmoCost.dataControl.dataProvider"
+                  ReturnName="data.Oando_AMDataControl.methodResults.getEmpHmoCost_getEmpHmoCost_dataControl_dataProvider_getEmpHmoCost_result">
+      <NamedData NDName="p_hmo_master_hdr_id" NDType="double"/>
+      <NamedData NDName="p_hmo_type" NDType="java.lang.String"/>
+      <NamedData NDName="p_person_id" NDType="long"/>
+      <NamedData NDName="p_hmo_category" NDType="java.lang.String"/>
+      <NamedData NDName="p_hmo_option" NDType="java.lang.String"/>
+      <NamedData NDName="p_emp_dob" NDType="java.lang.String"/>
+      <NamedData NDName="p_addi_category" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

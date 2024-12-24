@@ -1,0 +1,13 @@
+//Groovy Scripts for model.vo.XxhrHmoDtl_VO
+
+package model.vo
+
+import oracle.jbo.script.annotation.TransientValueExpression;
+
+@TransientValueExpression(attributeName="EvidenceCount")
+def EvidenceCount_ExpressionScript_Expression()
+{
+XxfndAttachment_EOView.count("AttachmentName")
+}
+
+

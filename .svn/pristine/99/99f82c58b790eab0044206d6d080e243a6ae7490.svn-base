@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+    <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx" id="pt1">
+        <f:facet name="pageContents">
+            <af:panelGroupLayout id="pgl1">
+                <af:panelGroupLayout layout="vertical" id="pgl2">
+                    <af:panelBox text="HMO Enrollee Application Form" id="pb2" showDisclosure="false">
+                        <f:facet name="toolbar"/>
+                        <af:panelGroupLayout id="pgl3" layout="horizontal" halign="start">
+                            <af:query id="qryId1" headerText="Search" disclosed="true" rendered="false" 
+                                      value="#{bindings.HMOSearchQuery.queryDescriptor}"
+                                      model="#{bindings.HMOSearchQuery.queryModel}" displayMode="design"
+                                      queryListener="#{bindings.HMOSearchQuery.processQuery}"
+                                      queryOperationListener="#{bindings.HMOSearchQuery.processQueryOperation}"
+                                      resultComponentId="::pc1:resId1" rows="1" maxColumns="2"/>
+                        </af:panelGroupLayout>
+                        
+                        <af:spacer width="10" height="10" id="s1"/>
+                        <af:panelBox text="HMO Registration Request" id="pb1" showDisclosure="false">
+                            <f:facet name="toolbar"/>
+                            <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                                <f:facet name="menus"/>
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t1" flex="10">
+                                        <af:menuBar id="mb1">
+                                        <af:menu text="Actions" id="m1" visible="#{bindings.SearchHmoTrxHdr_ROVO.estimatedRowCount ne 0}"
+                                                 partialTriggers="resId1" >
+                                                <af:commandMenuItem text="Change In Medical Details" id="cmi1" disabled="#{bindings.HmoType.inputValue eq 'BUPA' || bindings.HmoType.inputValue eq 'CIGNA'}"
+                                                                    action="#{backingBeanScope.SearchHmoBB.addMedicalDetailsAction}"/>
+                                                <af:commandMenuItem text="HMO Reimbursement Claims Form" id="cmi2"
+                                                                    action="#{backingBeanScope.SearchHmoBB.addReimbursementClaim}"/>
+                                                <af:commandMenuItem text="New Dependent Request Form" id="cmi3" disabled="#{bindings.ApprovalStatus.inputValue eq 'APPROVED' ? false : true}">
+                                                    <af:showPopupBehavior popupId="::p1"/>
+                                                </af:commandMenuItem>
+                                                <af:commandMenuItem text="Complaints Form" id="cmi4"
+                                                                    action="#{backingBeanScope.SearchHmoBB.addComplaintAction}"/>
+                                                <af:commandMenuItem text="Card Replacement" id="cmi5"
+                                                                    action="#{backingBeanScope.SearchHmoBB.addCardAction}"/>
+                                    </af:menu></af:menuBar>
+                                        <af:spacer width="10" height="10" id="s3"/>
+                                        <af:link text="" id="l1" icon="/images/func_add_16_ena.png"
+                                                 hoverIcon="/images/func_add_16_hov.png" action="toAddEdit"
+                                                 depressedIcon="/images/func_add_16_act.png"
+                                                 disabledIcon="/images/func_add_16_dis.png">
+                                            <af:setPropertyListener from="ADD" to="#{pageFlowScope.addEditMode}"
+                                                                    type="action"/>
+                                        </af:link>
+                                        <af:spacer width="10" height="10" id="s2"/>
+                                        <af:link text="" id="l3" icon="/images/func_remove_16_ena.png"
+                                                 hoverIcon="/images/func_remove_16_hov.png"
+                                                 depressedIcon="/images/func_report_16_act.png"
+                                                 disabledIcon="/images/func_remove_16_dis.png"
+                                                 rendered="#{bindings.ApprovalStatus.inputValue eq 'DRAFT'}"
+                                                 actionListener="#{backingBeanScope.SearchHmoBB.onDeleteHmoReq}"/>
+                                         <af:spacer width="10" height="10" id="s7"/>
+                                          <af:quickQuery label="Request No" id="qq1"
+                                                           value="#{bindings.HMOSearchQuery.queryDescriptor}"
+                                                           model="#{bindings.HMOSearchQuery.queryModel}"
+                                                           queryListener="#{bindings.HMOSearchQuery.processQuery}"
+                                                           queryOperationListener="#{bindings.HMOSearchQuery.processQueryOperation}"
+                                                           searchDesc="Search"/>
+                                       </af:toolbar>
+                                </f:facet>
+                                <f:facet name="statusbar"/>
+                                <af:table value="#{bindings.SearchHmoTrxHdr_ROVO.collectionModel}" var="row"
+                                          rows="#{bindings.SearchHmoTrxHdr_ROVO.rangeSize}"
+                                          emptyText="#{bindings.SearchHmoTrxHdr_ROVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.SearchHmoTrxHdr_ROVO.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.SearchHmoTrxHdr_ROVO.collectionModel.makeCurrent}"
+                                          rowSelection="single" fetchSize="#{bindings.SearchHmoTrxHdr_ROVO.rangeSize}"
+                                          filterModel="#{bindings.HMOSearchQuery.queryDescriptor}" filterVisible="false"
+                                          queryListener="#{bindings.HMOSearchQuery.processQuery}" varStatus="vs"
+                                          id="resId1" columnStretching="column:resId1c9">
+                                    <af:column id="c1" align="center" headerText="S.No" width="50">
+                                        <af:outputText value="#{vs.index + 1}" id="ot14"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoRequestNo.name}"
+                                               filterable="true" sortable="true" headerText="Request No" id="resId1c1">
+                                        <af:link text="#{row.HmoRequestNo}" id="l2" action="toAddEdit"
+                                               partialSubmit="true"   actionListener="#{backingBeanScope.SearchHmoBB.onclickRequestNo}">
+                                            <af:setPropertyListener from="#{row.HmoRequestNo}"
+                                                                    to="#{pageFlowScope.ReqEditID}" type="action"/>
+                                            <af:setPropertyListener from="EDIT" to="#{pageFlowScope.addEditMode}"
+                                                                    type="action"/>
+                                        </af:link>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoRequestDate.name}"
+                                               filterable="true" sortable="true" headerText="Request Date"
+                                               id="resId1c2">
+                                        <f:facet name="filter">
+                                            <af:inputDate value="#{bindings.HMOSearchQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.HmoRequestDate.value}"
+                                                          id="id1">
+                                                <af:convertDateTime pattern="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoRequestDate.format}"/>
+                                            </af:inputDate>
+                                        </f:facet>
+                                        <af:outputText value="#{row.HmoRequestDate}"
+                                                       shortDesc="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoRequestDate.tooltip}"
+                                                       id="ot2">
+                                            <af:convertDateTime pattern="dd-MMM-yyyy"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.DisplayName.name}"
+                                               filterable="true" sortable="true" headerText="Employee Name"
+                                               id="resId1c3" width="150">
+                                        <af:outputText value="#{row.DisplayName}"
+                                                       shortDesc="#{bindings.SearchHmoTrxHdr_ROVO.hints.DisplayName.tooltip}"
+                                                       id="ot3"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.ApprovalStatus.name}"
+                                               filterable="true" sortable="true" headerText="Request Status" frozen="true"
+                                               id="resId1c4">
+                                        <af:outputText value="#{row.ApprovalStatus}"
+                                                       shortDesc="#{bindings.SearchHmoTrxHdr_ROVO.hints.ApprovalStatus.tooltip}"
+                                                       id="ot4"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoType.name}"
+                                               filterable="true" sortable="true" headerText="HMO Option" id="resId1c5"
+                                               width="200">
+                                        <af:outputText value="#{row.HmoType}"
+                                                       shortDesc="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoType.tooltip}"
+                                                       id="ot5"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoCategory.name}"
+                                               filterable="true" sortable="true" headerText="Category" width="200"
+                                               id="resId1c6">
+                                        <af:outputText value="#{row.HmoCategory}"
+                                                       shortDesc="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoCategory.tooltip}"
+                                                       id="ot6"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoOption.name}"
+                                               filterable="true" sortable="true" headerText="Dependent Option" id="resId1c7"
+                                               width="200">
+                                        <af:outputText value="#{row.HmoOption}"
+                                                       shortDesc="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoOption.tooltip}"
+                                                       id="ot7"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoPlanTotal.name}"
+                                               filterable="true" sortable="true" headerText="Plan Total" visible="false"
+                                               id="resId1c8">
+                                        <af:outputText value="#{row.HmoPlanTotal}"
+                                                       shortDesc="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoPlanTotal.tooltip}"
+                                                       id="ot8">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoPlanTotal.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoPlanDeduction.name}"
+                                               filterable="true" sortable="true" headerText="Amount Payable"
+                                               id="resId1c9">
+                                        <af:outputText value="#{row.HmoPlanDeduction}"
+                                                       rendered="#{row.HmoCategory eq 'Traditional Dependent Categorization' ? 'false' : 'true'}"
+                                                       shortDesc="#{bindings.SearchHmoTrxHdr_ROVO.hints.HmoPlanDeduction.tooltip}"
+                                                       id="ot9">
+                                           <af:convertNumber minFractionDigits="2" maxFractionDigits="2"
+                                                  pattern="###,###,###,###"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.CreatedBy.name}"
+                                               filterable="true" sortable="true" visible="false" headerText="Created By"
+                                               id="resId1c10">
+                                        <af:outputText value="#{row.CreatedBy}"
+                                                       shortDesc="#{bindings.SearchHmoTrxHdr_ROVO.hints.CreatedBy.tooltip}"
+                                                       id="ot10"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.CreationDate.name}"
+                                               filterable="true" sortable="true" visible="false" headerText="Created On"
+                                               id="resId1c11">
+                                        <f:facet name="filter">
+                                            <af:inputDate value="#{bindings.HMOSearchQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.CreationDate.value}"
+                                                          id="id2">
+                                                <af:convertDateTime pattern="#{bindings.SearchHmoTrxHdr_ROVO.hints.CreationDate.format}"/>
+                                            </af:inputDate>
+                                        </f:facet>
+                                        <af:outputText value="#{row.CreationDate}"
+                                                       shortDesc="#{bindings.SearchHmoTrxHdr_ROVO.hints.CreationDate.tooltip}"
+                                                       id="ot11">
+                                            <af:convertDateTime pattern="#{bindings.SearchHmoTrxHdr_ROVO.hints.CreationDate.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.LastUpdatedBy.name}"
+                                               filterable="true" sortable="true" visible="false"
+                                               headerText="Last Updated By" id="resId1c12">
+                                        <af:outputText value="#{row.LastUpdatedBy}"
+                                                       shortDesc="#{bindings.SearchHmoTrxHdr_ROVO.hints.LastUpdatedBy.tooltip}"
+                                                       id="ot12"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.SearchHmoTrxHdr_ROVO.hints.LastUpdateDate.name}"
+                                               filterable="true" sortable="true" visible="false"
+                                               headerText="Last Updated On" id="resId1c13">
+                                        <f:facet name="filter">
+                                            <af:inputDate value="#{bindings.HMOSearchQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.LastUpdateDate.value}"
+                                                          id="id3">
+                                                <af:convertDateTime pattern="#{bindings.SearchHmoTrxHdr_ROVO.hints.LastUpdateDate.format}"/>
+                                            </af:inputDate>
+                                        </f:facet>
+                                        <af:outputText value="#{row.LastUpdateDate}"
+                                                       shortDesc="#{bindings.SearchHmoTrxHdr_ROVO.hints.LastUpdateDate.tooltip}"
+                                                       id="ot13">
+                                            <af:convertDateTime pattern="#{bindings.SearchHmoTrxHdr_ROVO.hints.LastUpdateDate.format}"/>
+                                        </af:outputText>
+                                    </af:column> 
+                                </af:table>
+                            </af:panelCollection>
+                        </af:panelBox>
+                        <af:spacer width="10" height="10" id="s4"/>
+                        <af:panelBox text="Request Details" id="pb3" showDisclosure="false">
+                            <af:panelCollection id="pc2" styleClass="AFStretchWidth">
+                                <f:facet name="menus"/>
+                                <f:facet name="toolbar">
+                                    <af:toolbar id="t3" flex="10">
+                                        <af:quickQuery label="Search Request" id="qq2"
+                                                       value="#{bindings.SearchRequestQuery.queryDescriptor}"
+                                                       model="#{bindings.SearchRequestQuery.queryModel}"
+                                                       queryListener="#{bindings.SearchRequestQuery.processQuery}"
+                                                       queryOperationListener="#{bindings.SearchRequestQuery.processQueryOperation}"
+                                                       searchDesc="Search"/>
+                                    </af:toolbar>
+                                </f:facet>
+                                <f:facet name="statusbar"/>
+                                <af:table value="#{bindings.HMOOtherRequestDetails_ROVO.collectionModel}" var="row"
+                                          rows="#{bindings.HMOOtherRequestDetails_ROVO.rangeSize}"
+                                          emptyText="#{bindings.HMOOtherRequestDetails_ROVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.HMOOtherRequestDetails_ROVO.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.HMOOtherRequestDetails_ROVO.collectionModel.makeCurrent}"
+                                          rowSelection="single" scrollPolicy="page" fetchSize="5" id="t2"
+                                          varStatus="vss" columnStretching="column:c3" partialTriggers="::qq2"
+                                          filterModel="#{bindings.SearchRequestQuery.queryDescriptor}"
+                                          filterVisible="false"
+                                          queryListener="#{bindings.SearchRequestQuery.processQuery}">
+                                    <af:column id="c9" align="center" headerText="S.No" width="50" filterable="true">
+                                        <af:outputText value="#{vss.index + 1}" id="ot21"/>
+                                    </af:column>
+                                    <af:column headerText="Request No" id="c2" filterable="true">
+                                        <af:link text="#{row.RequestNumber}" id="l4"
+                                                 action="#{backingBeanScope.SearchHmoBB.onEditOtherRequest}"/>
+                                    </af:column>
+                                    <af:column headerText="Request Details" id="c8" width="200"
+                                               sortProperty="#{bindings.HMOOtherRequestDetails_ROVO.hints.RequestDetails.name}"
+                                               filterable="true">
+                                        <af:outputText value="#{row.RequestDetails}"
+                                                       shortDesc="#{bindings.HMOOtherRequestDetails_ROVO.hints.RequestDetails.tooltip}"
+                                                       id="ot20"/>
+                                    </af:column>
+                                    <af:column headerText="Reason / Remarks" id="c3"
+                                               sortProperty="#{bindings.HMOOtherRequestDetails_ROVO.hints.Reason.name}"
+                                               filterable="true">
+                                        <af:outputText value="#{row.Reason}"
+                                                       shortDesc="#{bindings.HMOOtherRequestDetails_ROVO.hints.Reason.tooltip}"
+                                                       id="ot15"/>
+                                    </af:column>
+                                    <af:column headerText="Status" id="c7" width="150"
+                                               sortProperty="#{bindings.HMOOtherRequestDetails_ROVO.hints.ApprovalStatus.name}"
+                                               filterable="true">
+                                        <af:outputText value="#{row.ApprovalStatus}"
+                                                       shortDesc="#{bindings.HMOOtherRequestDetails_ROVO.hints.ApprovalStatus.tooltip}"
+                                                       id="ot19"/>
+                                    </af:column>
+                                    <af:column headerText="Request Type" id="c4" width="150"
+                                               sortProperty="#{bindings.HMOOtherRequestDetails_ROVO.hints.RequestType.name}"
+                                               filterable="true">
+                                        <af:outputText value="#{row.RequestType}"
+                                                       shortDesc="#{bindings.HMOOtherRequestDetails_ROVO.hints.RequestType.tooltip}"
+                                                       id="ot16"/>
+                                    </af:column>
+                                    <af:column headerText="Created By" id="c5" width="100"
+                                               sortProperty="#{bindings.HMOOtherRequestDetails_ROVO.hints.CreatedBy.name}"
+                                               filterable="true">
+                                        <af:outputText value="#{row.CreatedBy}"
+                                                       shortDesc="#{bindings.HMOOtherRequestDetails_ROVO.hints.CreatedBy.tooltip}"
+                                                       id="ot17"/>
+                                    </af:column>
+                                    <af:column headerText="Created Date" id="c6" width="100"
+                                               sortProperty="#{bindings.HMOOtherRequestDetails_ROVO.hints.CreationDate.name}"
+                                               filterable="true">
+                                        <af:outputText value="#{row.CreationDate}"
+                                                       shortDesc="#{bindings.HMOOtherRequestDetails_ROVO.hints.CreationDate.tooltip}"
+                                                       id="ot18">
+                                            <af:convertDateTime pattern="dd-MMM-YYYY"/>
+                                        </af:outputText>
+                                        <f:facet name="filter">
+                                            <af:inputDate value="#{bindings.SearchRequestQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.CreationDate.value}"
+                                                          id="id4">
+                                                <af:convertDateTime pattern="#{bindings.HMOOtherRequestDetails_ROVO.hints.CreationDate.format}"/>
+                                            </af:inputDate>
+                                        </f:facet>
+                                    </af:column>
+                                    <af:column id="c10" headerText="Delete" align="center" filterable="true">
+                                        <af:link text="" id="l5" icon="/images/func_remove_16_ena.png"
+                                                 hoverIcon="/images/func_remove_16_hov.png"
+                                                 depressedIcon="/images/func_report_16_act.png"
+                                                 disabledIcon="/images/func_remove_16_dis.png"
+                                                 disabled="#{row.ApprovalStatus ne 'DRAFT'}">
+                                            <af:showPopupBehavior popupId=":::p2"/>
+                                        </af:link>
+                                    </af:column>
+                                </af:table>
+                            </af:panelCollection>
+                            <af:popup childCreation="deferred" autoCancel="enabled" id="p1">
+                                <af:dialog id="d1" type="none" title="Confirmation">
+                                    <af:outputText value="Do you want to create new dependent request ?" id="ot1" inlineStyle="font-size:larger;"/>
+                                    <af:spacer width="10" height="30" id="s5"/>
+                                    <f:facet name="buttonBar">
+                                        <af:panelGroupLayout id="pgl4">
+                                            <af:button text="Yes, Create Request" id="b1" action="#{backingBeanScope.SearchHmoBB.onCreateNewDep}" styleClass="blue-proceed"/>
+                                        </af:panelGroupLayout>
+                                    </f:facet>
+                                </af:dialog>
+                            </af:popup>
+                            <af:popup childCreation="deferred" autoCancel="enabled" id="p2">
+                                <af:dialog id="d2" type="none" title="Confirmation">
+                                    <af:outputText value="Are Your Sure? Do you want to delete this request ?"
+                                                   id="ot22" inlineStyle="font-size:larger;"/>
+                                    <af:spacer width="10" height="30" id="s6"/>
+                                    <f:facet name="buttonBar">
+                                        <af:panelGroupLayout id="pgl5">
+                                            <af:button text="Yes, Delete Request" id="b2" styleClass="red-cancel"
+                                                       actionListener="#{backingBeanScope.SearchHmoBB.onDeleteOtherRequest}"/>
+                                        </af:panelGroupLayout>
+                                    </f:facet>
+                                </af:dialog>
+                            </af:popup>
+                        </af:panelBox>
+                    </af:panelBox>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </f:facet>
+    </af:pageTemplate>
+</ui:composition>

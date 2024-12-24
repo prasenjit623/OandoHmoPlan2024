@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="XXHR_HMO_CATEGORY_MASTER_ROVO"
+  Version="12.2.1.9.14"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.ro.XXHR_HMO_CATEGORY_MASTER_ROVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="BV_HMO_OPTION"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="BV_Plan"
+    Kind="where"
+    Type="java.lang.String"/>
+  <SQLQuery><![CDATA[SELECT        
+  DISTINCT  XXHR_HMO_CATEGORY_MASTER.HMO_OPTIONS HMO_OPTIONS,        
+    XXHR_HMO_CATEGORY_MASTER.HMO_CATEGORY HMO_CATEGORY ,     
+    XXHR_HMO_CATEGORY_MASTER.ATTRIBUTE1 ATTRIBUTE1  , 
+    XXHR_HMO_CATEGORY_MASTER.HMO_MASTER_HDR_ID HMO_MASTER_HDR_ID 
+FROM        
+    XXHR_HMO_CATEGORY_MASTER     
+    where ATTRIBUTE1 IS NULL AND HMO_OPTIONS = :BV_HMO_OPTION and HMO_MASTER_HDR_ID = :BV_Plan]]></SQLQuery>
+  <ViewAttribute
+    Name="HmoOptions"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="HMO_OPTIONS"
+    Expression="HMO_OPTIONS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HmoCategory"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="HMO_CATEGORY"
+    Expression="HMO_CATEGORY"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Attribute1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ATTRIBUTE1"
+    Expression="ATTRIBUTE1"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HmoMasterHdrId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="HMO_MASTER_HDR_ID"
+    Expression="HMO_MASTER_HDR_ID"
+    SQLType="NUMERIC"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

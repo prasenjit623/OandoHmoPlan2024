@@ -1,0 +1,558 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx" id="pt1">
+        <f:facet name="pageContents">
+            <af:panelBox text="New Dependent Request" id="pb1" showDisclosure="false" background="dark">
+                <f:facet name="toolbar">
+                    <af:toolbar id="t1">
+                        <af:button text="Save And Close" id="b1" styleClass="blue-proceed" visible="#{bindings.ApprovalStatus.inputValue eq 'DRAFT'}"
+                                   action="#{backingBeanScope.NewDependentBB.onSaveAction}"/>
+                        <af:button text="Submit" id="b2" action="#{backingBeanScope.NewDependentBB.onSubmitAction}"
+                        styleClass="blue-proceed" visible="#{bindings.ApprovalStatus.inputValue eq 'DRAFT'}"/>
+                        <af:button text="Close" id="b3" styleClass="red-cancel" immediate="true"
+                                   action="#{backingBeanScope.NewDependentBB.onCancelAction}"/>
+                    </af:toolbar>
+                </f:facet>
+                <af:panelFormLayout id="pfl1" labelWidth="200" maxColumns="2" rows="2">
+                    <af:inputText value="#{bindings.HmoRequestNo.inputValue}" label="Request No"
+                                  required="#{bindings.HmoRequestNo.hints.mandatory}" readOnly="true"
+                                  columns="#{bindings.HmoRequestNo.hints.displayWidth}"
+                                   contentStyle="font-size:larger; font-weight: bold; color:#006ba5;"
+                                  maximumLength="#{bindings.HmoRequestNo.hints.precision}"
+                                  shortDesc="#{bindings.HmoRequestNo.hints.tooltip}" id="it1">
+                        <f:validator binding="#{bindings.HmoRequestNo.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.HmoTransReference.inputValue}" label="HMO Registration No"
+                                  required="#{bindings.HmoTransReference.hints.mandatory}" readOnly="true"
+                                  columns="#{bindings.HmoTransReference.hints.displayWidth}"
+                                  maximumLength="#{bindings.HmoTransReference.hints.precision}"
+                                  shortDesc="#{bindings.HmoTransReference.hints.tooltip}" id="it2">
+                        <f:validator binding="#{bindings.HmoTransReference.validator}"/>
+                        <af:convertNumber groupingUsed="false" pattern="#{bindings.HmoTransReference.format}"/>
+                    </af:inputText>
+                    <af:inputDate value="#{bindings.HmoRequestDate.inputValue}" readOnly="true" label="Request Date"
+                                  required="#{bindings.HmoRequestDate.hints.mandatory}"
+                                  columns="#{bindings.HmoRequestDate.hints.displayWidth}"
+                                  shortDesc="#{bindings.HmoRequestDate.hints.tooltip}" id="id1">
+                        <f:validator binding="#{bindings.HmoRequestDate.validator}"/>
+                        <af:convertDateTime pattern="dd-MMM-YYYY"/>
+                    </af:inputDate>
+                    <af:inputText value="#{bindings.HmoCategory.inputValue}" label="HMO Category" readOnly="true"
+                                  required="#{bindings.HmoCategory.hints.mandatory}"
+                                  columns="#{bindings.HmoCategory.hints.displayWidth}"
+                                  maximumLength="#{bindings.HmoCategory.hints.precision}"
+                                  shortDesc="#{bindings.HmoCategory.hints.tooltip}" id="it4">
+                        <f:validator binding="#{bindings.HmoCategory.validator}"/>
+                    </af:inputText>
+                    <af:selectOneChoice value="#{bindings.HmoOption.inputValue}" label="HMO Option"
+                                        autoSubmit="true" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                        contentStyle="width:200px; background-color: White; " required="#{bindings.HmoOption.hints.mandatory}"
+                                        shortDesc="#{bindings.HmoOption.hints.tooltip}" id="soc1">
+                        <f:selectItems value="#{bindings.HmoOption.items}" id="si1"/>
+                        <f:validator binding="#{bindings.HmoOption.validator}"/>
+                    </af:selectOneChoice>
+                    <af:inputText value="#{bindings.ApprovalStatus.inputValue}" label="Status"
+                                  required="#{bindings.ApprovalStatus.hints.mandatory}" readOnly="true"
+                                  columns="#{bindings.ApprovalStatus.hints.displayWidth}"
+                                  maximumLength="#{bindings.ApprovalStatus.hints.precision}"
+                                  shortDesc="#{bindings.ApprovalStatus.hints.tooltip}" id="it3">
+                        <f:validator binding="#{bindings.ApprovalStatus.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.HmoType.inputValue}" label="HMO Type" readOnly="true"
+                                  required="#{bindings.HmoType.hints.mandatory}"
+                                  columns="#{bindings.HmoType.hints.displayWidth}"
+                                  maximumLength="#{bindings.HmoType.hints.precision}"
+                                  shortDesc="#{bindings.HmoType.hints.tooltip}" id="it6">
+                        <f:validator binding="#{bindings.HmoType.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.HmoPlanName.inputValue}" label="HMO Plan Name" readOnly="true"
+                                  required="#{bindings.HmoPlanName.hints.mandatory}"
+                                  columns="#{bindings.HmoPlanName.hints.displayWidth}"
+                                  maximumLength="#{bindings.HmoPlanName.hints.precision}"
+                                  shortDesc="#{bindings.HmoPlanName.hints.tooltip}" id="it7">
+                        <f:validator binding="#{bindings.HmoPlanName.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.HmoPlanTotal.inputValue}" rendered="#{bindings.HmoCategory.inputValue ne 'Age-based Categorization'}"
+                                              label="Total Cost" readOnly="true" contentStyle="font-size:larger; font-weight: bold;"
+                                              required="#{bindings.HmoPlanTotal.hints.mandatory}"
+                                              columns="#{bindings.HmoPlanTotal.hints.displayWidth}"
+                                              maximumLength="#{bindings.HmoPlanTotal.hints.precision}"
+                                              shortDesc="#{bindings.HmoPlanTotal.hints.tooltip}" id="it9">
+                          <f:validator binding="#{bindings.HmoPlanTotal.validator}"/>
+                          <af:convertNumber minFractionDigits="#{sessionScope.MinFractionDigits}"
+                                                      maxFractionDigits="#{sessionScope.MaxFractionDigits}"
+                                                      pattern="#{sessionScope.NumberFormat}"
+                                                      minIntegerDigits="#{sessionScope.MinIntegerDigits}"/>
+                     </af:inputText>
+                      <af:inputText value="#{bindings.Trans_EligibleCost.inputValue}" label="Maximum Limit"
+                                              readOnly="true" rendered="#{(bindings.HmoType.inputValue eq 'RELIANCE HEALTH' ? 'true' : bindings.HmoCategory.inputValue eq 'Traditional Dependent Categorization' ? 'false' : 'true')}"
+                                              required="#{bindings.Trans_EligibleCost.hints.mandatory}"
+                                              shortDesc="#{bindings.Trans_EligibleCost.hints.tooltip}" id="it15">
+                                    <f:validator binding="#{bindings.Trans_EligibleCost.validator}"/>
+                                    <af:convertNumber minFractionDigits="#{sessionScope.MinFractionDigits}"
+                                                      maxFractionDigits="#{sessionScope.MaxFractionDigits}"
+                                                      pattern="#{sessionScope.NumberFormat}"
+                                                      minIntegerDigits="#{sessionScope.MinIntegerDigits}"/>
+                                </af:inputText>
+                    <af:outputText value="#{backingBeanScope.NewDependentBB.employeeHMOCost}" id="ot11" visible="false"/>
+                </af:panelFormLayout>
+                <af:spacer width="10" height="10" id="s1"/>
+                <af:panelBox text="Add Dependent Details" id="pb3" showDisclosure="false">
+                    <f:facet name="toolbar">
+                    <af:toolbar id="t4">
+                            <af:button text="Add Dependent" id="b4" icon="/images/qual_add2_16.png" styleClass="green-submit"
+                                        visible="#{bindings.ApprovalStatus.inputValue eq 'DRAFT'}"
+                                       actionListener="#{backingBeanScope.NewDependentBB.onNewDependent}">
+                                    <af:setPropertyListener from="ADD" to="#{pageFlowScope.ADD_EDIT_MODE}"
+                                                            type="action"/>
+                                </af:button>
+                            </af:toolbar>
+                    </f:facet>
+                    <af:spacer width="10" height="10" id="s2"/>
+                    <af:table value="#{bindings.NewDepHmoDtl_VO.collectionModel}" var="row"
+                              rows="#{bindings.NewDepHmoDtl_VO.rangeSize}"
+                              emptyText="#{bindings.NewDepHmoDtl_VO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.NewDepHmoDtl_VO.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.NewDepHmoDtl_VO.collectionModel.makeCurrent}"
+                              rowSelection="single" fetchSize="#{bindings.NewDepHmoDtl_VO.rangeSize}" id="t2"
+                              columnStretching="column:c23" partialTriggers="::soc1">
+                        <af:column id="c22" headerText="Photo" align="center">
+                                <af:image source="/profilepictureservlet?type=new_dep&amp;id=#{row.HmoDtlId}"
+                                          rendered="#{row.DepPhoto ne null}" shortDesc="" id="i5"
+                                          inlineStyle="height:2cm; width:2cm;"/>
+                                <af:image source="/images/no_image.png" id="i2"
+                                          rendered="#{row.DepPhoto eq null || row.DepPhoto eq ''}"
+                                          inlineStyle="height:1.5cm; width:1.5cm;"/>
+                                <af:link text="Update Photo" id="l5" visible="#{row.ExistingData ne 'Y'}"  disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}">
+                                    <af:showPopupBehavior popupId="::p2"/>
+                                </af:link>
+                            </af:column>
+                             <af:column id="c23" headerText="Details" align="center" width="500" noWrap="false">
+                                <af:panelGridLayout id="pgl4">
+                                    <af:gridRow marginTop="5px" height="auto" id="gr1">
+                                        <af:gridCell marginStart="5px" width="50%" id="gc1">
+                                            <af:outputText value="#{row.DepTitle} #{row.DepFirstName} #{row.DepLastName}"
+                                                           inlineStyle="font-size:larger; font-weight: bold;"
+                                                           id="ot21"/>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="50%" id="gc2">
+                                            <af:panelGroupLayout id="pgl14" layout="horizontal">
+                                                <af:outputText value="DOB :" id="aot4"
+                                                               inlineStyle="font-weight:bolder;"/>
+                                                <af:spacer width="10" height="10" id="s7"/>
+                                                <af:outputFormatted value="#{row.DepDob}" id="of6">
+                                                    <af:convertDateTime pattern="dd-MMM-yyyy"/>
+                                                </af:outputFormatted>
+                                            </af:panelGroupLayout>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" id="gr2">
+                                        <af:gridCell marginStart="5px" width="50%" id="gc9">
+                                         <af:outputText value="Type :" id="ot13"
+                                                           inlineStyle="font-weight:bolder;"/>
+                                            <af:spacer width="10" height="10" id="s11"/>
+                                            <af:outputText value="#{row.DependentType}" id="ot2"/>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="50%" id="gc10">
+                                            <af:panelGroupLayout id="pgl13" layout="horizontal">
+                                                <af:outputText value="Mobile No :" id="ot3"
+                                                           inlineStyle="font-weight:bolder;"/>
+                                            <af:spacer width="10" height="10" id="s4"/>
+                                                <af:outputFormatted value="#{row.MobileNo}" id="of9"></af:outputFormatted>
+                                            </af:panelGroupLayout>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr3">
+                                        <af:gridCell marginStart="5px" width="50%" id="gc13">
+                                         <af:outputText value="Gender :" id="ot1"
+                                                           inlineStyle="font-weight:bolder;"/>
+                                            <af:spacer width="10" height="10" id="s3"/>
+                                            <af:outputText value="#{row.DepGender}" id="ot20"/>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="50%" id="gc14">
+                                            <af:outputText value="#{row.DepAgeCategory}" id="ot22"
+                                                           shortDesc="#{row.DepAgeCategory}"/>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                </af:panelGridLayout>
+                            </af:column>
+                            <af:column id="c3" width="250" noWrap="false">
+                                <af:panelGridLayout id="pgl5">
+                                    <af:gridRow marginTop="5px" height="auto" id="gr9">
+                                        <af:gridCell marginStart="5px" width="100%" id="gc6">
+                                        <af:outputText value="Address :" id="ot4"
+                                                           inlineStyle="font-weight:bolder;"/>
+                                            <af:spacer width="10" height="10" id="s5"/>
+                                            <af:outputFormatted value="#{row.ResidentialAddress}" id="of5"/>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" id="gr10">
+                                        <af:gridCell marginStart="5px" width="100%" id="gc11">
+                                            <af:outputText value="State of Residence :" id="ot12"
+                                                           inlineStyle="font-weight:bolder;"/>
+                                            <af:spacer width="10" height="10" id="s10"/>
+                                            <af:outputFormatted value="#{row.StateOfResidence}" id="of7"/>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr11">
+                                        <af:gridCell marginStart="5px" width="100%" id="gc15">
+                                            <af:outputText value="Primary Hospital :" id="ot5"
+                                                           inlineStyle="font-weight:bolder;"/>
+                                            <af:spacer width="10" height="10" id="s6"/>
+                                            <af:outputText value="#{row.Hospital}" id="of2"
+                                                           shortDesc="#{row.Hospital}"/>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                </af:panelGridLayout>
+                            </af:column>
+                             <af:column id="c2" headerText="Cost Details" width="200"
+                            rendered="#{bindings.HmoCategory.inputValue eq 'Traditional Dependent Categorization' ? false : true}">
+                                <af:panelGridLayout id="pgl2">
+                                    <af:gridRow marginTop="5px" height="auto" id="gr4">
+                                        <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc8"
+                                                     rendered="#{bindings.HmoCategory.inputValue ne 'Traditional Dependent Categorization'}">
+                                            <af:outputText value="Dependent Cost :" id="ot6"
+                                                           inlineStyle="font-weight:bolder;"/>
+                                            <af:spacer width="10" height="10" id="s8"/>
+                                            <af:outputFormatted value="#{row.DependentCost}" id="of8">
+                                                <af:convertNumber minFractionDigits="#{sessionScope.MinFractionDigits}"
+                                                                  maxFractionDigits="#{sessionScope.MaxFractionDigits}"
+                                                                  pattern="#{sessionScope.NumberFormat}"
+                                                                  minIntegerDigits="#{sessionScope.MinIntegerDigits}"/>
+                                            </af:outputFormatted>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" id="gr5" rendered="#{bindings.HmoCategory.inputValue ne 'Traditional Dependent Categorization'}">
+                                        <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc12">
+                                            <af:outputText value="Total Cost :" id="ot7"
+                                                           inlineStyle="font-weight:bolder;"/>
+                                            <af:spacer width="10" height="10" id="s12"/>
+                                            <af:outputFormatted value="#{bindings.HmoPlanTotal.inputValue}" id="of1">
+                                                <af:convertNumber minFractionDigits="#{sessionScope.MinFractionDigits}"
+                                                                  maxFractionDigits="#{sessionScope.MaxFractionDigits}"
+                                                                  pattern="#{sessionScope.NumberFormat}"
+                                                                  minIntegerDigits="#{sessionScope.MinIntegerDigits}"/>
+                                            </af:outputFormatted>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr8">
+                                        <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc16"
+                                                     rendered="#{bindings.HmoCategory.inputValue ne 'Traditional Dependent Categorization'}">
+                                            <af:outputText value="Amount Payable :" id="ot14"
+                                                           inlineStyle="font-weight:bolder;"/>
+                                            <af:spacer width="10" height="10" id="s19"/>
+                                            <af:outputFormatted value="#{bindings.HmoPlanDeduction.inputValue}"
+                                                                id="of3">
+                                                <af:convertNumber minFractionDigits="#{sessionScope.MinFractionDigits}"
+                                                                  maxFractionDigits="#{sessionScope.MaxFractionDigits}"
+                                                                  pattern="#{sessionScope.NumberFormat}"
+                                                                  minIntegerDigits="#{sessionScope.MinIntegerDigits}"/>
+                                            </af:outputFormatted>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                </af:panelGridLayout>
+                            </af:column>
+                       <af:column id="c4" headerText="Reason for Addition" width="150">
+                           <af:outputFormatted value="#{row.ReasonForChange}" id="of10"/>
+                        </af:column>
+                              <af:column id="c8" headerText="Action" width="150" noWrap="false">
+                                <af:panelGroupLayout id="pgl12" layout="vertical">
+                                    <af:link id="l2" icon="/images/attach_qualifier.png"
+                                             text="Evidence of DOB (#{row.EvidenceCount})" partialTriggers="::b6"
+                                             actionListener="#{backingBeanScope.NewDependentBB.onClickEvidence}">
+                                </af:link>
+                                    <af:spacer width="10" height="10" id="s9"/>
+                                    <af:link text="Edit" icon="/images/edit_ena.png" hoverIcon="/images/edit_ovr.png"
+                                             depressedIcon="/images/edit_ovr.png" disabledIcon="/images/edit_dis.png"
+                                             id="l3"  visible="#{row.ExistingData ne 'Y'}" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                             actionListener="#{backingBeanScope.NewDependentBB.onClickEditDependent}">
+                                        <af:setPropertyListener from="EDIT" to="#{pageFlowScope.ADD_EDIT_MODE}"
+                                                                type="action"/>
+                                    </af:link>
+                                    <af:spacer width="10" height="10" id="s20"/>
+                                    <af:link  text="Delete"  visible="#{row.ExistingData ne 'Y'}" actionListener="#{bindings.Delete.execute}"
+                                             icon="/images/func_remove_16_ena.png" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                             hoverIcon="/images/func_remove_16_hov.png"
+                                             depressedIcon="/images/func_report_16_act.png"
+                                             disabledIcon="/images/func_remove_16_dis.png" id="l4"/>
+                                </af:panelGroupLayout>
+                        </af:column>
+                    </af:table>
+                    <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                              binding="#{backingBeanScope.NewDependentBB.dependentPop}">
+                    <af:dialog id="d1" type="none"
+                                   title="#{pageFlowScope.ADD_EDIT_MODE eq 'ADD' ? 'Add':'Edit'} Dependent"
+                                   closeIconVisible="false" titleIconSource="/images/audiencesegmenttree_24_ena.png">
+                        <f:facet name="buttonBar">
+                                <af:panelGroupLayout id="pgl1">
+                                    <af:button text="Save" id="b5" styleClass="green-submit"
+                                               actionListener="#{backingBeanScope.NewDependentBB.onClickOkDepPop}"/>
+                                    <af:button text="Cancel" id="b7" styleClass="red-cancel" immediate="true"
+                                                actionListener="#{backingBeanScope.NewDependentBB.onClickCancelDepPop}"/>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                            <af:panelFormLayout id="pfl2" rows="5" maxColumns="2" labelWidth="150">
+                                <af:selectOneChoice value="#{bindings.DependentType.inputValue}"
+                                                    label="Dependent Type" autoSubmit="true"
+                                                    required="true"
+                                                    shortDesc="#{bindings.DependentType.hints.tooltip}" id="soc2"
+                                                    valueChangeListener="#{backingBeanScope.NewDependentBB.onChangeDepType}">
+                                    <f:selectItems value="#{bindings.DependentType.items}" id="si2"/>
+                                    <f:validator binding="#{bindings.DependentType.validator}"/>
+                                </af:selectOneChoice>
+                                <af:selectOneChoice value="#{bindings.DepTitle.inputValue}"
+                                                    label="Title" autoSubmit="true"
+                                                    required="true"
+                                                    shortDesc="#{bindings.DepTitle.hints.tooltip}" id="soc3">
+                                    <f:selectItems value="#{bindings.DepTitle.items}" id="si3"/>
+                                    <f:validator binding="#{bindings.DepTitle.validator}"/>
+                                </af:selectOneChoice>
+                                <af:selectOneRadio value="#{bindings.DepGender.inputValue}" layout="horizontal"
+                                                   label="Gender" autoSubmit="true"
+                                                   required="true"
+                                                   shortDesc="#{bindings.DepGender.hints.tooltip}" id="sor1">
+                                    <f:selectItems value="#{bindings.DepGender.items}" id="si4"/>
+                                    <f:validator binding="#{bindings.DepGender.validator}"/>
+                                </af:selectOneRadio>
+                                <af:inputText value="#{bindings.DepFirstName.inputValue}"
+                                              label="First Name" autoSubmit="true"
+                                              required="true"
+                                              columns="#{bindings.DepFirstName.hints.displayWidth}"
+                                              maximumLength="#{bindings.DepFirstName.hints.precision}"
+                                              shortDesc="#{bindings.DepFirstName.hints.tooltip}" id="it5"
+                                              contentStyle='width:250px;'>
+                                    <f:validator binding="#{bindings.DepFirstName.validator}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.DepLastName.inputValue}"
+                                              label="Last Name" autoSubmit="true"
+                                              required="true"
+                                              columns="#{bindings.DepLastName.hints.displayWidth}"
+                                              maximumLength="#{bindings.DepLastName.hints.precision}"
+                                              shortDesc="#{bindings.DepLastName.hints.tooltip}" id="it8"
+                                              contentStyle='width:250px;'>
+                                    <f:validator binding="#{bindings.DepLastName.validator}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.MobileNo.inputValue}"
+                                              label="Mobile No"
+                                              required="#{bindings.MobileNo.hints.mandatory}"
+                                              columns="#{bindings.MobileNo.hints.displayWidth}"
+                                              maximumLength="#{bindings.MobileNo.hints.precision}"
+                                              shortDesc="#{bindings.MobileNo.hints.tooltip}" id="it11"
+                                              contentStyle='width:250px;'>
+                                    <f:validator binding="#{bindings.MobileNo.validator}"/>
+                                </af:inputText>
+                                <af:spacer width="10" height="10" id="s18"/>
+                                <af:inputDate value="#{bindings.DepDob.inputValue}"
+                                              label="Date Of Birth" autoSubmit="true"
+                                              required="true"
+                                              columns="#{bindings.DepDob.hints.displayWidth}"
+                                              shortDesc="#{bindings.DepDob.hints.tooltip}" id="id2"
+                                              contentStyle='width:250px;'
+                                               maxValue="#{backingBeanScope.NewDependentBB.currentSystemDate}"
+                                              valueChangeListener="#{backingBeanScope.NewDependentBB.onChangeDepDOB}">
+                                    <f:validator binding="#{bindings.DepDob.validator}"/>
+                                    <af:convertDateTime pattern="dd-MMM-yyyy"/>
+                                </af:inputDate>
+                                <af:inputText value="#{bindings.DepAgeCategory.inputValue}"
+                                              label="Age Category"
+                                              required="true" partialTriggers="id2"
+                                              columns="#{bindings.DepAgeCategory.hints.displayWidth}"
+                                              maximumLength="#{bindings.DepAgeCategory.hints.precision}"
+                                              shortDesc="#{bindings.DepAgeCategory.hints.tooltip}" id="it10"
+                                              contentStyle='width:250px;' disabled="true">
+                                    <f:validator binding="#{bindings.DepAgeCategory.validator}"/>
+                                </af:inputText>
+                                <af:outputText value="Age Next Birthday"  inlineStyle="color:red;"
+                                visible="#{bindings.DepDob.inputValue eq null ? false :true}"
+                                       id="ot38" partialTriggers="id2"/>
+                                <af:inputText value="#{bindings.DependentCost.inputValue}"
+                                              label="Dependent Cost" partialTriggers="id2"
+                                              required="#{bindings.DependentCost.hints.mandatory}"
+                                              columns="#{bindings.DependentCost.hints.displayWidth}"
+                                              maximumLength="#{bindings.DependentCost.hints.precision}"
+                                              shortDesc="#{bindings.DependentCost.hints.tooltip}" id="it12"
+                                              contentStyle='width:250px;' disabled="true">
+                                    <f:validator binding="#{bindings.DependentCost.validator}"/>
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.DependentCost.format}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.HmoPlanTotal.inputValue}" partialTriggers="id2"
+                                              label="Total Cost" disabled="true" contentStyle="width:250px;"
+                                              required="#{bindings.HmoPlanTotal.hints.mandatory}"
+                                              columns="#{bindings.HmoPlanTotal.hints.displayWidth}"
+                                              maximumLength="#{bindings.HmoPlanTotal.hints.precision}"
+                                              shortDesc="#{bindings.HmoPlanTotal.hints.tooltip}" id="it13">
+                                    <f:validator binding="#{bindings.HmoPlanTotal.validator}"/>
+                                    <af:convertNumber minFractionDigits="#{sessionScope.MinFractionDigits}"
+                                                      maxFractionDigits="#{sessionScope.MaxFractionDigits}"
+                                                      pattern="#{sessionScope.NumberFormat}"
+                                                      minIntegerDigits="#{sessionScope.MinIntegerDigits}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.Trans_EligibleCost.inputValue}" label="Maximum Limit"
+                                              disabled="true" contentStyle="width:250px;" partialTriggers="id2"
+                                              required="#{bindings.Trans_EligibleCost.hints.mandatory}"
+                                              columns="#{bindings.Trans_EligibleCost.hints.displayWidth}"
+                                              maximumLength="#{bindings.Trans_EligibleCost.hints.precision}"
+                                              shortDesc="#{bindings.Trans_EligibleCost.hints.tooltip}" id="it18">
+                                    <f:validator binding="#{bindings.Trans_EligibleCost.validator}"/>
+                                    <af:convertNumber minFractionDigits="#{sessionScope.MinFractionDigits}"
+                                                      maxFractionDigits="#{sessionScope.MaxFractionDigits}"
+                                                      pattern="#{sessionScope.NumberFormat}"
+                                                      minIntegerDigits="#{sessionScope.MinIntegerDigits}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.HmoPlanDeduction.inputValue}" partialTriggers="id2"
+                                              label="Amount Payable" disabled="true" contentStyle="width:250px;"
+                                              required="#{bindings.HmoPlanDeduction.hints.mandatory}"
+                                              columns="#{bindings.HmoPlanDeduction.hints.displayWidth}"
+                                              maximumLength="#{bindings.HmoPlanDeduction.hints.precision}"
+                                              shortDesc="#{bindings.HmoPlanDeduction.hints.tooltip}" id="it17">
+                                    <f:validator binding="#{bindings.HmoPlanDeduction.validator}"/>
+                                    <af:convertNumber minFractionDigits="#{sessionScope.MinFractionDigits}"
+                                                      maxFractionDigits="#{sessionScope.MaxFractionDigits}"
+                                                      pattern="#{sessionScope.NumberFormat}"
+                                                      minIntegerDigits="#{sessionScope.MinIntegerDigits}"/>
+                                </af:inputText>
+                            </af:panelFormLayout>
+                            <af:spacer width="10" height="10" id="s16"/>
+                            <af:panelFormLayout id="pfl3" labelWidth="150">
+                                <f:facet name="footer"/>
+                                <af:inputText value="#{bindings.ResidentialAddress.inputValue}"
+                                              label="Residential Address"
+                                              required="#{bindings.ResidentialAddress.hints.mandatory}"
+                                              columns="#{bindings.ResidentialAddress.hints.displayWidth}"
+                                              maximumLength="#{bindings.ResidentialAddress.hints.precision}"
+                                              shortDesc="#{bindings.ResidentialAddress.hints.tooltip}" id="it14"
+                                              contentStyle='width:575px;' autoSubmit="true" rows="3">
+                                    <f:validator binding="#{bindings.ResidentialAddress.validator}"/>
+                                </af:inputText>
+                                <af:inputListOfValues id="stateOfResidenceId" autoSubmit="true"
+                                                      popupTitle="Search and Select: State of Residence"
+                                                      value="#{bindings.StateOfResidence.inputValue}"
+                                                      label="State of Residence"
+                                                      model="#{bindings.StateOfResidence.listOfValuesModel}"
+                                                      rendered="#{bindings.HmoType.inputValue eq 'BUPA' || bindings.HmoType.inputValue eq 'CIGNA' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA NIGERIA - INTERNATIONAL' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA AFRICA' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA WORLDWIDE- INTERNATIONAL'  ? false : true}"
+                                                         showRequired="#{bindings.HmoType.inputValue eq 'BUPA' || 
+                                                        bindings.HmoType.inputValue eq 'CIGNA NIGERIA - INTERNATIONAL' || bindings.HmoType.inputValue eq 'CIGNA' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA AFRICA' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA WORLDWIDE- INTERNATIONAL' ? false : true}"
+                                                      columns="#{bindings.StateOfResidence.hints.displayWidth}"
+                                                      shortDesc="#{bindings.StateOfResidence.hints.tooltip}"
+                                                      contentStyle="width:550px;">
+                                    <f:validator binding="#{bindings.StateOfResidence.validator}"/>
+                                    <af:autoSuggestBehavior suggestItems="#{bindings.StateOfResidence.suggestItems}"
+                                                            maxSuggestedItems="5"/>
+                                </af:inputListOfValues>
+                                <af:inputListOfValues id="hospitalId"
+                                                      popupTitle="Search and Select: Primary Hospital"
+                                                      value="#{bindings.Hospital.inputValue}"
+                                                      label="Primary Hospital"
+                                                      model="#{bindings.Hospital.listOfValuesModel}"
+                                                     
+                                                      rendered="#{bindings.HmoType.inputValue eq 'BUPA' || bindings.HmoType.inputValue eq 'CIGNA' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA NIGERIA - INTERNATIONAL' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA AFRICA' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA WORLDWIDE- INTERNATIONAL' ? false : true}"
+                                                      columns="#{bindings.Hospital.hints.displayWidth}"
+                                                      shortDesc="#{bindings.Hospital.hints.tooltip}"
+                                                      contentStyle="width:550px;" autoSubmit="true">
+                                    <f:validator binding="#{bindings.Hospital.validator}"/>
+                                    <af:autoSuggestBehavior suggestItems="#{bindings.Hospital.suggestItems}"
+                                                            maxSuggestedItems="5"/>
+                                </af:inputListOfValues>
+                                <af:inputText value="#{bindings.ReasonForChange.inputValue}"
+                                              label="Reason for Addition"
+                                              required="true" 
+                                              columns="#{bindings.ReasonForChange.hints.displayWidth}"
+                                              maximumLength="#{bindings.ReasonForChange.hints.precision}"
+                                              shortDesc="#{bindings.ReasonForChange.hints.tooltip}" id="it16"
+                                              contentStyle="width:570px;" autoSubmit="true" rows="3">
+                                    <f:validator binding="#{bindings.ReasonForChange.validator}"/>
+                                </af:inputText>
+                            </af:panelFormLayout>
+                        </af:dialog></af:popup>
+                         <af:popup childCreation="deferred" autoCancel="disabled" id="p2">
+                        <af:dialog id="d2" type="none" title="Update Photo">
+                            <f:facet name="buttonBar"></f:facet>
+                            <af:spacer width="10" height="20" id="s13"/>
+                            <af:inputFile label="Select Photo to update " id="if1" autoSubmit="true"
+                                          valueChangeListener="#{backingBeanScope.NewDependentBB.uploadProfileDependent}"/>
+                            <af:spacer width="10" height="20" id="s17"/>
+                        </af:dialog>
+                    </af:popup>
+                     <af:popup childCreation="deferred" autoCancel="disabled" id="p3"
+                               binding="#{backingBeanScope.NewDependentBB.evidencePop}">
+                        <af:dialog id="d3" type="none" title="Evidence of DOB"
+                                   titleIconSource="/images/attach_qualifier.png" contentWidth="420">                            
+                            <af:panelBox text="" id="pb2" showDisclosure="false">
+                                <f:facet name="toolbar">
+                                    <af:link actionListener="#{bindings.CreateInsertEvidence.execute}" text="Add"
+                                             visible="#{pageFlowScope.ExistDependent ne 'Y'}"  disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                             icon="/images/qual_added_16.png" hoverIcon="/images/func_add_16_hov.png"
+                                             styleClass="blue-proceed" depressedIcon="/images/func_add_16_act.png"
+                                             disabledIcon="/images/func_add_16_dis.png" id="l6"></af:link>
+                                </f:facet>
+                                <af:table value="#{bindings.NewDepAttachment_VO.collectionModel}" var="row"
+                                          rows="#{bindings.NewDepAttachment_VO.rangeSize}"
+                                          emptyText="#{bindings.NewDepAttachment_VO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                          rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.NewDepAttachment_VO.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.NewDepAttachment_VO.collectionModel.makeCurrent}"
+                                          rowSelection="single" fetchSize="#{bindings.NewDepAttachment_VO.rangeSize}"
+                                          id="t3">
+                                    <af:column headerText="Attachment Name"
+                                               id="c1" width="150">
+                                        <af:outputText value="#{row.AttachmentName}" partialTriggers="if2"
+                                                       shortDesc="#{bindings.NewDepAttachment_VO.hints.AttachmentName.tooltip}"
+                                                       id="ot8"/>
+                                    </af:column>
+                                    <af:column headerText="Attachment Type"
+                                               id="c5">
+                                        <af:outputText value="#{row.AttachmentType}" partialTriggers="if2"
+                                                       shortDesc="#{bindings.NewDepAttachment_VO.hints.AttachmentType.tooltip}"
+                                                       id="ot10"/>
+                                    </af:column>
+                                    <af:column id="c24" headerText="Upload" width="200" rendered="#{pageFlowScope.ExistDependent ne 'Y'}">
+                                        <af:inputFile id="if2" required="#{row.AttachmentName eq null ? true : false}"
+                                                      valueChangeListener="#{backingBeanScope.NewDependentBB.onUploadFileVCL}"
+                                                      autoSubmit="true" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"/>
+                                    </af:column>
+                                    <af:column id="c6" width="100" headerText="Download">
+                                        <af:link icon="/images/func_download_16_act.png"
+                                                 hoverIcon="/images/qual_download_16.png"
+                                                 disabledIcon="/images/func_download_16_ena.png" id="l7">
+                                            <af:fileDownloadActionListener filename="#{row.AttachmentName}"
+                                                                           method="#{backingBeanScope.NewDependentBB.onDownloadEvidence}"/>
+                                        </af:link>
+                                    </af:column>
+                                    <af:column id="c29" headerText="Delete" align="center" width="50" rendered="#{pageFlowScope.ExistDependent ne 'Y'}">
+                                        <af:link icon="/images/func_remove_16_ena.png" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                                 hoverIcon="/images/func_remove_16_hov.png"
+                                                 depressedIcon="/images/func_report_16_act.png"
+                                                 disabledIcon="/images/func_remove_16_dis.png" immediate="true"
+                                                 actionListener="#{bindings.DeleteAttach.execute}" id="l8"/>
+                                    </af:column>
+                                </af:table>
+                            </af:panelBox>
+                            <f:facet name="buttonBar">
+                                <af:button text="Ok" id="b6"  styleClass="blue-proceed"
+                                actionListener="#{backingBeanScope.NewDependentBB.onOkEvidPop}"/>
+                            </f:facet>
+                        </af:dialog>
+                    </af:popup>
+                </af:panelBox>
+            </af:panelBox>
+        </f:facet>
+        <f:facet name="footerStart"/>
+        <f:facet name="footer"/>
+        <f:facet name="footerEnd"/>
+        <f:facet name="startPanel"/>
+        <f:facet name="endPanel"/>
+        <f:facet name="headerStart"/>
+        <f:facet name="header"/>
+        <f:facet name="headerEnd"/>
+    </af:pageTemplate>
+</ui:composition>

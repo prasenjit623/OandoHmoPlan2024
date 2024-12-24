@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<task-flow-registry xmlns="http://xmlns.oracle.com/adf/controller/rc">
+   <task-flow-descriptor path="META-INF/adfc-config.xml" id="" type="" uses-page-fragments="false" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="jsp"/>
+   <task-flow-descriptor path="WEB-INF/taskflow/AddEditHMO_BTF.xml" id="AddEditHMO_BTF" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="true" critical="false" page-type="facelets">
+      <input-parameter name="ReqEditID"/>
+      <input-parameter name="addEditMode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/taskflow/CardReplacement_BTF.xml" id="CardReplacement_BTF" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="PersonNo"/>
+      <input-parameter name="HMOReqNo"/>
+      <input-parameter name="PersonId"/>
+      <input-parameter name="FirstName"/>
+      <input-parameter name="RequestEditID"/>
+      <input-parameter name="Title"/>
+      <input-parameter name="HMOOption"/>
+      <input-parameter name="LastName"/>
+      <input-parameter name="Mobile"/>
+      <input-parameter name="AddEditMode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/taskflow/ComplaintsForm_BTF.xml" id="ComplaintsForm_BTF" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="PersonNo"/>
+      <input-parameter name="HMOReqNo"/>
+      <input-parameter name="PersonId"/>
+      <input-parameter name="FirstName"/>
+      <input-parameter name="RequestEditID"/>
+      <input-parameter name="Title"/>
+      <input-parameter name="HMOOption"/>
+      <input-parameter name="LastName"/>
+      <input-parameter name="StateOfResi"/>
+      <input-parameter name="AddEditMode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/taskflow/DependentRequests_BTF.xml" id="DependentRequests_BTF" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="RequestEditID"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/taskflow/MedicalDetails_BTF.xml" id="MedicalDetails_BTF" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="PersonNo"/>
+      <input-parameter name="HMOReqNo"/>
+      <input-parameter name="PersonId"/>
+      <input-parameter name="FirstName"/>
+      <input-parameter name="RequestEditID"/>
+      <input-parameter name="Title"/>
+      <input-parameter name="HMOOption"/>
+      <input-parameter name="LastName"/>
+      <input-parameter name="AddEditMode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/taskflow/ReimbursementClaims_BTF.xml" id="ReimbursementClaims_BTF" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="HMOReqNo"/>
+      <input-parameter name="FirstName"/>
+      <input-parameter name="RequestEditID"/>
+      <input-parameter name="Title"/>
+      <input-parameter name="HMOOption"/>
+      <input-parameter name="Mobile"/>
+      <input-parameter name="PersonNo"/>
+      <input-parameter name="PersonId"/>
+      <input-parameter name="LastName"/>
+      <input-parameter name="Hospital"/>
+      <input-parameter name="StateOfResi"/>
+      <input-parameter name="AddEditMode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/taskflow/SearchUsersHMO_BTF.xml" id="SearchUsersHMO_BTF" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets"/>
+</task-flow-registry>

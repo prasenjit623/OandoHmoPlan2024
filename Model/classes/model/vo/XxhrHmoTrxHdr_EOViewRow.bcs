@@ -1,0 +1,51 @@
+//Groovy Scripts for model.vo.XxhrHmoTrxHdr_EOView
+
+package model.vo
+
+import oracle.jbo.script.annotation.TransientValueExpression;
+import oracle.jbo.script.annotation.RefreshExpression;
+
+
+
+
+@TransientValueExpression(attributeName="Option_Switcher")
+def Option_Switcher_ExpressionScript_Expression()
+{
+if(HmoType != null && HmoType == 'BUPA'){
+return 'LOV_HmoOption1';
+}else{
+return 'LOV_HmoOption1';
+}
+}
+
+
+@RefreshExpression(attributeName="Option_Switcher")
+def Option_Switcher_RecalcExpressionScript_RecalcExpression()
+{
+true
+}
+
+
+@TransientValueExpression(attributeName="Cat_Switcher")
+def Cat_Switcher_ExpressionScript_Expression()
+{
+if(Trans_Job == 'ED' || Trans_Job == 'GLC' ){
+return 'LOV_HmoType_Inter';
+}else{
+return 'LOV_HmoType';
+}
+}
+
+
+@TransientValueExpression(attributeName="Switch_AddCat")
+def Switch_AddCat_ExpressionScript_Expression()
+{
+if(HmoCategory == 'Solar Africa' || HmoCategory == 'Paladium Africa' || HmoCategory == 'Diamond Africa' || HmoCategory == 'Topaz Africa' || HmoCategory == 'LNG Africa' || HmoCategory == 'Copper Africa' ){
+return 'LOV_AddiCategory';
+}else if(HmoCategory == 'Paladium Africa WW' || HmoCategory == 'Topaz Africa WW' || HmoCategory == 'Solar Africa WW' || HmoCategory == 'LNG Africa WW' || HmoCategory == 'Copper Africa WW' || HmoCategory == 'Diamond Africa WW' ){
+return 'LOV_AddiCategory_AfricaWW';
+}else{
+return 'LOV_AddiCategory_Africa_WWE';
+}
+}
+

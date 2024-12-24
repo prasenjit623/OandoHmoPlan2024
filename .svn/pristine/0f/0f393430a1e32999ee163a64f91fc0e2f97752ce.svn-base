@@ -1,0 +1,371 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+    <af:panelGroupLayout id="pgl3" halign="center" layout="horizontal">
+        <af:train value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}" visible="false" id="t1"/>
+    </af:panelGroupLayout>
+    <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx" id="pt1">
+        <f:facet name="pageContents">
+            <af:panelBox text="Create HMO Request" id="pb1" showDisclosure="false"
+                         inlineStyle="border-color: transparent ;" background="medium" partialTriggers="soc4">
+                <f:facet name="toolbar">
+                    <af:toolbar id="t2">
+                        <af:button text="Next" id="b3" styleClass="blue-proceed"
+                                   visible="#{bindings.Photo.inputValue ne null}"
+                                   action="#{backingBeanScope.AddEditHmoBB.onNextHdr}"/>
+                        <af:button text="Cancel" id="b1" styleClass="red-cancel" immediate="true"
+                                   action="#{backingBeanScope.AddEditHmoBB.cancelActionHdr}"/>
+                        <af:button text="Copy Dependents" id="b2"
+                                   visible="#{bindings.Photo.inputValue ne null and bindings.HmoOption.inputValue ne 'Employee Only'}"
+                                   disabled="#{bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount > 0 or bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                   actionListener="#{backingBeanScope.AddEditHmoBB.copyDepDetails}"
+                                   binding="#{backingBeanScope.AddEditHmoBB.copyDepButton}"/>
+                    </af:toolbar>
+                </f:facet>
+                <af:spacer width="10" height="10" id="s4"/>
+                <af:panelSplitter id="ps1" orientation="horizontal" splitterPosition="400" positionedFromEnd="true"
+                                  disabled="true">
+                    <f:facet name="first">
+                        <af:panelGroupLayout id="pgl10" layout="vertical">
+                            <af:panelGridLayout id="pgl7" inlineStyle="background:#e0e0e0;">
+                                <af:gridRow marginTop="5px" height="auto" id="gr6">
+                                    <af:gridCell marginStart="5px" width="33%" id="gc3" halign="center">
+                                        <af:outputText value="Request No" id="ot6"
+                                                       inlineStyle="font-size:larger; font-weight: bold;"/>
+                                    </af:gridCell>
+                                    <af:gridCell marginStart="5px" width="33%" marginEnd="5px" id="gc4" halign="center">
+                                        <af:outputText value="Request Date" id="ot7"
+                                                       inlineStyle="font-size:larger; font-weight: bold;">
+                                            <af:convertDateTime pattern="dd-MMM-yyyy"/>
+                                        </af:outputText>
+                                    </af:gridCell>
+                                    <af:gridCell marginStart="5px" width="34%" marginEnd="5px" id="gc22"
+                                                 halign="center">
+                                        <af:outputText value="Request Status" id="ot10"
+                                                       inlineStyle="font-size:larger; font-weight: bold;"/>
+                                    </af:gridCell>
+                                </af:gridRow>
+                                <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr7">
+                                    <af:gridCell marginStart="5px" width="33%" id="gc5" halign="center">
+                                        <af:outputText value="#{bindings.HmoRequestNo.inputValue}" id="ot8"
+                                                       inlineStyle="font-size:larger;"/>
+                                    </af:gridCell>
+                                    <af:gridCell marginStart="5px" width="33%" marginEnd="5px" id="gc7" halign="center">
+                                        <af:outputText value="#{bindings.HmoRequestDate.inputValue}" id="ot9"
+                                                       inlineStyle="font-size:larger;">
+                                            <af:convertDateTime pattern="dd-MMM-yyyy"/>
+                                        </af:outputText>
+                                    </af:gridCell>
+                                    <af:gridCell marginStart="5px" width="34%" marginEnd="5px" id="gc23"
+                                                 halign="center">
+                                        <af:outputText value="#{bindings.ApprovalStatus.inputValue}" id="ot11"
+                                                       inlineStyle="font-size:larger;"/>
+                                    </af:gridCell>
+                                </af:gridRow>
+                            </af:panelGridLayout>
+                            <af:spacer width="10" height="10" id="s5"/>
+                            <af:panelFormLayout id="pfl3" maxColumns="2" rows="4" labelWidth="200">
+                                <af:panelLabelAndMessage label="Name" id="plam1">
+                                    <af:panelGroupLayout id="pgl1" layout="horizontal">
+                                        <af:outputText value="#{bindings.Trans_Title.inputValue}" id="ot1"/>
+                                        <af:spacer width="10" height="10" id="s6"/>
+                                        <af:outputText value="#{bindings.Trans_FirstName.inputValue}" id="ot2"/>
+                                        <af:spacer width="10" height="10" id="s3"/>
+                                        <af:outputText value="#{bindings.Trans_LastName.inputValue}" id="ot3"/>
+                                    </af:panelGroupLayout>
+                                </af:panelLabelAndMessage>
+                                <af:selectOneChoice value="#{bindings.Gender.inputValue}"
+                                                    label="#{bindings.Gender.label}"
+                                                    required="#{bindings.Gender.hints.mandatory}"
+                                                    shortDesc="#{bindings.Gender.hints.tooltip}" readOnly="true"
+                                                    id="soc1">
+                                    <f:selectItems value="#{bindings.Gender.items}" id="si1"/>
+                                    <f:validator binding="#{bindings.Gender.validator}"/>
+                                </af:selectOneChoice>
+                                <af:panelLabelAndMessage label="Email" id="plam2">
+                                    <af:outputText value="#{bindings.Email_Trans.inputValue}"
+                                                   shortDesc="#{bindings.Email_Trans.hints.tooltip}" id="ot4"/>
+                                </af:panelLabelAndMessage>
+                                <af:inputText value="#{bindings.AlternateEmail.inputValue}" label="Alternate Email"
+                                              contentStyle="width:250px;"
+                                              disabled="#{bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount > 0 or bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                              autoSubmit="true" required="#{bindings.AlternateEmail.hints.mandatory}"
+                                              columns="#{bindings.AlternateEmail.hints.displayWidth}"
+                                              maximumLength="#{bindings.AlternateEmail.hints.precision}"
+                                              shortDesc="#{bindings.AlternateEmail.hints.tooltip}" id="it19">
+                                    <f:validator binding="#{bindings.AlternateEmail.validator}"/>
+                                </af:inputText>
+                                <af:panelLabelAndMessage label="Staff Number" id="plam3">
+                                    <af:outputText value="#{bindings.EmpNumber_Trans.inputValue}"
+                                                   shortDesc="#{bindings.EmpNumber_Trans.hints.tooltip}" id="ot5"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="Department Name" id="plam4">
+                                    <af:outputText value="#{bindings.DeptName_Trans.inputValue}"
+                                                   shortDesc="#{bindings.DeptName_Trans.hints.tooltip}" id="ot12"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="Entity" id="plam5">
+                                    <af:outputText value="#{bindings.Trans_Entity.inputValue}"
+                                                   shortDesc="#{bindings.Trans_Entity.hints.tooltip}" id="ot13"/>
+                                </af:panelLabelAndMessage>
+                                <af:inputText value="#{bindings.ResiAddress.inputValue}" label="Residential Address"
+                                              contentStyle="width:250px;"
+                                              disabled="#{bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount > 0 or bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                              autoSubmit="true" required="#{bindings.ResiAddress.hints.mandatory}"
+                                              columns="#{bindings.ResiAddress.hints.displayWidth}"
+                                              maximumLength="#{bindings.ResiAddress.hints.precision}"
+                                              shortDesc="#{bindings.ResiAddress.hints.tooltip}" id="it20" rows="2">
+                                    <f:validator binding="#{bindings.ResiAddress.validator}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.ApproverComments.inputValue}" label="Approver Comments"
+                                              contentStyle="width:250px;" rows="2"
+                                              required="#{bindings.ApproverComments.hints.mandatory}" disabled="true"
+                                              columns="#{bindings.ApproverComments.hints.displayWidth}"
+                                              maximumLength="#{bindings.ApproverComments.hints.precision}"
+                                              shortDesc="#{bindings.ApproverComments.hints.tooltip}" id="it2">
+                                    <f:validator binding="#{bindings.ApproverComments.validator}"/>
+                                </af:inputText>
+                            </af:panelFormLayout>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="second">
+                        <af:panelGroupLayout id="pgl9" layout="vertical" halign="center">
+                            <af:image source="/images/no_image.png" id="i2"
+                                      rendered="#{bindings.Photo.inputValue eq null || bindings.Photo.inputValue eq ''}"
+                                      inlineStyle="width:200px; height:200px;"/>
+                            <af:image source="/profilepictureservlet?type=hdr&amp;id=#{bindings.HmoTrxHdrId.inputValue}"
+                                      shortDesc="" id="i3" rendered="#{bindings.Photo.inputValue ne null}"
+                                      inlineStyle="width:200px; height:200px;" partialTriggers="if1"/>
+                            <af:link text="Update Photo"
+                                     disabled="#{bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount > 0 or bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                     id="l1">
+                                <af:showPopupBehavior popupId="p2"/>
+                            </af:link>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:panelSplitter>
+                <af:spacer width="10" height="10" id="s1"/>
+                <af:panelBox text="HMO Details" id="pb2" showDisclosure="false" styleClass="shadowBorder"
+                             partialTriggers="soc4">
+                    <af:panelFormLayout id="pfl1" maxColumns="2" rows="4" labelWidth="200" partialTriggers="soc4">
+                        <af:selectOneChoice value="#{bindings.HmoMasterHdrId.inputValue}" rendered="false"
+                                            valueChangeListener="#{backingBeanScope.AddEditHmoBB.onChangeHmoOption}"
+                                            label="#{bindings.HmoMasterHdrId.label}" contentStyle="width:250px;"
+                                            autoSubmit="true" required="true"
+                                            disabled="#{bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount > 0 or bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                            shortDesc="#{bindings.HmoMasterHdrId.hints.tooltip}" id="soc2">
+                            <f:selectItems value="#{bindings.HmoMasterHdrId.items}" id="si2"/>
+                            <f:validator binding="#{bindings.HmoMasterHdrId.validator}"/>
+                        </af:selectOneChoice>
+                        <af:inputText value="#{bindings.HmoPlan1.inputValue}" label="#{bindings.HmoPlan1.hints.label}"
+                                      required="#{bindings.HmoPlan1.hints.mandatory}" disabled="true"
+                                      contentStyle="width:250px;"
+                                      rendered="#{(bindings.HmoOption.inputValue eq 'Employee Only' and bindings.ApprovalStatus.inputValue ne 'DRAFT')||(bindings.HmoOption.inputValue ne 'Employee Only' and bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount != 0)}"
+                                      columns="#{bindings.HmoPlan1.hints.displayWidth}"
+                                      maximumLength="#{bindings.HmoPlan1.hints.precision}"
+                                      shortDesc="#{bindings.HmoPlan1.hints.tooltip}" id="it3">
+                            <f:validator binding="#{bindings.HmoPlan1.validator}"/>
+                        </af:inputText>
+                        <af:selectOneChoice value="#{bindings.HmoPlan.inputValue}" label="Plan Name"
+                                            valueChangeListener="#{backingBeanScope.AddEditHmoBB.onChangeHmoOption}"
+                                            autoSubmit="true" required="true"
+                                            disabled="#{bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount > 0 or bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                            contentStyle="width:250px;"
+                                            rendered="#{(bindings.HmoOption.inputValue eq 'Employee Only' and bindings.ApprovalStatus.inputValue eq 'DRAFT')||(bindings.HmoOption.inputValue ne 'Employee Only' and bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount == 0)}"
+                                            shortDesc="#{bindings.HmoPlan.hints.tooltip}" id="soc7">
+                            <f:selectItems value="#{bindings.HmoPlan.items}" id="si7"/>
+                            <f:validator binding="#{bindings.HmoPlan.validator}"/>
+                        </af:selectOneChoice>
+                        <af:selectOneChoice value="#{bindings.HmoType.inputValue}" label="HMO Option" required="true"
+                                            contentStyle="width:250px;"
+                                            disabled="#{bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount > 0 or bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                            autoSubmit="true" shortDesc="#{bindings.HmoType.hints.tooltip}" id="soc3"
+                                            valueChangeListener="#{backingBeanScope.AddEditHmoBB.onChangeHmoOption}">
+                            <f:selectItems value="#{bindings.HmoType.items}" id="si3"/>
+                            <f:validator binding="#{bindings.HmoType.validator}"/>
+                        </af:selectOneChoice>
+                        <af:selectOneChoice value="#{bindings.HmoCategory.inputValue}"
+                                            label="#{bindings.HmoType.inputValue eq 'BUPA' ? 'Category' : 'Preferred Category'}"
+                                            contentStyle="width:250px;" autoSubmit="true" required="false"
+                                            disabled="#{bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount > 0 or bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                            shortDesc="#{bindings.HmoCategory.hints.tooltip}" id="soc4"
+                                            valueChangeListener="#{backingBeanScope.AddEditHmoBB.onChangeHmoCategory}">
+                            <f:selectItems value="#{bindings.HmoCategory.items}" id="si4"/>
+                            <f:validator binding="#{bindings.HmoCategory.validator}"/>
+                        </af:selectOneChoice>
+                        <af:selectOneChoice value="#{bindings.HmoOption.inputValue}" label="Dependent Option"
+                                            partialTriggers="soc4" required="false" contentStyle="width:250px;"
+                                            disabled="#{bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount > 0 or bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                            autoSubmit="true" shortDesc="#{bindings.HmoOption.hints.tooltip}" id="soc5"
+                                            valueChangeListener="#{backingBeanScope.AddEditHmoBB.onchangeDepOption}">
+                            <f:selectItems value="#{bindings.HmoOption.items}" id="si5"/>
+                            <f:validator binding="#{bindings.HmoOption.validator}"/>
+                        </af:selectOneChoice>
+                        <af:selectOneChoice value="#{bindings.AddiCategory.inputValue}" visible="false"
+                                            label="Additional Category" partialTriggers="soc5 soc4"
+                                            contentStyle="width:250px;" autoSubmit="true"
+                                            disabled="#{bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount > 0 or bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                            shortDesc="#{bindings.AddiCategory.hints.tooltip}" id="soc6"
+                                            binding="#{backingBeanScope.AddEditHmoBB.addiCategory}">
+                            <f:selectItems value="#{bindings.AddiCategory.items}" id="si6"/>
+                            <f:validator binding="#{bindings.AddiCategory.validator}"/>
+                        </af:selectOneChoice>
+                        <af:inputListOfValues id="stateOfResidenceId" contentStyle="width:230px;" autoSubmit="true"
+                                              popupTitle="Search and Select: State Of Residence"
+                                              disabled="#{bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount > 0 or bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                              value="#{bindings.StateOfResidence.inputValue}"
+                                              rendered="#{bindings.HmoType.inputValue eq 'BUPA' || bindings.HmoType.inputValue eq 'CIGNA' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA NIGERIA - INTERNATIONAL' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA AFRICA' ||  bindings.HmoType.inputValue eq 'LEADWAY HEALTH PREMIUM' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA WORLDWIDE- INTERNATIONAL' ? false : true}"
+                                              label="State Of Residence"
+                                              showRequired="#{bindings.HmoType.inputValue eq 'BUPA' || 
+                                                        bindings.HmoType.inputValue eq 'CIGNA NIGERIA - INTERNATIONAL' || bindings.HmoType.inputValue eq 'CIGNA' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA AFRICA' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA WORLDWIDE- INTERNATIONAL' ? false : true}"
+                                              model="#{bindings.StateOfResidence.listOfValuesModel}"
+                                              columns="#{bindings.StateOfResidence.hints.displayWidth}"
+                                              shortDesc="#{bindings.StateOfResidence.hints.tooltip}">
+                            <f:validator binding="#{bindings.StateOfResidence.validator}"/>
+                            <af:autoSuggestBehavior suggestItems="#{bindings.StateOfResidence.suggestItems}"
+                                                    maxSuggestedItems="5"/>
+                        </af:inputListOfValues>
+                        <af:inputListOfValues id="hospitalId" contentStyle="width:230px;" autoSubmit="true"
+                                              popupTitle="Search and Select: #{bindings.Hospital.hints.label}"
+                                              disabled="#{bindings.XxhrHmoTrxDtl_EOView.estimatedRowCount > 0 or bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                              value="#{bindings.Hospital.inputValue}"
+                                              rendered="#{bindings.HmoType.inputValue eq 'BUPA' || bindings.HmoType.inputValue eq 'CIGNA' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA NIGERIA - INTERNATIONAL' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA AFRICA' ||
+                                                        bindings.HmoType.inputValue eq 'CIGNA WORLDWIDE- INTERNATIONAL'  ? false : true}"
+                                              label="#{bindings.Hospital.hints.label}"
+                                              model="#{bindings.Hospital.listOfValuesModel}" required="false"
+                                              columns="#{bindings.Hospital.hints.displayWidth}"
+                                              shortDesc="#{bindings.Hospital.hints.tooltip}">
+                            <f:validator binding="#{bindings.Hospital.validator}"/>
+                            <af:autoSuggestBehavior suggestItems="#{bindings.Hospital.suggestItems}"
+                                                    maxSuggestedItems="5"/>
+                        </af:inputListOfValues>
+                        <af:outputText value="You will be required to pay an additional fee of N189,000 per life, per annum to access any of each of the 7 additional premium hospitals available on this plan"
+                        rendered="false"
+                                       inlineStyle="color:red;" id="ot35"/>
+                        <af:outputText value="You will be required to pay an additional fee of N424,305 per life, per annum to access any of each of the 7 additional premium hospitals available on this plan" 
+                        rendered="false"
+                                       inlineStyle="color:red;" id="ot36"/>
+                        <af:inputText value="#{bindings.Photo.inputValue}" label="#{bindings.Photo.hints.label}"
+                                      required="#{bindings.Photo.hints.mandatory}" rendered="false"
+                                      columns="#{bindings.Photo.hints.displayWidth}"
+                                      maximumLength="#{bindings.Photo.hints.precision}"
+                                      shortDesc="#{bindings.Photo.hints.tooltip}" id="it1">
+                            <f:validator binding="#{bindings.Photo.validator}"/>
+                        </af:inputText>
+                    </af:panelFormLayout>
+                    <af:spacer width="10" height="50" id="s2"/>
+                    <af:panelGroupLayout id="pgl2" halign="center" partialTriggers="soc4">
+                        <af:panelGroupLayout id="pgl4" layout="vertical"
+                                             rendered="#{bindings.HmoType.inputValue eq 'BUPA' ? true : false}">
+                            <af:outputText value="The Maximum spend limit per employee is $ #{bindings.Trans_EligibleCost.inputValue}. The Currency denomination for BUPA is USD at an exchange rate of N570 to $1."
+                                           id="ot14" inlineStyle="color:red;"/>
+                            <af:outputText rendered="false" value="#{bindings.Trans_EligibleCost.inputValue}" id="ot111"
+                                           inlineStyle="color:red;"></af:outputText>
+                            <af:outputText rendered="false"
+                                           value=". The Currency denomination for BUPA is USD at an exchange rate of N570 to $1."
+                                           id="ot20" inlineStyle="color:red;" truncateAt="0"></af:outputText>
+                            <af:outputText value="Kindly note that the BUPA runs a June - May cycle which means that premium change can happen in June and the same will be reconciled with the initially communicated value."
+                                           inlineStyle="color:red;" id="ot30"/>
+                        </af:panelGroupLayout>
+                          <af:panelGroupLayout id="pgl13" layout="vertical"
+                                             rendered="#{bindings.HmoType.inputValue eq 'LEADWAY HEALTH STANDARD' ? true : false}">
+                            <af:outputText value="Enrollees on this plan will not have access to Reddington, Ever Care and Diff Hospitals available on the Leadway Health Premium plan"
+                                           id="ot37" inlineStyle="color:red;"/>                           
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl5" layout="vertical"
+                                             rendered="#{bindings.HmoType.inputValue eq 'CIGNA NIGERIA - INTERNATIONAL' ? true : false}">
+                            <af:outputText value="The Maximum spend limit per employee is $ #{bindings.Trans_EligibleCost.inputValue}. The Currency denomination for CIGNA NIGERIA - INTERNATIONAL is USD at an exchange rate of N570 to $1."
+                                           id="ot15"
+                                           rendered="#{bindings.HmoType.inputValue eq 'CIGNA NIGERIA - INTERNATIONAL' ? true : false}"
+                                           inlineStyle="color:red;"/>
+                            <af:outputText rendered="false" value="#{bindings.Trans_EligibleCost.inputValue}" id="ot21"
+                                           inlineStyle="color:red;"></af:outputText>
+                            <af:outputText rendered="false"
+                                           value=". The Currency denomination for CIGNA NIGERIA - INTERNATIONAL is USD at an exchange rate of N570 to $1."
+                                           id="ot22" inlineStyle="color:red;" truncateAt="0"></af:outputText>
+                            <af:outputText value="Kindly note that the CIGNA plan runs a September - August cycle which means that premium change can happen in September and the same will be reconciled with the initially communicated value."
+                                           inlineStyle="color:red;" id="ot31"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout layout="vertical" id="pgl6"
+                                             rendered="#{bindings.HmoType.inputValue eq 'CIGNA WORLDWIDE- INTERNATIONAL' ? true : false}">
+                            <af:outputText value="The Maximum spend limit per employee is $ #{bindings.Trans_EligibleCost.inputValue}. The Currency denomination for CIGNA WORLDWIDE - INTERNATIONAL is USD at an exchange rate of N570 to $1."
+                                           id="ot16" inlineStyle="color:red;"/>
+                            <af:outputText rendered="false" value="#{bindings.Trans_EligibleCost.inputValue}" id="ot23"
+                                           inlineStyle="color:red;"></af:outputText>
+                            <af:outputText rendered="false"
+                                           value=". The Currency denomination for CIGNA WORLDWIDE - INTERNATIONAL is USD at an exchange rate of N570 to $1."
+                                           id="ot24" inlineStyle="color:red;" truncateAt="0"></af:outputText>
+                            <af:outputText value="Kindly note that the CIGNA plan runs a September - August cycle which means that premium change can happen in September and the same will be reconciled with the initially communicated value."
+                                           inlineStyle="color:red;" id="ot32"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl8" layout="vertical"
+                                             rendered="#{bindings.HmoType.inputValue eq 'CIGNA AFRICA' ? true : false}">
+                            <af:outputText value="The Maximum spend limit per employee is $ #{bindings.Trans_EligibleCost.inputValue}. The Currency denomination for CIGNA AFRICA is USD at an exchange rate of N570 to $1."
+                                           inlineStyle="color:red;" id="ot18" truncateAt="0"/>
+                            <af:outputText rendered="false" value="#{bindings.Trans_EligibleCost.inputValue}" id="ot25"
+                                           inlineStyle="color:red;"></af:outputText>
+                            <af:outputText rendered="false"
+                                           value=". The Currency denomination for CIGNA AFRICA is USD at an exchange rate of N570 to $1."
+                                           id="ot26" inlineStyle="color:red;" truncateAt="0"></af:outputText>
+                            <af:outputText value="Kindly note that the CIGNA plan runs a September - August cycle which means that premium change can happen in September and the same will be reconciled with the initially communicated value."
+                                           inlineStyle="color:red;" id="ot33"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl11" layout="vertical"
+                                             rendered="#{bindings.HmoType.inputValue eq 'CIGNA' ? true : false}">
+                            <af:outputText value="The Maximum spend limit per employee is $ #{bindings.Trans_EligibleCost.inputValue}. The Currency denomination for CIGNA is USD at an exchange rate of N570 to $1."
+                                           inlineStyle="color:red;" id="ot19" truncateAt="0"/>
+                            <af:outputText rendered="false" value="#{bindings.Trans_EligibleCost.inputValue}" id="ot27"
+                                           inlineStyle="color:red;"></af:outputText>
+                            <af:outputText rendered="false"
+                                           value=". The Currency denomination for CIGNA is USD at an exchange rate of N570 to $1."
+                                           id="ot28" inlineStyle="color:red;" truncateAt="0"></af:outputText>
+                            <af:outputText value="Kindly note that the CIGNA plan runs a September - August cycle which means that premium change can happen in September and the same will be reconciled with the initially communicated value."
+                                           inlineStyle="color:red;" id="ot34"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl12" rendered="#{(bindings.HmoType.inputValue eq 'AXAMANSARD HEALTH' and 
+                        bindings.HmoCategory.inputValue eq 'Age-based Categorization')
+                        ||(bindings.HmoType.inputValue eq 'RELIANCE HEALTH') ||
+                        ( bindings.HmoType.inputValue eq 'LEADWAY HEALTH PREMIUM' and 
+                        bindings.HmoCategory.inputValue eq 'Age-based Categorization')
+                        ||
+                        ( bindings.HmoType.inputValue eq 'LEADWAY HEALTH STANDARD' and 
+                        bindings.HmoCategory.inputValue eq 'Age-based Categorization')
+                         ||(bindings.HmoType.inputValue eq 'LIBERTY BLUE PLUS AFRICA' and 
+                        bindings.HmoCategory.inputValue eq 'Age-based Categorization')
+                         ||(bindings.HmoType.inputValue eq 'LIBERTY BLUE GLOBAL ELITE' and 
+                        bindings.HmoCategory.inputValue eq 'Age-based Categorization')
+                        ||(bindings.HmoType.inputValue eq 'LIBERTY BLUE' and 
+                        bindings.HmoCategory.inputValue eq 'Plus Africa')
+                        ||(bindings.HmoType.inputValue eq 'LIBERTY BLUE' and 
+                        bindings.HmoCategory.inputValue eq 'Global Elite')
+                        ? true : false}">
+                            <af:outputText value="The Maximum spend limit per employee is N " id="ot17"
+                                           partialTriggers="soc4" inlineStyle="color:red;"/>
+                            <af:outputText value="#{bindings.Trans_EligibleCost.inputValue}" id="ot29"
+                                           inlineStyle="color:red;"></af:outputText>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </af:panelBox>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p2">
+                    <af:dialog id="d2" type="none" title="Update Photo">
+                        <f:facet name="buttonBar"></f:facet>
+                        <af:outputText value="Please Upload Image File Format contains  jpeg, jpg and png   " id="ot38"
+                                       inlineStyle="color:Red; alignment-adjust:middle; column-rule-width:thick; column-fill:balance;"/>
+                        <af:gridCell id="gc1"/>
+                        <af:spacer width="10" height="20" id="s12"/>
+                        <af:inputFile  id="if1" autoSubmit="true" simple="true"
+                                      valueChangeListener="#{backingBeanScope.AddEditHmoBB.uploadProfilePicHeader}"/>
+                        <af:spacer width="10" height="20" id="s9"/>
+                    </af:dialog>
+                </af:popup>
+            </af:panelBox>
+        </f:facet>
+    </af:pageTemplate>
+</ui:composition>

@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:pageTemplate viewId="/oracle/apps/uikit/common/pageTemplates/MainPageTemplate.jspx" id="pt1">
+        <f:facet name="pageContents">
+            <af:panelBox text="Change in Medical Details" id="pb1" showDisclosure="false" background="dark">
+                <f:facet name="toolbar">
+                    <af:toolbar id="t1">
+                        <af:button text="Save And Close" id="b2" styleClass="blue-proceed" visible="#{bindings.ApprovalStatus.inputValue eq 'DRAFT'}"
+                                   action="#{backingBeanScope.MedicalDetailsBB.onSaveAction}" immediate="true"/>
+                        <af:button text="Submit" id="b4" styleClass="blue-proceed" visible="#{bindings.ApprovalStatus.inputValue eq 'DRAFT'}"
+                                   action="#{backingBeanScope.MedicalDetailsBB.onSubmitAction}"/>
+                        <af:button text="Close" id="b1" action="#{backingBeanScope.MedicalDetailsBB.onCancelAction}" styleClass="red-cancel" immediate="true"/>
+                    </af:toolbar>
+                </f:facet>
+            <af:panelFormLayout id="pfl1" maxColumns="2" rows="2" labelWidth="250">
+              <af:inputText value="#{bindings.MaintanceNo.inputValue}"
+                              label="Maintance Request No" readOnly="true"
+                              required="#{bindings.MaintanceNo.hints.mandatory}"
+                              columns="#{bindings.MaintanceNo.hints.displayWidth}"
+                              maximumLength="#{bindings.MaintanceNo.hints.precision}"
+                              shortDesc="#{bindings.MaintanceNo.hints.tooltip}" id="it6">
+                    <f:validator binding="#{bindings.MaintanceNo.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.HmoTransReference.inputValue}"
+                              label="HMO Trans Reference" readOnly="true"
+                              required="#{bindings.HmoTransReference.hints.mandatory}"
+                              columns="#{bindings.HmoTransReference.hints.displayWidth}"
+                              maximumLength="#{bindings.HmoTransReference.hints.precision}"
+                              shortDesc="#{bindings.HmoTransReference.hints.tooltip}" id="it4">
+                    <f:validator binding="#{bindings.HmoTransReference.validator}"/>
+                    <af:convertNumber groupingUsed="false" pattern="#{bindings.HmoTransReference.format}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.ApprovalStatus.inputValue}"
+                              label="Status" readOnly="true"
+                              required="#{bindings.ApprovalStatus.hints.mandatory}"
+                              columns="#{bindings.ApprovalStatus.hints.displayWidth}"
+                              maximumLength="#{bindings.ApprovalStatus.hints.precision}"
+                              shortDesc="#{bindings.ApprovalStatus.hints.tooltip}" id="it1">
+                    <f:validator binding="#{bindings.ApprovalStatus.validator}"/>
+                </af:inputText>
+                    <af:inputText value="#{bindings.CreationDate.inputValue}" label="Request Date"
+                                  readOnly="true"
+                                  shortDesc="#{bindings.CreationDate.hints.tooltip}" id="it7">
+                        <af:convertDateTime pattern="dd-MMM-YYYY"/>
+                    </af:inputText>
+                </af:panelFormLayout>
+                <af:spacer width="10" height="20" id="s2"/>
+                <af:panelBox text="" id="pb2" showDisclosure="false" styleClass="shadowBorder">
+                    <f:facet name="toolbar"/>
+                    <af:panelFormLayout id="pfl2" labelWidth="250" maxColumns="2" rows="4">
+                        <f:facet name="footer"/>
+                        <af:inputText value="#{bindings.PersonNumber.inputValue}" label="Employee No"
+                                  readOnly="true"
+                                  required="#{bindings.PersonNumber.hints.mandatory}"
+                                  columns="#{bindings.PersonNumber.hints.displayWidth}"
+                                  maximumLength="#{bindings.PersonNumber.hints.precision}"
+                                  shortDesc="#{bindings.PersonNumber.hints.tooltip}" id="it10">
+                        <f:validator binding="#{bindings.PersonNumber.validator}"/>
+                        <af:convertNumber groupingUsed="false" pattern="#{bindings.PersonNumber.format}"/>
+                    </af:inputText>
+                        <af:inputText value="#{bindings.Title.inputValue}" label="Title" contentStyle="width:250px"
+                                      disabled="true" required="#{bindings.Title.hints.mandatory}"
+                                      columns="#{bindings.Title.hints.displayWidth}"
+                                      maximumLength="#{bindings.Title.hints.precision}"
+                                      shortDesc="#{bindings.Title.hints.tooltip}" id="it11">
+                            <f:validator binding="#{bindings.Title.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.FirstName.inputValue}" label="First Name" disabled="true"
+                                      contentStyle="width:250px" required="#{bindings.FirstName.hints.mandatory}"
+                                      columns="#{bindings.FirstName.hints.displayWidth}"
+                                      maximumLength="#{bindings.FirstName.hints.precision}"
+                                      shortDesc="#{bindings.FirstName.hints.tooltip}" id="it2">
+                            <f:validator binding="#{bindings.FirstName.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.LastName.inputValue}" label="Last Name"
+                                      contentStyle="width:250px" disabled="true"
+                                      required="#{bindings.LastName.hints.mandatory}"
+                                      columns="#{bindings.LastName.hints.displayWidth}"
+                                      maximumLength="#{bindings.LastName.hints.precision}"
+                                      shortDesc="#{bindings.LastName.hints.tooltip}" id="it5">
+                            <f:validator binding="#{bindings.LastName.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.HmoOption.inputValue}" label="HMO Option" readOnly="true"
+                                      required="#{bindings.HmoOption.hints.mandatory}"
+                                      columns="#{bindings.HmoOption.hints.displayWidth}"
+                                      maximumLength="#{bindings.HmoOption.hints.precision}"
+                                      shortDesc="#{bindings.HmoOption.hints.tooltip}" id="it3"
+                                      contentStyle="width:350px">
+                            <f:validator binding="#{bindings.HmoOption.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.RequestType.inputValue}" label="Request Type" readOnly="true"
+                                      rendered="false" required="#{bindings.RequestType.hints.mandatory}"
+                                      columns="#{bindings.RequestType.hints.displayWidth}"
+                                      maximumLength="#{bindings.RequestType.hints.precision}"
+                                      shortDesc="#{bindings.RequestType.hints.tooltip}" id="it9">
+                            <f:validator binding="#{bindings.RequestType.validator}"/>
+                        </af:inputText>
+                        <af:inputListOfValues id="stateOfResidenceId"
+                                              popupTitle="Search and Select: State of Residence"
+                                              value="#{bindings.StateOfResidence.inputValue}" autoSubmit="true"
+                                              label="State of Residence" contentStyle="width:330px"
+                                              model="#{bindings.StateOfResidence.listOfValuesModel}"
+                                              required="true"
+                                              columns="#{bindings.StateOfResidence.hints.displayWidth}"
+                                              shortDesc="#{bindings.StateOfResidence.hints.tooltip}"
+                                              disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}">
+                            <f:validator binding="#{bindings.StateOfResidence.validator}"/>
+                            <af:autoSuggestBehavior suggestItems="#{bindings.StateOfResidence.suggestItems}"
+                                                    maxSuggestedItems="5"/>
+                        </af:inputListOfValues>
+                        <af:selectOneChoice value="#{bindings.EnrolleeName.inputValue}"
+                                            label="Policy Holder Name" autoSubmit="true" contentStyle="width:350px"
+                                            required="#{bindings.EnrolleeName.hints.mandatory}"
+                                            shortDesc="#{bindings.EnrolleeName.hints.tooltip}" id="soc1">
+                            <f:selectItems value="#{bindings.EnrolleeName.items}" id="si1"/>
+                            <f:validator binding="#{bindings.EnrolleeName.validator}"/>
+                        </af:selectOneChoice>
+                    </af:panelFormLayout>
+                    <af:spacer width="10" height="20" id="s1"/>
+                    <af:panelFormLayout id="pfl3" labelWidth="250">
+                        <f:facet name="footer"/>
+                        <af:inputListOfValues id="hospitalId" disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                              popupTitle="Search and Select: #{bindings.Hospital.hints.label}"
+                                              value="#{bindings.Hospital.inputValue}" label="Change of Hospital"
+                                              model="#{bindings.Hospital.listOfValuesModel}" contentStyle="width:980px"
+                                              autoSubmit="true" partialTriggers="stateOfResidenceId"
+                                              required="true"
+                                              columns="#{bindings.Hospital.hints.displayWidth}"
+                                              shortDesc="#{bindings.Hospital.hints.tooltip}">
+                            <f:validator binding="#{bindings.Hospital.validator}"/>
+                            <af:autoSuggestBehavior suggestItems="#{bindings.Hospital.suggestItems}"
+                                                    maxSuggestedItems="5"/>
+                        </af:inputListOfValues>
+                        <af:inputText value="#{bindings.ReasonForChange.inputValue}" label="Reason for Change"
+                                      contentStyle="width:1000px" autoSubmit="true"
+                                      disabled="#{bindings.ApprovalStatus.inputValue ne 'DRAFT'}"
+                                      required="true"
+                                      columns="#{bindings.ReasonForChange.hints.displayWidth}"
+                                      maximumLength="#{bindings.ReasonForChange.hints.precision}"
+                                      shortDesc="#{bindings.ReasonForChange.hints.tooltip}" id="it8" rows="5">
+                            <f:validator binding="#{bindings.ReasonForChange.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.ApproverComments.inputValue}" rendered="#{bindings.ApproverComments.inputValue ne null}"
+                                          label="Approver Comments" disabled="true" rows="4" contentStyle="width:1000px"
+                                          required="#{bindings.ApproverComments.hints.mandatory}"
+                                          columns="#{bindings.ApproverComments.hints.displayWidth}"
+                                          maximumLength="#{bindings.ApproverComments.hints.precision}"
+                                          shortDesc="#{bindings.ApproverComments.hints.tooltip}" id="it16">
+                                <f:validator binding="#{bindings.ApproverComments.validator}"/>
+                            </af:inputText>
+                    </af:panelFormLayout>
+                    <af:spacer width="10" height="150" id="s3"/>
+                </af:panelBox>
+            </af:panelBox>
+        </f:facet>
+        <f:facet name="footerStart"/>
+        <f:facet name="footer"/>
+        <f:facet name="footerEnd"/>
+        <f:facet name="startPanel"/>
+        <f:facet name="endPanel"/>
+        <f:facet name="headerStart"/>
+        <f:facet name="header"/>
+        <f:facet name="headerEnd"/>
+    </af:pageTemplate>
+</ui:composition>

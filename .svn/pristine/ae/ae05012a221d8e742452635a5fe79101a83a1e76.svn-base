@@ -1,0 +1,35 @@
+//Groovy Scripts for model.ro.XxhrHmoTrxHdr_ROVO
+
+package model.ro
+
+import oracle.jbo.script.annotation.TransientValueExpression;
+import oracle.jbo.script.annotation.RefreshExpression;
+
+@TransientValueExpression(attributeName="Cat_Switcher")
+def Cat_Switcher_ExpressionScript_Expression()
+{
+if(HmoType != null && HmoType == 'BUPA'){
+return 'LOV_BupaCatery';
+}else{
+return 'LOV_TraCategory';
+}
+}
+
+
+@RefreshExpression(attributeName="Cat_Switcher")
+def Cat_Switcher_RecalcExpressionScript_RecalcExpression()
+{
+true
+}
+
+
+@TransientValueExpression(attributeName="Option_Switcher")
+def Option_Switcher_ExpressionScript_Expression()
+{
+if(HmoType != null && HmoType == 'TRADITIONAL'){
+return 'LOV_BubaOption';
+}else{
+return 'LOV_TraOption';
+}
+}
+

@@ -1,0 +1,1275 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="XxhrHmoTrxHdr_EOView"
+  Version="12.2.1.9.14"
+  InheritPersonalization="merge"
+  SelectListFlags="1"
+  FromListFlags="1"
+  WhereFlags="1"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  SelectAllAttributes="false"
+  PageIterMode="Full"
+  ComponentClass="model.vo.XxhrHmoTrxHdr_EOViewImpl"
+  RowClass="model.vo.XxhrHmoTrxHdr_EOViewRowImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Variable
+    Name="BV_REQ_ID"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <ViewAccessor
+    Name="HMO_Type_LOV"
+    ViewObjectName="model.svo.LookupType_SVO"
+    AMUsageName="Oando_AM"
+    ViewInstanceName="LookupType_SVO1"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="LOV_BupaCategory"
+    ViewObjectName="model.ro.XxfndLookupValues_V_ROVO"
+    AMUsageName="Oando_AM"
+    ViewInstanceName="BUPA_Cat_LOV"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="TRA_Cat_LOV"
+    ViewObjectName="model.ro.XxfndLookupValues_V_ROVO"
+    AMUsageName="Oando_AM"
+    ViewInstanceName="TRA_Cat_LOV"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="BUPA_Option_LOV"
+    ViewObjectName="model.ro.XxfndLookupValues_V_ROVO"
+    AMUsageName="Oando_AM"
+    ViewInstanceName="BUPA_Option_LOV"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="TRA_Option_LOV"
+    ViewObjectName="model.ro.XxfndLookupValues_V_ROVO"
+    AMUsageName="Oando_AM"
+    ViewInstanceName="TRA_Option_LOV"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="XxhrHmoMasterHdr_ROVO1_"
+    ViewObjectName="model.ro.XxhrHmoMasterHdr_ROVO"
+    AMUsageName="Oando_AM"
+    ViewInstanceName="XxhrHmoMasterHdr_ROVO1"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="xxperEmployee_V_ROVO1"
+    ViewObjectName="model.ro.XxperEmployee_V_ROVO"
+    AMUsageName="Oando_AM"
+    ViewInstanceName="XxperEmployee_V_ROVO1"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="Gender_LOV"
+    ViewObjectName="model.ro.XxfndLookupValues_V_ROVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="Gender_LOV"
+      FullName="model.ro.XxfndLookupValues_V_ROVO.Gender_LOV"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="State_ROVO"
+    ViewObjectName="model.ro.State_ROVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="Hospital_ROVO"
+    ViewObjectName="model.ro.Hospital_ROVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findbyHmotype"
+      FullName="model.ro.Hospital_ROVO.findbyHmotype"/>
+    <ViewCriteriaUsage
+      Name="findbyState"
+      FullName="model.ro.Hospital_ROVO.findbyState"/>
+    <ParameterMap>
+      <PIMap Variable="bv_state">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+      <PIMap Variable="bv_type">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="XxhrHmoTrxHdr_ROVO"
+    ViewObjectName="model.ro.XxhrHmoTrxHdr_ROVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="Entity_ROVO"
+    ViewObjectName="model.ro.Entity_ROVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="XXHR_HMO_OPTIONS_MASTER_HMOTYPe"
+    ViewObjectName="model.ro.XXHR_HMO_OPTIONS_MASTER_ROVO"
+    RowLevelBinds="true">
+    
+    <ParameterMap>
+      <PIMap Variable="BV_ID">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="XXHR_HMO_CATEGORY_MASTER"
+    ViewObjectName="model.ro.XXHR_HMO_CATEGORY_MASTER_ROVO"
+    RowLevelBinds="true">
+    <ParameterMap>
+      <PIMap Variable="BV_HMO_OPTION">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+      <PIMap Variable="BV_Plan">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="AdditonalCat_ROVO"
+    ViewObjectName="model.ro.XxfndLookupValues_V_ROVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="ADDITIONAL_HMO_CATEGORY"
+      FullName="model.ro.XxfndLookupValues_V_ROVO.ADDITIONAL_HMO_CATEGORY"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="AdditionalCategory_ROVO1"
+    ViewObjectName="model.ro.AdditionalCategory_ROVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="AdditionalCategoryVC"
+      FullName="model.ro.AdditionalCategory_ROVO.AdditionalCategoryVC"/>
+    <ViewCriteriaUsage
+      Name="Vc_Africa"
+      FullName="model.ro.AdditionalCategory_ROVO.Vc_Africa"/>
+    <ParameterMap>
+      <PIMap Variable="b_deptOpt">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+      <PIMap Variable="bv_hmoOptions">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="MaximumEligibleCost_ROVO"
+    ViewObjectName="model.ro.MaximumEligibleCost_ROVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="FetchDepOption_ROVO"
+    ViewObjectName="model.ro.FetchDepOption_ROVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="FetchDepOptionVC"
+      FullName="model.ro.FetchDepOption_ROVO.FetchDepOptionVC"/>
+    <ParameterMap>
+      <PIMap Variable="b_hmoCategory">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+      <PIMap Variable="b_hmoOptions">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+      <PIMap Variable="BV_ID">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="StateOfResidence_ROVO"
+    ViewObjectName="model.ro.StateOfResidence_ROVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="StateOfResidenceVC"
+      FullName="model.ro.StateOfResidence_ROVO.StateOfResidenceVC"/>
+    <ParameterMap>
+      <PIMap Variable="bv_hmoOpt">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="FetchHospital_ROVO"
+    ViewObjectName="model.ro.FetchHospital_ROVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="FetchHospitalVC"
+      FullName="model.ro.FetchHospital_ROVO.FetchHospitalVC"/>
+    <ParameterMap>
+      <PIMap Variable="bv_hmoOptions">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+      <PIMap Variable="bv_state">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="XXHR_HMO_TypeInter"
+    ViewObjectName="model.ro.XXHR_HMO_OPTIONS_MASTER_ROVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="XXHR_HMO_Inter"
+      FullName="model.ro.XXHR_HMO_OPTIONS_MASTER_ROVO.XXHR_HMO_Inter"/>
+    <ViewCriteriaUsage
+      Name="planName"
+      FullName="model.ro.XXHR_HMO_OPTIONS_MASTER_ROVO.planName"/>
+    <ParameterMap>
+      <PIMap Variable="BV_ID">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="AdditionalCategory_Africa_WW"
+    ViewObjectName="model.ro.AdditionalCategory_ROVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="AdditionalCategoryVC"
+      FullName="model.ro.AdditionalCategory_ROVO.AdditionalCategoryVC"/>
+    <ViewCriteriaUsage
+      Name="Vc_Africaww"
+      FullName="model.ro.AdditionalCategory_ROVO.Vc_Africaww"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="AdditionalCategory_Africa_WWE"
+    ViewObjectName="model.ro.AdditionalCategory_ROVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="AdditionalCategoryVC"
+      FullName="model.ro.AdditionalCategory_ROVO.AdditionalCategoryVC"/>
+    <ViewCriteriaUsage
+      Name="Vc_AfricaWWE"
+      FullName="model.ro.AdditionalCategory_ROVO.Vc_AfricaWWE"/>
+    <ParameterMap>
+      <PIMap Variable="b_deptOpt">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+      <PIMap Variable="bv_hmoOptions">
+        <TransientExpression
+          Name="ExpressionScript"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="HmoPlanName_ROVO"
+    ViewObjectName="model.ro.HmoPlanName_ROVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="active_vc"
+      FullName="model.ro.HmoPlanName_ROVO.active_vc"/>
+    <ParameterMap>
+      <PIMap Variable="bv_active">
+        <TransientExpression
+          Name="ExpressionScript"
+          trustMode="untrusted"
+          CodeSourceName="XxhrHmoTrxHdr_EOView"/>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_Category"
+    ListVOName="XXHR_HMO_CATEGORY_MASTER"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="HmoCategory"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="HmoCategory"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="HmoCategory"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_HmoOption"
+    ListVOName="BUPA_Option_LOV"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="HmoOption"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="LookupValueNameDisp"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_TraOption"
+    ListVOName="TRA_Option_LOV"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="HmoOption"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="LookupValueNameDisp"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_HmoMasterHdrId"
+    ListVOName="HmoPlanName_ROVO"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <?audit suppress oracle.jbo.view.lov-recursive?>
+    <AttrArray Name="AttrNames">
+      <Item Value="HmoMasterHdrId"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Trans_PlanName"/>
+      <Item Value="HmoPlan"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="HmoMasterHdrId"/>
+      <Item Value="HmoPlanName"/>
+      <Item Value="HmoPlanName"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="HmoPlanName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Gender"
+    ListVOName="Gender_LOV"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Gender"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="LookupValueNameDisp"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Hospital"
+    ListVOName="FetchHospital_ROVO"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Hospital"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Hospital"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Hospital"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="searcByHsptl"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_StateOfResidence"
+    ListVOName="StateOfResidence_ROVO"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="StateOfResidence"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="StateOfResidence"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="StateOfResidence"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="SearchByState"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_HmoType"
+    ListVOName="XXHR_HMO_OPTIONS_MASTER_HMOTYPe"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="HmoType"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="HmoOptions"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="HmoOptions"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_AddiCategory"
+    ListVOName="AdditionalCategory_ROVO1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="AddiCategory"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="HmoCategory"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="HmoCategory"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_HmoOption1"
+    ListVOName="FetchDepOption_ROVO"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="HmoOption"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="DependentOptions"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="DependentOptions"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_HmoType_Inter"
+    ListVOName="XXHR_HMO_TypeInter"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="HmoType"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="HmoOptions"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="HmoOptions"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_AddiCategory_AfricaWW"
+    ListVOName="AdditionalCategory_Africa_WW"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="AddiCategory"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="HmoCategory"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="HmoCategory"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_AddiCategory_Africa_WWE"
+    ListVOName="AdditionalCategory_Africa_WWE"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="AddiCategory"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="HmoCategory"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="HmoCategory"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_HmoPlan"
+    ListVOName="HmoPlanName_ROVO"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="HmoPlan"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="HmoMasterHdrId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="HmoPlanName"/>
+      <Item Value="HmoMasterHdrId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="HmoPlanName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="XxhrHmoTrxHdr_EO"
+    Entity="model.eo.XxhrHmoTrxHdr_EO"/>
+  <ViewAttribute
+    Name="HmoTrxHdrId"
+    PrecisionRule="true"
+    EntityAttrName="HmoTrxHdrId"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_TRX_HDR_ID"
+    IsUpdateable="while_insert"/>
+  <ViewAttribute
+    Name="BusinessUnitId"
+    PrecisionRule="true"
+    EntityAttrName="BusinessUnitId"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="BUSINESS_UNIT_ID"/>
+  <ViewAttribute
+    Name="HmoRequestNo"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="HmoRequestNo"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_REQUEST_NO">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HmoRequestDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="HmoRequestDate"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_REQUEST_DATE"
+    IsUpdateable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="25"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HmoMasterHdrId"
+    PrecisionRule="true"
+    EntityAttrName="HmoMasterHdrId"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_MASTER_HDR_ID"
+    LOVName="LOV_HmoMasterHdrId">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <LABEL
+          ResId="model.vo.XxhrHmoTrxHdr_EOView.HmoMasterHdrId_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HmoType"
+    PrecisionRule="true"
+    EntityAttrName="HmoType"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_TYPE"
+    LOVName="LOV_HmoType"
+    LOVFinder="Cat_Switcher">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <AUTOSUBMIT
+          Value="true"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PersonId"
+    PrecisionRule="true"
+    EntityAttrName="PersonId"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="PERSON_ID"/>
+  <ViewAttribute
+    Name="MobileNo"
+    PrecisionRule="true"
+    EntityAttrName="MobileNo"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="MOBILE_NO"/>
+  <ViewAttribute
+    Name="MaritalStatus"
+    PrecisionRule="true"
+    EntityAttrName="MaritalStatus"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="MARITAL_STATUS"/>
+  <ViewAttribute
+    Name="ResiAddress"
+    PrecisionRule="true"
+    EntityAttrName="ResiAddress"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="RESI_ADDRESS"/>
+  <ViewAttribute
+    Name="HmoCategory"
+    PrecisionRule="true"
+    EntityAttrName="HmoCategory"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_CATEGORY"
+    LOVName="LOV_Category">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+    <Dependencies>
+      <Item
+        Value="Cat_Switcher"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HmoOption"
+    PrecisionRule="true"
+    EntityAttrName="HmoOption"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_OPTION"
+    LOVName="LOV_HmoOption1"
+    LOVFinder="Option_Switcher">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+    <Dependencies>
+      <Item
+        Value="Option_Switcher"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HmoPlanTotal"
+    PrecisionRule="true"
+    EntityAttrName="HmoPlanTotal"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_PLAN_TOTAL"/>
+  <ViewAttribute
+    Name="HmoPlanDeduction"
+    PrecisionRule="true"
+    EntityAttrName="HmoPlanDeduction"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_PLAN_DEDUCTION"/>
+  <ViewAttribute
+    Name="HmoAcceptanceFlag"
+    PrecisionRule="true"
+    EntityAttrName="HmoAcceptanceFlag"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_ACCEPTANCE_FLAG"
+    DefaultValue="N"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="CREATED_BY"/>
+  <ViewAttribute
+    Name="CreationDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CreationDate"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="CREATION_DATE"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="LastUpdatedBy"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdatedBy"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="LAST_UPDATED_BY"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="LastUpdateDate"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdateDate"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="LAST_UPDATE_DATE"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="LastUpdateLogin"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdateLogin"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="LAST_UPDATE_LOGIN"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="BusinessUnit_Trans"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    EntityAttrName="BusinessUnit_Trans"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="BUSINESS_UNIT_TRANS">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Email_Trans"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    EntityAttrName="Email_Trans"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="EMAIL_TRANS">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="EmpName_Trans"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    EntityAttrName="EmpName_Trans"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="EMP_NAME_TRANS">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="EmpNumber_Trans"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    EntityAttrName="EmpNumber_Trans"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="EMP_NUMBER_TRANS">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Cat_Switcher"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="$none$"
+    SQLType="VARCHAR">
+    <TransientExpression
+      Name="ExpressionScript"
+      CodeSourceName="XxhrHmoTrxHdr_EOViewRow"/>
+    <Dependencies>
+      <Item
+        Value="Trans_Job"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Option_Switcher"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="$none$"
+    SQLType="VARCHAR">
+    <TransientExpression
+      Name="ExpressionScript"
+      CodeSourceName="XxhrHmoTrxHdr_EOViewRow"/>
+    <RecalcCondition
+      Name="RecalcExpressionScript"
+      CodeSourceName="XxhrHmoTrxHdr_EOViewRow"/>
+    <Dependencies>
+      <Item
+        Value="HmoType"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DeptName_Trans"
+    PrecisionRule="true"
+    EntityAttrName="DeptName_Trans"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="DEPT_NAME_TRANS"
+    IsQueriable="false"
+    IsPersistent="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="model.vo.XxhrHmoTrxHdr_EOView.DeptName_Trans_LABEL"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Check_Trns"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="AcceptanceFlag_Trans"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.Boolean"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="BIT"/>
+  <ViewAttribute
+    Name="HmoHeaderRowStatus"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"/>
+  <ViewAttribute
+    Name="Trans_EligibleCost"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.math.BigDecimal"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="model.vo.XxhrHmoTrxHdr_EOView.Trans_EligibleCost_LABEL"/>
+        <DISPLAYWIDTH
+          Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Trans_NairaEquAmount"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="model.vo.XxhrHmoTrxHdr_EOView.Trans_NairaEquAmount_LABEL"/>
+        <DISPLAYWIDTH
+          Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Trans_AxaLbEligibleCost"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Photo"
+    IsQueriable="false"
+    PrecisionRule="true"
+    EntityAttrName="Photo"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="PHOTO"/>
+  <ViewAttribute
+    Name="StateOfResidence"
+    PrecisionRule="true"
+    EntityAttrName="StateOfResidence"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="STATE_OF_RESIDENCE"
+    LOVName="LOV_StateOfResidence">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Hospital"
+    PrecisionRule="true"
+    EntityAttrName="Hospital"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HOSPITAL"
+    LOVName="LOV_Hospital">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Gender"
+    PrecisionRule="true"
+    EntityAttrName="Gender"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="GENDER"
+    LOVName="LOV_Gender">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Trans_Title"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Trans_FirstName"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Trans_LastName"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="AlternateEmail"
+    PrecisionRule="true"
+    EntityAttrName="AlternateEmail"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="ALTERNATE_EMAIL"/>
+  <ViewAttribute
+    Name="Trans_Entity"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="PhotoClob"
+    IsQueriable="false"
+    PrecisionRule="true"
+    EntityAttrName="PhotoClob"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="PHOTO_CLOB"/>
+  <ViewAttribute
+    Name="HmoCopyDepFlag"
+    PrecisionRule="true"
+    EntityAttrName="HmoCopyDepFlag"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_COPY_DEP_FLAG"
+    DefaultValue="N"/>
+  <ViewAttribute
+    Name="AddiCategory"
+    PrecisionRule="true"
+    EntityAttrName="AddiCategory"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="ADDI_CATEGORY"
+    LOVName="LOV_AddiCategory"
+    LOVFinder="Switch_AddCat">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Trans_DateofBirth"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.sql.Timestamp"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="DATE"/>
+  <ViewAttribute
+    Name="Trans_EmpCost"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Trans_PlanCost"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="SoaFlowid"
+    PrecisionRule="true"
+    EntityAttrName="SoaFlowid"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="SOA_FLOWID"/>
+  <ViewAttribute
+    Name="ApprovalStatus"
+    PrecisionRule="true"
+    EntityAttrName="ApprovalStatus"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="APPROVAL_STATUS"/>
+  <ViewAttribute
+    Name="ErrorMsg"
+    IsQueriable="false"
+    PrecisionRule="true"
+    EntityAttrName="ErrorMsg"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="ERROR_MSG"/>
+  <ViewAttribute
+    Name="PayrollBatchName"
+    PrecisionRule="true"
+    EntityAttrName="PayrollBatchName"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="PAYROLL_BATCH_NAME"/>
+  <ViewAttribute
+    Name="ApproverComments"
+    PrecisionRule="true"
+    EntityAttrName="ApproverComments"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="APPROVER_COMMENTS"/>
+  <ViewAttribute
+    Name="Trans_EmpAge"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="model.vo.XxhrHmoTrxHdr_EOView.Trans_EmpAge_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Trans_PlanName"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Trans_Job"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Switch_AddCat"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR">
+    <TransientExpression
+      Name="ExpressionScript"
+      CodeSourceName="XxhrHmoTrxHdr_EOViewRow"/>
+    <Dependencies>
+      <Item
+        Value="HmoCategory"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CopyDep"
+    PrecisionRule="true"
+    EntityAttrName="CopyDep"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="COPY_DEP"/>
+  <ViewAttribute
+    Name="HmoPlan"
+    PrecisionRule="true"
+    EntityAttrName="HmoPlan"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_PLAN"
+    LOVName="LOV_HmoPlan">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HmoEmpCost"
+    PrecisionRule="true"
+    EntityAttrName="HmoEmpCost"
+    EntityUsage="XxhrHmoTrxHdr_EO"
+    AliasName="HMO_EMP_COST"/>
+  <ViewCriteria
+    Name="FindByID"
+    ViewObjectName="model.vo.XxhrHmoTrxHdr_EOView"
+    Conjunction="AND">
+    <Properties Name="_Props">
+      <CustomProperties>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="XxhrHmoTrxHdr_EOViewCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="HmoTrxHdrId"
+        ViewAttribute="HmoTrxHdrId"
+        Operator="="
+        Conjunction="AND"
+        Value=":BV_REQ_ID"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewLinkAccessor
+    Name="XxhrHmoTrxDtl_EOView"
+    ViewLink="model.vl.XxhrHmoHdr_Dtl_VL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

@@ -1,0 +1,33 @@
+//Groovy Scripts for model.vo.XxhrHmoReimbursement_VO
+
+package model.vo
+
+import oracle.jbo.script.annotation.AccessorParameterExpression;
+
+@AccessorParameterExpression(accessorName="StateOfResidence_ROVO", name="bv_hmoOpt")
+def bv_hmoOpt_StateOfResidence_ROVO_BindVariable_BoundParameter()
+{
+HmoOption
+}
+
+
+@AccessorParameterExpression(accessorName="FetchHospital_ROVO", name="bv_hmoOptions")
+def bv_hmoOptions_FetchHospital_ROVO_BindVariable_BoundParameter()
+{
+HmoOption
+}
+
+
+@AccessorParameterExpression(accessorName="FetchHospital_ROVO", name="bv_state")
+def bv_state_FetchHospital_ROVO_BindVariable_BoundParameter()
+{
+StateOfResidence
+}
+
+
+@AccessorParameterExpression(accessorName="XxhrHmoPersonDependentROVO", name="BV_HMO_REF")
+def BV_HMO_REF_XxhrHmoPersonDependentROVO_BindVariable_BoundParameter()
+{
+HmoTransReference
+}
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="view" ClientType="Generic">
+             <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/profilepictureservlet" usageId="view_servlet_ProfilePictureServletPageDef"/>
+    <page path="/pages/FilmStrip.jspx" usageId="view_FilmStripPageDef"/>
+    <page path="/fragment/HeaderHMO.jsff" usageId="view_HeaderHMOPageDef"/>
+    <page path="/fragment/DependentHMO.jsff" usageId="view_DependentHMOPageDef"/>
+    <page path="/fragment/ReviewHMO.jsff" usageId="view_ReviewHMOPageDef"/>
+    <page path="/fragment/SearchUsersHMO.jsff" usageId="view_SearchUsersHMOPageDef"/>
+    <page path="/WEB-INF/taskflow/AddEditHMO_BTF.xml#AddEditHMO_BTF@ExecuteWithParams"
+          usageId="view_AddEditHMO_BTF_AddEditHMO_BTF_ExecuteWithParamsPageDef"/>
+    <page path="/WEB-INF/taskflow/AddEditHMO_BTF.xml#AddEditHMO_BTF@createNewHMO"
+          usageId="view_AddEditHMO_BTF_AddEditHMO_BTF_createNewHMOPageDef"/>
+    <page path="/fragment/MedicalDetails.jsff" usageId="view_MedicalDetailsPageDef"/>
+    <page path="/WEB-INF/taskflow/MedicalDetails_BTF.xml#MedicalDetails_BTF@CreateWithParameters"
+          usageId="view_MedicalDetails_BTF_MedicalDetails_BTF_CreateWithParametersPageDef"/>
+    <page path="/fragment/ComplaintsForm.jsff" usageId="view_ComplaintsFormPageDef"/>
+    <page path="/WEB-INF/taskflow/ComplaintsForm_BTF.xml#ComplaintsForm_BTF@CreateWithParameters"
+          usageId="view_ComplaintsForm_BTF_ComplaintsForm_BTF_CreateWithParametersPageDef"/>
+    <page path="/WEB-INF/taskflow/MedicalDetails_BTF.xml#MedicalDetails_BTF@ExecuteWithParams"
+          usageId="view_MedicalDetails_BTF_MedicalDetails_BTF_ExecuteWithParamsPageDef"/>
+    <page path="/WEB-INF/taskflow/ComplaintsForm_BTF.xml#ComplaintsForm_BTF@ExecuteWithParams"
+          usageId="view_ComplaintsForm_BTF_ComplaintsForm_BTF_ExecuteWithParamsPageDef"/>
+    <page path="/WEB-INF/taskflow/SearchUsersHMO_BTF.xml#SearchUsersHMO_BTF@Execute"
+          usageId="view_SearchUsersHMO_BTF_SearchUsersHMO_BTF_ExecutePageDef"/>
+    <page path="/fragment/CardReplacement.jsff" usageId="view_CardReplacementPageDef"/>
+    <page path="/WEB-INF/taskflow/CardReplacement_BTF.xml#CardReplacement_BTF@CreateWithParameters"
+          usageId="view_CardReplacement_BTF_CardReplacement_BTF_CreateWithParametersPageDef"/>
+    <page path="/WEB-INF/taskflow/CardReplacement_BTF.xml#CardReplacement_BTF@ExecuteWithParams"
+          usageId="view_CardReplacement_BTF_CardReplacement_BTF_ExecuteWithParamsPageDef"/>
+    <page path="/fragment/ReimbursementClaims.jsff" usageId="view_ReimbursementClaimsPageDef"/>
+    <page path="/WEB-INF/taskflow/ReimbursementClaims_BTF.xml#ReimbursementClaims_BTF@CreateWithParameters"
+          usageId="view_ReimbursementClaims_BTF_ReimbursementClaims_BTF_CreateWithParametersPageDef"/>
+    <page path="/WEB-INF/taskflow/ReimbursementClaims_BTF.xml#ReimbursementClaims_BTF@ExecuteWithParams"
+          usageId="view_ReimbursementClaims_BTF_ReimbursementClaims_BTF_ExecuteWithParamsPageDef"/>
+    <page path="/WEB-INF/taskflow/DependentRequests_BTF.xml#DependentRequests_BTF@ExecuteWithParams"
+          usageId="view_DependentRequests_BTF_DependentRequests_BTF_ExecuteWithParamsPageDef"/>
+    <page path="/fragment/NewDependentReq.jsff" usageId="view_NewDependentReqPageDef"/>
+    <page path="/WEB-INF/taskflow/AddEditHMO_BTF.xml#AddEditHMO_BTF@Execute"
+          usageId="view_AddEditHMO_BTF_AddEditHMO_BTF_ExecutePageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_servlet_ProfilePictureServletPageDef" path="fragment.ProfilePictureServletPageDef"/>
+    <page id="view_FilmStripPageDef" path="pages.FilmStripPageDef"/>
+    <page id="view_HeaderHMOPageDef" path="fragment.HeaderHMOPageDef"/>
+    <page id="view_DependentHMOPageDef" path="fragment.DependentHMOPageDef"/>
+    <page id="view_ReviewHMOPageDef" path="fragment.ReviewHMOPageDef"/>
+    <page id="view_SearchUsersHMOPageDef" path="fragment.SearchUsersHMOPageDef"/>
+    <page id="view_AddEditHMO_BTF_AddEditHMO_BTF_ExecuteWithParamsPageDef"
+          path="taskflow.AddEditHMO_BTF_AddEditHMO_BTF_ExecuteWithParamsPageDef"/>
+    <page id="view_AddEditHMO_BTF_AddEditHMO_BTF_createNewHMOPageDef"
+          path="taskflow.AddEditHMO_BTF_AddEditHMO_BTF_createNewHMOPageDef"/>
+    <page id="view_MedicalDetailsPageDef" path="fragment.MedicalDetailsPageDef"/>
+    <page id="view_MedicalDetails_BTF_MedicalDetails_BTF_CreateWithParametersPageDef"
+          path="taskflow.MedicalDetails_BTF_MedicalDetails_BTF_CreateWithParametersPageDef"/>
+    <page id="view_ComplaintsFormPageDef" path="fragment.ComplaintsFormPageDef"/>
+    <page id="view_ComplaintsForm_BTF_ComplaintsForm_BTF_CreateWithParametersPageDef"
+          path="taskflow.ComplaintsForm_BTF_ComplaintsForm_BTF_CreateWithParametersPageDef"/>
+    <page id="view_MedicalDetails_BTF_MedicalDetails_BTF_ExecuteWithParamsPageDef"
+          path="taskflow.MedicalDetails_BTF_MedicalDetails_BTF_ExecuteWithParamsPageDef"/>
+    <page id="view_ComplaintsForm_BTF_ComplaintsForm_BTF_ExecuteWithParamsPageDef"
+          path="taskflow.ComplaintsForm_BTF_ComplaintsForm_BTF_ExecuteWithParamsPageDef"/>
+    <page id="view_SearchUsersHMO_BTF_SearchUsersHMO_BTF_ExecutePageDef"
+          path="taskflow.SearchUsersHMO_BTF_SearchUsersHMO_BTF_ExecutePageDef"/>
+    <page id="view_CardReplacementPageDef" path="fragment.CardReplacementPageDef"/>
+    <page id="view_CardReplacement_BTF_CardReplacement_BTF_CreateWithParametersPageDef"
+          path="taskflow.CardReplacement_BTF_CardReplacement_BTF_CreateWithParametersPageDef"/>
+    <page id="view_CardReplacement_BTF_CardReplacement_BTF_ExecuteWithParamsPageDef"
+          path="taskflow.CardReplacement_BTF_CardReplacement_BTF_ExecuteWithParamsPageDef"/>
+    <page id="view_ReimbursementClaimsPageDef" path="fragment.ReimbursementClaimsPageDef"/>
+    <page id="view_ReimbursementClaims_BTF_ReimbursementClaims_BTF_CreateWithParametersPageDef"
+          path="taskflow.ReimbursementClaims_BTF_ReimbursementClaims_BTF_CreateWithParametersPageDef"/>
+    <page id="view_ReimbursementClaims_BTF_ReimbursementClaims_BTF_ExecuteWithParamsPageDef"
+          path="taskflow.ReimbursementClaims_BTF_ReimbursementClaims_BTF_ExecuteWithParamsPageDef"/>
+    <page id="view_DependentRequests_BTF_DependentRequests_BTF_ExecuteWithParamsPageDef"
+          path="taskflow.DependentRequests_BTF_DependentRequests_BTF_ExecuteWithParamsPageDef"/>
+    <page id="view_NewDependentReqPageDef" path="fragment.NewDependentReqPageDef"/>
+    <page id="view_AddEditHMO_BTF_AddEditHMO_BTF_ExecutePageDef"
+          path="taskflow.AddEditHMO_BTF_AddEditHMO_BTF_ExecutePageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="Oando_AMDataControl" Package="model.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="Oando_AMLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

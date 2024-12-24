@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="CardReplacementPageDef"
+                Package="fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="HMOCard_VO" RangeSize="25" DataControl="Oando_AMDataControl" id="HMOCard_VOIterator" ChangeEventPolicy="none"/>
+    <iterator Binds="CardAttachment_Vo" RangeSize="25" DataControl="Oando_AMDataControl" ChangeEventPolicy="none"
+              id="CardAttachment_VoIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="CardId">
+      <AttrNames>
+        <Item Value="CardId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="CardReqNo">
+      <AttrNames>
+        <Item Value="CardReqNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="HmoTransReference">
+      <AttrNames>
+        <Item Value="HmoTransReference"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="CardReplacementDetail">
+      <AttrNames>
+        <Item Value="CardReplacementDetail"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="Title">
+      <AttrNames>
+        <Item Value="Title"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="FirstName">
+      <AttrNames>
+        <Item Value="FirstName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="LastName">
+      <AttrNames>
+        <Item Value="LastName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="HmoOption">
+      <AttrNames>
+        <Item Value="HmoOption"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="MobileNo">
+      <AttrNames>
+        <Item Value="MobileNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="PersonNumber">
+      <AttrNames>
+        <Item Value="PersonNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="ApprovalStatus">
+      <AttrNames>
+        <Item Value="ApprovalStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" DataControl="Oando_AMDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
+    <action id="Rollback" DataControl="Oando_AMDataControl" RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <tree IterBinding="CardAttachment_VoIterator" id="CardAttachment_Vo">
+      <nodeDefinition DefName="model.vo.XxfndAttachment_EOView" Name="CardAttachment_Vo0">
+        <AttrNames>
+          <Item Value="AttachmentName"/>
+          <Item Value="AttachmentType"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="CardAttachment_VoIterator" id="DeleteAttach" InstanceName="Oando_AMDataControl.CardAttachment_Vo"
+            DataControl="Oando_AMDataControl" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action IterBinding="CardAttachment_VoIterator" id="CreateAttachment"
+            InstanceName="Oando_AMDataControl.CardAttachment_Vo" DataControl="Oando_AMDataControl"
+            RequiresUpdateModel="true" Action="createWithParams">
+      <NamedData NDName="SourceDocument" NDValue="CARD" NDType="java.lang.String"/>
+    </action>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="CreationDate">
+      <AttrNames>
+        <Item Value="CreationDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HMOCard_VOIterator" id="ApproverComments">
+      <AttrNames>
+        <Item Value="ApproverComments"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="HMOCard_VOIterator" StaticList="false" Uses="LOV_CardReplacementDetail"
+          id="CardReplacementDetail1" DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+  </bindings>
+</pageDefinition>

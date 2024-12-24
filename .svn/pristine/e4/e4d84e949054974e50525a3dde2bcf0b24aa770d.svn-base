@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="ReimbursementClaims_BTF">
+    <default-activity>CheckPath</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <input-parameter-definition id="__11">
+      <name>RequestEditID</name>
+      <value>#{pageFlowScope.RequestEditID}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__12">
+      <name>AddEditMode</name>
+      <value>#{pageFlowScope.AddEditMode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__13">
+      <name>Title</name>
+      <value>#{pageFlowScope.Title}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__14">
+      <name>FirstName</name>
+      <value>#{pageFlowScope.FirstName}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__15">
+      <name>LastName</name>
+      <value>#{pageFlowScope.LastName}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__16">
+      <name>PersonId</name>
+      <value>#{pageFlowScope.PersonId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__17">
+      <name>PersonNo</name>
+      <value>#{pageFlowScope.PersonNo}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__18">
+      <name>HMOReqNo</name>
+      <value>#{pageFlowScope.HMOReqNo}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__19">
+      <name>HMOOption</name>
+      <value>#{pageFlowScope.HMOOption}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__21">
+      <name>Hospital</name>
+      <value>#{pageFlowScope.Hospital}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__22">
+      <name>StateOfResi</name>
+      <value>#{pageFlowScope.StateOfResi}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__23">
+      <name>Mobile</name>
+      <value>#{pageFlowScope.Mobile}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__20">
+      <managed-bean-name>ReimbursementClaimBB</managed-bean-name>
+      <managed-bean-class>com.view.beans.ReimbursementClaimBB</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="ReimbursementClaims">
+      <page>/fragment/ReimbursementClaims.jsff</page>
+    </view>
+    <task-flow-return id="backToSearch">
+      <outcome>
+        <name>backToSearch</name>
+      </outcome>
+    </task-flow-return>
+    <method-call id="CreateWithParameters">
+      <method>#{bindings.CreateWithParams.execute}</method>
+      <outcome>
+        <fixed-outcome>CreateWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome>
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <router id="CheckPath">
+      <case id="__10">
+        <expression>#{pageFlowScope.AddEditMode eq 'EDIT'}</expression>
+        <outcome>toEdit</outcome>
+      </case>
+      <default-outcome>toAdd</default-outcome>
+    </router>
+    <control-flow-rule id="__1">
+      <from-activity-id>ReimbursementClaims</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>toSearch</from-outcome>
+        <to-activity-id>backToSearch</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>CreateWithParameters</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>CreateWithParams</from-outcome>
+        <to-activity-id>ReimbursementClaims</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__5">
+      <from-activity-id>ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome>ExecuteWithParams</from-outcome>
+        <to-activity-id>ReimbursementClaims</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__7">
+      <from-activity-id>CheckPath</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome>toAdd</from-outcome>
+        <to-activity-id>CreateWithParameters</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__9">
+        <from-outcome>toEdit</from-outcome>
+        <to-activity-id>ExecuteWithParams</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

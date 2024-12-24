@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="ComplaintsForm_BTF">
+    <default-activity>CheckRoute</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <input-parameter-definition id="__4">
+      <name>Title</name>
+      <value>#{pageFlowScope.Title}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>FirstName</name>
+      <value>#{pageFlowScope.FirstName}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__6">
+      <name>LastName</name>
+      <value>#{pageFlowScope.LastName}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__7">
+      <name>PersonId</name>
+      <value>#{pageFlowScope.PersonId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__8">
+      <name>PersonNo</name>
+      <value>#{pageFlowScope.PersonNo}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__9">
+      <name>HMOReqNo</name>
+      <value>#{pageFlowScope.HMOReqNo}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__10">
+      <name>HMOOption</name>
+      <value>#{pageFlowScope.HMOOption}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__11">
+      <name>RequestEditID</name>
+      <value>#{pageFlowScope.RequestEditID}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__12">
+      <name>AddEditMode</name>
+      <value>#{pageFlowScope.AddEditMode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__15">
+      <name>StateOfResi</name>
+      <value>#{pageFlowScope.StateOfResi}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__3">
+      <managed-bean-name>ComplaintsFormBB</managed-bean-name>
+      <managed-bean-class>com.view.beans.ComplaintsFormBB</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="ComplaintsForm">
+      <page>/fragment/ComplaintsForm.jsff</page>
+    </view>
+    <task-flow-return id="backToSearch">
+      <outcome>
+        <name>backToSearch</name>
+      </outcome>
+    </task-flow-return>
+    <method-call id="CreateWithParameters">
+      <method>#{bindings.CreateWithParams.execute}</method>
+      <outcome>
+        <fixed-outcome>CreateWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome>
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <router id="CheckRoute">
+      <case id="__21">
+        <expression>#{pageFlowScope.AddEditMode eq 'EDIT'}</expression>
+        <outcome>toEdit</outcome>
+      </case>
+      <default-outcome>toAdd</default-outcome>
+    </router>
+    <control-flow-rule id="__1">
+      <from-activity-id>ComplaintsForm</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>toSearch</from-outcome>
+        <to-activity-id>backToSearch</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__13">
+      <from-activity-id>CreateWithParameters</from-activity-id>
+      <control-flow-case id="__14">
+        <from-outcome>CreateWithParams</from-outcome>
+        <to-activity-id>ComplaintsForm</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__16">
+      <from-activity-id>CheckRoute</from-activity-id>
+      <control-flow-case id="__17">
+        <from-outcome>toAdd</from-outcome>
+        <to-activity-id>CreateWithParameters</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__18">
+        <from-outcome>toEdit</from-outcome>
+        <to-activity-id>ExecuteWithParams</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__19">
+      <from-activity-id>ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__20">
+        <from-outcome>ExecuteWithParams</from-outcome>
+        <to-activity-id>ComplaintsForm</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

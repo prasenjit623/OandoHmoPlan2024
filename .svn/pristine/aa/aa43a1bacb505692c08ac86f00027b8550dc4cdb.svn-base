@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="AddEditHMO_BTF">
+    <default-activity>Execute</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <task-flow-reentry>
+      <reentry-not-allowed/>
+    </task-flow-reentry>
+    <input-parameter-definition id="__13">
+      <name>addEditMode</name>
+      <value>#{pageFlowScope.addEditMode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__14">
+      <name>ReqEditID</name>
+      <value>#{pageFlowScope.ReqEditID}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__3">
+      <managed-bean-name>AddEditHmoBB</managed-bean-name>
+      <managed-bean-class>com.view.beans.AddEditHmoBB</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__4">
+      <managed-bean-name>ProfilePictureServlet</managed-bean-name>
+      <managed-bean-class>com.view.servlet.ProfilePictureServlet</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="HeaderHMO">
+      <page>/fragment/HeaderHMO.jsff</page>
+      <train-stop>
+        <display-name>Header Details</display-name>
+      </train-stop>
+    </view>
+    <view id="DependentHMO">
+      <page>/fragment/DependentHMO.jsff</page>
+      <train-stop>
+        <display-name>Dependents Details</display-name>
+        <skip>#{pageFlowScope.HMO_OPTION eq 'HIDE'}</skip>
+      </train-stop>
+    </view>
+    <view id="ReviewHMO">
+      <page>/fragment/ReviewHMO.jsff</page>
+      <train-stop>
+        <display-name>Review</display-name>
+      </train-stop>
+    </view>
+    <task-flow-return id="toSearch">
+      <outcome>
+        <name>toSearch</name>
+      </outcome>
+    </task-flow-return>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome>
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="createNewHMO">
+      <method>#{bindings.createNewHMO.execute}</method>
+      <outcome>
+        <fixed-outcome>createNewHMO</fixed-outcome>
+      </outcome>
+    </method-call>
+    <router id="checkAddEdit">
+      <case id="__12">
+        <expression>#{pageFlowScope.addEditMode eq 'ADD'}</expression>
+        <outcome>toAdd</outcome>
+      </case>
+      <default-outcome>toEdit</default-outcome>
+    </router>
+    <method-call id="Execute">
+      <method>#{bindings.Execute.execute}</method>
+      <outcome>
+        <fixed-outcome>Execute</fixed-outcome>
+      </outcome>
+    </method-call>
+    <train/>
+    <control-flow-rule id="__1">
+      <from-activity-id>ReviewHMO</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>backToSearch</from-outcome>
+        <to-activity-id>toSearch</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__5">
+      <from-activity-id>ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome>ExecuteWithParams</from-outcome>
+        <to-activity-id>HeaderHMO</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__7">
+      <from-activity-id>createNewHMO</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome>createNewHMO</from-outcome>
+        <to-activity-id>HeaderHMO</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__9">
+      <from-activity-id>checkAddEdit</from-activity-id>
+      <control-flow-case id="__10">
+        <from-outcome>toEdit</from-outcome>
+        <to-activity-id>ExecuteWithParams</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__11">
+        <from-outcome>toAdd</from-outcome>
+        <to-activity-id>createNewHMO</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__15">
+      <from-activity-id>HeaderHMO</from-activity-id>
+      <control-flow-case id="__16">
+        <from-outcome>toSearchFromHdr</from-outcome>
+        <to-activity-id>toSearch</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__20">
+        <from-outcome>toDependent</from-outcome>
+        <to-activity-id>DependentHMO</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__21">
+        <from-outcome>toReviewFromHdr</from-outcome>
+        <to-activity-id>ReviewHMO</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__17">
+      <from-activity-id>DependentHMO</from-activity-id>
+      <control-flow-case id="__18">
+        <from-outcome>toSearchFromDep</from-outcome>
+        <to-activity-id>toSearch</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__19">
+        <from-outcome>toReview</from-outcome>
+        <to-activity-id>ReviewHMO</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__22">
+      <from-activity-id>Execute</from-activity-id>
+      <control-flow-case id="__23">
+        <from-outcome>Execute</from-outcome>
+        <to-activity-id>checkAddEdit</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

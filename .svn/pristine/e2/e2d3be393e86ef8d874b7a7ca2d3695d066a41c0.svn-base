@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14"
+                id="AddEditHMO_BTF_AddEditHMO_BTF_ExecutePageDef" Package="taskflow" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="XxhrHmoMasterHdr_ROVO1" RangeSize="25" DataControl="Oando_AMDataControl"
+              id="XxhrHmoMasterHdr_ROVO1Iterator" Refresh="never"/>
+  </executables>
+  <bindings>
+    <action IterBinding="XxhrHmoMasterHdr_ROVO1Iterator" id="Execute" RequiresUpdateModel="true"
+            Action="iteratorExecute"/>
+  </bindings>
+</pageDefinition>

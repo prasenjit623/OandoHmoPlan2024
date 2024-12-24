@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding='windows-1252'?>
+<!DOCTYPE OperationDefinitions SYSTEM "jbo_03_01.dtd">
+<OperationDefinitions xmlns="http://xmlns.oracle.com/bc4j" Name="XxhrHmoTrxHdr_EOViewOperations">
+  <ExpressionCodeSource
+    Name="XxhrHmoTrxHdr_EOViewRow"
+    Type="Static"
+    URI="model/vo/XxhrHmoTrxHdr_EOViewRow.bcs"/>
+  <ExpressionCodeSource
+    Name="XxhrHmoTrxHdr_EOView"
+    Type="Static"
+    URI="model/vo/XxhrHmoTrxHdr_EOView.bcs"/>
+</OperationDefinitions>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="XxhrHmoHdr_Dtl_VL"
+  Version="12.2.1.9.14"
+  InheritPersonalization="merge"
+  EntityAssociation="model.association.XxhrHmoHdr_Dtl_Assoc">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.vl.XxhrHmoHdr_Dtl_VL_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="XxhrHmoTrxHdr_EOView"
+    Cardinality="1"
+    Source="true"
+    Owner="model.vo.XxhrHmoTrxHdr_EOView">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_accessor" Value="true"/>
+      <Attr Name="_finderName" Value="XxhrHmoTrxHdr_EOView"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.vo.XxhrHmoTrxHdr_EOView.HmoTrxHdrId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="XxhrHmoTrxDtl_EOView"
+    Cardinality="-1"
+    Owner="model.vo.XxhrHmoTrxDtl_EOView">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="XxhrHmoTrxDtl_EOView"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.vo.XxhrHmoTrxDtl_EOView.HmoTrxHdrId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

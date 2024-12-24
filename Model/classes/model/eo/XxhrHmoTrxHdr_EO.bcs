@@ -1,0 +1,29 @@
+//Groovy Scripts for model.eo.XxhrHmoTrxHdr_EO
+
+package model.eo
+
+import oracle.jbo.script.annotation.TransientValueExpression;
+
+
+
+
+@TransientValueExpression(attributeName="CreatedBy")
+def CreatedBy_ExpressionScript_Expression()
+{
+adf.context.sessionScope.userName
+}
+
+
+@TransientValueExpression(attributeName="HmoTrxHdrId")
+def HmoTrxHdrId_ExpressionScript_Expression()
+{
+new oracle.jbo.server.SequenceImpl("XXHR_HMO_TRX_HDR_S",adf.object.getDBTransaction()).getSequenceNumber()
+}
+
+
+@TransientValueExpression(attributeName="HmoRequestNo")
+def HmoRequestNo_ExpressionScript_Expression()
+{
+HmoTrxHdrId
+}
+

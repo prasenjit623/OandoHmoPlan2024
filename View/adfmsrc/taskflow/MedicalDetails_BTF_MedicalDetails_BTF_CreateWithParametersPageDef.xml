@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14"
+                id="MedicalDetails_BTF_MedicalDetails_BTF_CreateWithParametersPageDef" Package="taskflow"
+                SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="HMOMaintance_VO" RangeSize="25" DataControl="Oando_AMDataControl" id="HMOMaintance_VOIterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="HMOMaintance_VOIterator" id="CreateWithParams" RequiresUpdateModel="true"
+            Action="createWithParams">
+      <NamedData NDName="Title" NDValue="#{pageFlowScope.Title}" NDType="java.lang.String"/>
+      <NamedData NDName="FirstName" NDValue="#{pageFlowScope.FirstName}" NDType="java.lang.String"/>
+      <NamedData NDName="LastName" NDValue="#{pageFlowScope.LastName}" NDType="java.lang.String"/>
+      <NamedData NDName="PersonId" NDValue="#{pageFlowScope.PersonId}" NDType="java.lang.String"/>
+      <NamedData NDName="PersonNumber" NDValue="#{pageFlowScope.PersonNo}" NDType="java.lang.String"/>
+      <NamedData NDName="HmoTransReference" NDValue="#{pageFlowScope.HMOReqNo}" NDType="java.lang.String"/>
+      <NamedData NDName="HmoOption" NDValue="#{pageFlowScope.HMOOption}" NDType="java.lang.String"/>
+    </action>
+  </bindings>
+</pageDefinition>

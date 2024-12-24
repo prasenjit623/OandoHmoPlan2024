@@ -1,0 +1,12 @@
+//Groovy Scripts for model.vo.XxhrHmoComplaint_VO
+
+package model.vo
+
+import oracle.jbo.script.annotation.AccessorParameterExpression;
+
+@AccessorParameterExpression(accessorName="StateOfResidence_ROVO", name="bv_hmoOpt")
+def bv_hmoOpt_StateOfResidence_ROVO_BindVariable_BoundParameter()
+{
+HmoOption
+}
+

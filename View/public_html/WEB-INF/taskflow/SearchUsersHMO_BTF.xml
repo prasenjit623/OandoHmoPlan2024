@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="SearchUsersHMO_BTF">
+    <default-activity>SearchUsersHMO</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <managed-bean id="__1">
+      <managed-bean-name>FilmStripBB</managed-bean-name>
+      <managed-bean-class>com.view.beans.filmStrip.UtilsBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__12">
+      <managed-bean-name>SearchHmoBB</managed-bean-name>
+      <managed-bean-class>com.view.beans.SearchHmoBB</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="SearchUsersHMO">
+      <page>/fragment/SearchUsersHMO.jsff</page>
+    </view>
+    <task-flow-call id="AddEditHMO_BTF">
+      <task-flow-reference>
+        <document>/WEB-INF/taskflow/AddEditHMO_BTF.xml</document>
+        <id>AddEditHMO_BTF</id>
+      </task-flow-reference>
+      <input-parameter id="__10">
+        <name>ReqEditID</name>
+        <value>#{pageFlowScope.ReqEditID}</value>
+      </input-parameter>
+      <input-parameter id="__11">
+        <name>addEditMode</name>
+        <value>#{pageFlowScope.addEditMode}</value>
+      </input-parameter>
+    </task-flow-call>
+    <method-call id="hideFS">
+      <method>#{backingBeanScope.FilmStripBB._hideFilmStrip}</method>
+      <outcome>
+        <fixed-outcome>hideStrip</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="showFS">
+      <method>#{backingBeanScope.FilmStripBB._showFilmStrip}</method>
+      <outcome>
+        <fixed-outcome>showStrip</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="MedicalDetails_BTF">
+      <task-flow-reference>
+        <document>/WEB-INF/taskflow/MedicalDetails_BTF.xml</document>
+        <id>MedicalDetails_BTF</id>
+      </task-flow-reference>
+      <input-parameter id="__33">
+        <name>Title</name>
+        <value>#{pageFlowScope.Title}</value>
+      </input-parameter>
+      <input-parameter id="__34">
+        <name>FirstName</name>
+        <value>#{pageFlowScope.FirstName}</value>
+      </input-parameter>
+      <input-parameter id="__35">
+        <name>LastName</name>
+        <value>#{pageFlowScope.LastName}</value>
+      </input-parameter>
+      <input-parameter id="__36">
+        <name>PersonId</name>
+        <value>#{pageFlowScope.PersonId}</value>
+      </input-parameter>
+      <input-parameter id="__37">
+        <name>PersonNo</name>
+        <value>#{pageFlowScope.PersonNo}</value>
+      </input-parameter>
+      <input-parameter id="__38">
+        <name>HMOReqNo</name>
+        <value>#{pageFlowScope.HMOReqNo}</value>
+      </input-parameter>
+      <input-parameter id="__39">
+        <name>HMOOption</name>
+        <value>#{pageFlowScope.HMOOption}</value>
+      </input-parameter>
+      <input-parameter id="__40">
+        <name>AddEditMode</name>
+        <value>#{pageFlowScope.AddEditMode}</value>
+      </input-parameter>
+      <input-parameter id="__41">
+        <name>RequestEditID</name>
+        <value>#{pageFlowScope.RequestEditID}</value>
+      </input-parameter>
+    </task-flow-call>
+    <method-call id="hideFS2">
+      <method>#{backingBeanScope.FilmStripBB._hideFilmStrip}</method>
+      <outcome>
+        <fixed-outcome>hideFS2</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="hideFS3">
+      <method>#{backingBeanScope.FilmStripBB._hideFilmStrip}</method>
+      <outcome>
+        <fixed-outcome>hideFS3</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="CardReplacement_BTF">
+      <task-flow-reference>
+        <document>/WEB-INF/taskflow/CardReplacement_BTF.xml</document>
+        <id>CardReplacement_BTF</id>
+      </task-flow-reference>
+      <input-parameter id="__54">
+        <name>RequestEditID</name>
+        <value>#{pageFlowScope.RequestEditID}</value>
+      </input-parameter>
+      <input-parameter id="__55">
+        <name>AddEditMode</name>
+        <value>#{pageFlowScope.AddEditMode}</value>
+      </input-parameter>
+      <input-parameter id="__56">
+        <name>Title</name>
+        <value>#{pageFlowScope.Title}</value>
+      </input-parameter>
+      <input-parameter id="__57">
+        <name>FirstName</name>
+        <value>#{pageFlowScope.FirstName}</value>
+      </input-parameter>
+      <input-parameter id="__58">
+        <name>LastName</name>
+        <value>#{pageFlowScope.LastName}</value>
+      </input-parameter>
+      <input-parameter id="__59">
+        <name>PersonId</name>
+        <value>#{pageFlowScope.PersonId}</value>
+      </input-parameter>
+      <input-parameter id="__60">
+        <name>PersonNo</name>
+        <value>#{pageFlowScope.PersonNo}</value>
+      </input-parameter>
+      <input-parameter id="__61">
+        <name>HMOReqNo</name>
+        <value>#{pageFlowScope.HMOReqNo}</value>
+      </input-parameter>
+      <input-parameter id="__62">
+        <name>HMOOption</name>
+        <value>#{pageFlowScope.HMOOption}</value>
+      </input-parameter>
+      <input-parameter id="__63">
+        <name>Mobile</name>
+        <value>#{pageFlowScope.Mobile}</value>
+      </input-parameter>
+    </task-flow-call>
+    <method-call id="hideFS4">
+      <method>#{backingBeanScope.FilmStripBB._hideFilmStrip}</method>
+      <outcome>
+        <fixed-outcome>hideFS4</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="ComplaintsForm_BTF">
+      <task-flow-reference>
+        <document>/WEB-INF/taskflow/ComplaintsForm_BTF.xml</document>
+        <id>ComplaintsForm_BTF</id>
+      </task-flow-reference>
+      <input-parameter id="__42">
+        <name>Title</name>
+        <value>#{pageFlowScope.Title}</value>
+      </input-parameter>
+      <input-parameter id="__43">
+        <name>FirstName</name>
+        <value>#{pageFlowScope.FirstName}</value>
+      </input-parameter>
+      <input-parameter id="__44">
+        <name>LastName</name>
+        <value>#{pageFlowScope.LastName}</value>
+      </input-parameter>
+      <input-parameter id="__45">
+        <name>PersonId</name>
+        <value>#{pageFlowScope.PersonId}</value>
+      </input-parameter>
+      <input-parameter id="__46">
+        <name>PersonNo</name>
+        <value>#{pageFlowScope.PersonNo}</value>
+      </input-parameter>
+      <input-parameter id="__47">
+        <name>HMOReqNo</name>
+        <value>#{pageFlowScope.HMOReqNo}</value>
+      </input-parameter>
+      <input-parameter id="__48">
+        <name>HMOOption</name>
+        <value>#{pageFlowScope.HMOOption}</value>
+      </input-parameter>
+      <input-parameter id="__49">
+        <name>RequestEditID</name>
+        <value>#{pageFlowScope.RequestEditID}</value>
+      </input-parameter>
+      <input-parameter id="__50">
+        <name>AddEditMode</name>
+        <value>#{pageFlowScope.AddEditMode}</value>
+      </input-parameter>
+      <input-parameter id="__51">
+        <name>StateOfResi</name>
+        <value>#{pageFlowScope.StateOfResi}</value>
+      </input-parameter>
+    </task-flow-call>
+    <task-flow-call id="ReimbursementClaims_BTF">
+      <task-flow-reference>
+        <document>/WEB-INF/taskflow/ReimbursementClaims_BTF.xml</document>
+        <id>ReimbursementClaims_BTF</id>
+      </task-flow-reference>
+       <input-parameter id="__64">
+        <name>Title</name>
+        <value>#{pageFlowScope.Title}</value>
+      </input-parameter>
+      <input-parameter id="__65">
+        <name>FirstName</name>
+        <value>#{pageFlowScope.FirstName}</value>
+      </input-parameter>
+      <input-parameter id="__66">
+        <name>LastName</name>
+        <value>#{pageFlowScope.LastName}</value>
+      </input-parameter>
+      <input-parameter id="__67">
+        <name>PersonId</name>
+        <value>#{pageFlowScope.PersonId}</value>
+      </input-parameter>
+      <input-parameter id="__68">
+        <name>PersonNo</name>
+        <value>#{pageFlowScope.PersonNo}</value>
+      </input-parameter>
+      <input-parameter id="__69">
+        <name>HMOReqNo</name>
+        <value>#{pageFlowScope.HMOReqNo}</value>
+      </input-parameter>
+      <input-parameter id="__70">
+        <name>HMOOption</name>
+        <value>#{pageFlowScope.HMOOption}</value>
+      </input-parameter>
+      <input-parameter id="__71">
+        <name>RequestEditID</name>
+        <value>#{pageFlowScope.RequestEditID}</value>
+      </input-parameter>
+      <input-parameter id="__72">
+        <name>AddEditMode</name>
+        <value>#{pageFlowScope.AddEditMode}</value>
+      </input-parameter>
+      <input-parameter id="__73">
+        <name>StateOfResi</name>
+        <value>#{pageFlowScope.StateOfResi}</value>
+      </input-parameter>
+      <input-parameter id="__74">
+        <name>Hospital</name>
+        <value>#{pageFlowScope.Hospital}</value>
+      </input-parameter>
+      <input-parameter id="__81">
+        <name>Mobile</name>
+        <value>#{pageFlowScope.Mobile}</value>
+      </input-parameter>
+    </task-flow-call>
+    <method-call id="hideFS5">
+      <method>#{backingBeanScope.FilmStripBB._hideFilmStrip}</method>
+      <outcome>
+        <fixed-outcome>hideFS5</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="Execute">
+      <method>#{bindings.Execute.execute}</method>
+      <outcome>
+        <fixed-outcome>Execute</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="hideFSDep">
+      <method>#{backingBeanScope.FilmStripBB._hideFilmStrip}</method>
+      <outcome>
+        <fixed-outcome>hideFsDep</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="DependentRequests_BTF">
+      <task-flow-reference>
+        <document>/WEB-INF/taskflow/DependentRequests_BTF.xml</document>
+        <id>DependentRequests_BTF</id>
+      </task-flow-reference>
+      <input-parameter id="__80">
+        <name>RequestEditID</name>
+        <value>#{pageFlowScope.RequestEditID}</value>
+      </input-parameter>
+    </task-flow-call>
+    <control-flow-rule id="__2">
+      <from-activity-id>SearchUsersHMO</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>toAddEdit</from-outcome>
+        <to-activity-id>hideFS</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__13">
+        <from-outcome>toMedical</from-outcome>
+        <to-activity-id>hideFS2</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__16">
+        <from-outcome>toCard</from-outcome>
+        <to-activity-id>hideFS3</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__21">
+        <from-outcome>toComplaints</from-outcome>
+        <to-activity-id>hideFS4</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__30">
+        <from-outcome>toReimbursement</from-outcome>
+        <to-activity-id>hideFS5</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__75">
+        <from-outcome>toNewDep</from-outcome>
+        <to-activity-id>hideFSDep</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>hideFS</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>hideStrip</from-outcome>
+        <to-activity-id>AddEditHMO_BTF</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__6">
+      <from-activity-id>AddEditHMO_BTF</from-activity-id>
+      <control-flow-case id="__7">
+        <from-outcome>toSearch</from-outcome>
+        <to-activity-id>showFS</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__8">
+      <from-activity-id>showFS</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome>showStrip</from-outcome>
+        <to-activity-id>Execute</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__14">
+      <from-activity-id>hideFS2</from-activity-id>
+      <control-flow-case id="__15">
+        <from-outcome>hideFS2</from-outcome>
+        <to-activity-id>MedicalDetails_BTF</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__17">
+      <from-activity-id>hideFS3</from-activity-id>
+      <control-flow-case id="__18">
+        <from-outcome>hideFS3</from-outcome>
+        <to-activity-id>CardReplacement_BTF</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__19">
+      <from-activity-id>hideFS4</from-activity-id>
+      <control-flow-case id="__20">
+        <from-outcome>hideFS4</from-outcome>
+        <to-activity-id>ComplaintsForm_BTF</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__22">
+      <from-activity-id>MedicalDetails_BTF</from-activity-id>
+      <control-flow-case id="__23">
+        <from-outcome>backToSearch</from-outcome>
+        <to-activity-id>showFS</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__24">
+      <from-activity-id>CardReplacement_BTF</from-activity-id>
+      <control-flow-case id="__25">
+        <from-outcome>backToSearch</from-outcome>
+        <to-activity-id>showFS</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__26">
+      <from-activity-id>ComplaintsForm_BTF</from-activity-id>
+      <control-flow-case id="__27">
+        <from-outcome>backToSearch</from-outcome>
+        <to-activity-id>showFS</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__28">
+      <from-activity-id>hideFS5</from-activity-id>
+      <control-flow-case id="__29">
+        <from-outcome>hideFS5</from-outcome>
+        <to-activity-id>ReimbursementClaims_BTF</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__31">
+      <from-activity-id>ReimbursementClaims_BTF</from-activity-id>
+      <control-flow-case id="__32">
+        <from-outcome>backToSearch</from-outcome>
+        <to-activity-id>showFS</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__52">
+      <from-activity-id>Execute</from-activity-id>
+      <control-flow-case id="__53">
+        <from-outcome>Execute</from-outcome>
+        <to-activity-id>SearchUsersHMO</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__76">
+      <from-activity-id>hideFSDep</from-activity-id>
+      <control-flow-case id="__77">
+        <from-outcome>hideFsDep</from-outcome>
+        <to-activity-id>DependentRequests_BTF</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__78">
+      <from-activity-id>DependentRequests_BTF</from-activity-id>
+      <control-flow-case id="__79">
+        <from-outcome>backToSearch</from-outcome>
+        <to-activity-id>showFS</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

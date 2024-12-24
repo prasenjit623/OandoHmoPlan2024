@@ -1,0 +1,32 @@
+//Groovy Scripts for model.vo.XxhrHmoDtl_VO
+
+package model.vo
+
+import oracle.jbo.script.annotation.AccessorParameterExpression;
+
+@AccessorParameterExpression(accessorName="FetchHospital_ROVO", name="bv_hmoOptions")
+def bv_hmoOptions_FetchHospital_ROVO_BindVariable_BoundParameter()
+{
+HMOType
+}
+
+@AccessorParameterExpression(accessorName="FetchHospital_ROVO", name="bv_state")
+def bv_state_FetchHospital_ROVO_BindVariable_BoundParameter()
+{
+StateOfResidence
+}
+
+
+@AccessorParameterExpression(accessorName="StateOfResidence_ROVO", name="bv_hmoOpt")
+def bv_hmoOpt_StateOfResidence_ROVO_BindVariable_BoundParameter()
+{
+HMOType
+}
+
+
+@AccessorParameterExpression(accessorName="LookupValues_DepTypes", name="bv_dep")
+def bv_dep_LookupValues_DepTypes_BindVariable_BoundParameter()
+{
+HMOOption
+}
+
